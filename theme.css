@@ -73,7 +73,7 @@ body {
 }
 
 body, .backgroundContainer, .backdropContainer {
-    background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop') center/cover fixed !important;
+    background: url('https://media.512pixels.net/downloads/macos-wallpapers-6k/26-Tahoe-Dark-6K.png') center/cover fixed !important;
 }
 .backgroundContainer.withBackdrop {
     background: transparent !important;

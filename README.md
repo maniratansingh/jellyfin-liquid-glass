@@ -1,5 +1,7 @@
 # Apple Liquid Glass for Jellyfin
 
+> **Personal Note:** This is a personal project created strictly for my personal use. The default Jellyfin UI felt a bit too basic, so I needed something more premium and refined. If anyone else wants to use it, you are more than welcome to, but I primarily created this for my own purposes. I really liked the design that I got inspired from. Full credit goes to AumGupta and the original Abyss Jellyfin Theme. I built this entirely upon their hard work, so please check out their repository.
+
 A modular, high-performance, pure CSS theme inspired by macOS Tahoe, visionOS, and iOS 26. This theme completely overhauls the Jellyfin UI to provide a floating, translucent, and highly polished Apple aesthetic without requiring JavaScript injections or third-party fonts.
 
 ## Features

@@ -1,0 +1,64 @@
+/* 
+   macOS Light Glass Transformation
+*/
+
+/* 1. Global Readability Inversion (Force Dark Text) */
+body, 
+h1, h2, h3, h4, h5, 
+p, span, div,
+.itemName, 
+.cardText, 
+.infoText, 
+.text-muted,
+.secondaryText,
+.listItem-secondaryText,
+.itemOverview,
+button {
+    color: #1c1c1e !important;
+}
+
+/* Icons */
+.material-icons,
+.material-icons-round,
+.material-symbols-rounded,
+.navMenuOptionIcon,
+i {
+    color: #1c1c1e !important;
+}
+
+/* Links & Accents */
+a, .text-link {
+    color: #007aff !important; /* Apple Blue */
+}
+
+/* 2. Light Glass Materials */
+@supports (backdrop-filter: blur(48px)) {
+    /* Apply physics only to panels that Abyss already makes transparent */
+    .manualLoginForm,
+    .dialog,
+    .toast,
+    .mainDrawer,
+    .selectionCommandsPanel,
+    .playerStats-stats,
+    .appfooter,
+    .upNextDialog {
+        /* Anti-flickering properties */
+        isolation: isolate;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        
+        /* White frosted milk-glass */
+        background-color: rgba(255, 255, 255, 0.5) !important;
+        
+        /* Crisp white bevel highlights catching the light */
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.8) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.6) !important;
+        
+        /* Soft, airy drop shadow appropriate for Light Mode */
+        box-shadow: 
+            inset 0 1px 0 rgba(255, 255, 255, 0.4),
+            0 8px 24px rgba(0, 0, 0, 0.06),
+            0 16px 56px rgba(0, 0, 0, 0.1) !important;
+    }
+}

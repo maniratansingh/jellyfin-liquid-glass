@@ -212,7 +212,6 @@ input[type="radio"]:checked {
     text-size-adjust: 110%;
     font-size: 110%;
     padding-top: 8px;
-    margin-top: -2em;
     width: fit-content;
     max-width: 95vw;
     align-self: center !important;
@@ -1888,7 +1887,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
     }
 
     .headerTabs.sectionTabs {
-        margin-top: -4.9em !important;
+        margin-top: 0 !important;
     }
 }
 
@@ -1973,7 +1972,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
     }
 
     body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
-        margin-top: -4.9em !important;
+        margin-top: 0 !important;
     }
 }
 

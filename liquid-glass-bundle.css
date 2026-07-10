@@ -40,7 +40,7 @@
     --abyss-accent: 245, 245, 247;
 
     /* Corner rounding applied globally */
-    --abyss-radius: 12px;
+    --abyss-radius: 24px;
 
     /* Fixed defaults */
 
@@ -48,11 +48,11 @@
     --abyss-indicator: 55, 55, 55;
 
     /* Backgorund for drawers and dialogs */
-    --abyss-glass-tint: 42, 42, 42;
+    --abyss-glass-tint: 30, 30, 30;
 
     /* Custom cubic-bezier */
-    --abyss-ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --abyss-ease-snappy: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --abyss-ease: cubic-bezier(.2, .8, .2, 1);
+    --abyss-ease-snappy: cubic-bezier(.2, .8, .2, 1);
 }
 
 
@@ -63,11 +63,20 @@
 }
 
 body {
-    font-family: "Google Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Google Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings: "GRAD" 0;
     overscroll-behavior: none;
+}
+
+body, .backgroundContainer, .backdropContainer {
+    background: url('https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&w=2000&q=80') center/cover fixed !important;
+}
+.backgroundContainer.withBackdrop {
+    background: transparent !important;
 }
 
 .material-icons {
@@ -1958,7 +1967,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
         left: 42vw;
         transform: translateY(-45vh);
         font-size: 2em;
-        backdrop-filter: blur(15px) !important;
+        backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
         background-color: rgba(var(--abyss-glass-tint), 0.69) !important;
         border-radius: 20px !important;
     }
@@ -2045,7 +2054,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
 }
 
 /* Backdrop filter support */
-@supports (backdrop-filter: blur(15px)) {
+@supports (backdrop-filter: blur(48px) saturate(180%) brightness(110%)) {
 
     .manualLoginForm,
     .dialog,
@@ -2060,7 +2069,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
     .selectionCommandsPanel,
     .playerStats-stats,
     .appfooter {
-        backdrop-filter: blur(15px) !important;
+        backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
         background-color: rgba(var(--abyss-glass-tint), 0.69) !important;
     }
 
@@ -2069,7 +2078,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
     .pageTitle,
     .videoOsdBottom,
     .headerButton {
-        backdrop-filter: blur(15px) !important;
+        backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
     }
 
     .paper-icon-button-light:hover,
@@ -2097,7 +2106,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
     }
 
     body:has(.nowPlayingBar) .backgroundContainer.withBackdrop {
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(48px) saturate(180%) brightness(110%);
     }
 }
 

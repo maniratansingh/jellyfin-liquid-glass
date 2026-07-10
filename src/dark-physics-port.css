@@ -18,7 +18,6 @@ html, body, .backgroundContainer, .backdropContainer {
 @supports (backdrop-filter: blur(48px)) {
     
     /* 1. Heavy Glass Panels (Web/Dialogs) */
-    .manualLoginForm,
     .dialog,
     .toast,
     .mainDrawer,

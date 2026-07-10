@@ -1,0 +1,21 @@
+/* 
+   utilities.css
+   Global Overrides & Reset
+*/
+
+/* Remove unnecessary borders */
+* {
+    border-color: transparent !important;
+    outline-color: var(--glass-edge-light) !important;
+}
+
+/* Base focus handling */
+:focus-visible {
+    outline: 2px solid var(--glass-edge-light) !important;
+    outline-offset: 2px !important;
+}
+
+/* Ensure no elements touch the edges */
+.mainAnimatedPages {
+    padding: var(--spacing-lg) !important;
+}

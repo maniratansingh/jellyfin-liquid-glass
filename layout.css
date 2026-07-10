@@ -1,0 +1,44 @@
+/* 
+   layout.css
+   Global Spacing & Typography 
+*/
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select, .button-submit, .pageTitle, .sectionTitle {
+    font-family: var(--font-family) !important;
+    color: var(--font-color-primary) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-color-base) !important;
+}
+
+/* Reduce excessive bold text & increase whitespace */
+.pageTitle, .sectionTitle {
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    margin-bottom: var(--spacing-xl) !important;
+    margin-top: var(--spacing-xl) !important;
+}
+
+h1, h2 {
+    font-weight: 500 !important;
+}
+
+h3, h4, h5 {
+    font-weight: 400 !important;
+}
+
+/* Better spacing throughout */
+.verticalSection {
+    margin-bottom: var(--spacing-xxl) !important;
+}
+
+.padded-left, .padded-right, .padded-bottom, .padded-top {
+    padding: var(--spacing-lg) !important;
+}
+
+.itemsContainer {
+    padding-bottom: var(--spacing-lg) !important;
+}

@@ -1,0 +1,28 @@
+/* 
+   header.css
+   Floating Regular Glass Header
+*/
+
+.skinHeader {
+    position: fixed !important;
+    top: var(--spacing-md) !important;
+    left: var(--spacing-md) !important;
+    right: var(--spacing-md) !important;
+    width: calc(100% - (var(--spacing-md) * 2)) !important;
+    border-radius: var(--radius-pill) !important;
+    padding: var(--spacing-sm) var(--spacing-lg) !important;
+    transform: none !important;
+    
+    /* Use Regular Glass (more transparent than before) */
+    background-color: var(--glass-bg-thin) !important; /* Slightly more transparent */
+    background-image: var(--glass-gradient-thin) !important;
+    backdrop-filter: blur(var(--glass-blur-regular)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-regular)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    box-shadow: inset 0 1px 0 var(--glass-edge-light), var(--shadow-floating) !important;
+    border: none !important;
+}
+
+/* Push content down to avoid overlapping the floating header */
+.mainAnimatedPages {
+    margin-top: calc(var(--spacing-md) * 2 + 60px) !important;
+}

@@ -1,0 +1,56 @@
+/* 
+   dialogs.css
+   Floating Thick Glass Dialogs
+*/
+
+.dialogContainer .dialog {
+    border-radius: var(--radius-xl) !important;
+    margin: var(--spacing-xxl) auto !important;
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+    
+    /* Thick Glass */
+    background-color: var(--glass-bg-thick) !important;
+    background-image: var(--glass-gradient-thick) !important;
+    backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    box-shadow: inset 0 1px 0 var(--glass-edge-light), var(--shadow-floating) !important;
+    border: none !important;
+    
+    /* Animation */
+    animation: fadeScaleIn var(--transition-standard) !important;
+}
+
+/* Dialog Backdrops (The overlay behind the dialog) */
+.dialogBackdrop {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    animation: fadeScaleIn var(--transition-standard) !important;
+}
+
+/* Action Sheets / Context Menus */
+.actionSheet {
+    border-radius: var(--radius-lg) !important;
+    margin: var(--spacing-md) !important;
+    
+    /* Thick Glass */
+    background-color: var(--glass-bg-thick) !important;
+    background-image: var(--glass-gradient-thick) !important;
+    backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    box-shadow: inset 0 1px 0 var(--glass-edge-light), var(--shadow-floating) !important;
+    border: none !important;
+}
+
+.actionSheetMenuItem {
+    border-radius: var(--radius-sm) !important;
+    margin: 2px 8px !important;
+    transition: var(--transition-standard) !important;
+    transition-property: background-color, transform !important;
+}
+
+.actionSheetMenuItem:hover {
+    background-color: var(--glass-bg-thin) !important;
+    transform: scale(1.01) !important;
+}

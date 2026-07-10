@@ -1,0 +1,47 @@
+/* 
+   sidebar.css
+   Floating Thick Glass Sidebar
+*/
+
+.mainDrawer {
+    margin: var(--spacing-lg) !important;
+    height: calc(100% - (var(--spacing-lg) * 2)) !important;
+    border-radius: var(--radius-xl) !important;
+    
+    /* Use Thick Glass */
+    background-color: var(--glass-bg-thick) !important;
+    background-image: var(--glass-gradient-thick) !important;
+    backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    box-shadow: inset 0 1px 0 var(--glass-edge-light), var(--shadow-floating) !important;
+    border: none !important;
+}
+
+/* Sidebar Items */
+.navMenuOption {
+    border-radius: var(--radius-md) !important;
+    margin: var(--spacing-sm) var(--spacing-md) !important;
+    transition: var(--transition-standard) !important;
+    transition-property: background-color, opacity, transform !important;
+}
+
+/* Minimal hover effect */
+.navMenuOption:hover {
+    background-color: var(--glass-bg-thin) !important;
+    opacity: 0.9;
+}
+
+/* Active Sidebar Item */
+.navMenuOption-selected {
+    background-color: var(--glass-bg-regular) !important;
+    border-left: none !important;
+    color: var(--font-color-primary) !important;
+    font-weight: 500 !important;
+}
+
+/* Adjust layout */
+@media all and (min-width: 100em) {
+    .skinHeader, .mainAnimatedPages, .appfooter {
+        padding-left: calc(var(--spacing-lg) * 2 + 18vw) !important;
+    }
+}

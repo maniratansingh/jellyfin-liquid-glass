@@ -1,0 +1,61 @@
+/* 
+   cards.css
+   Apple TV Style Cards
+*/
+
+.card, .cardBox {
+    border-radius: var(--radius-xl) !important; /* 24px */
+    overflow: hidden;
+    border: none !important;
+    background: transparent;
+    transition: var(--transition-standard) !important;
+    transition-property: transform, box-shadow !important;
+    box-shadow: none !important;
+    
+    /* Remove rotate, skew, glow */
+    transform: none;
+    filter: none;
+}
+
+.cardScalable {
+    border-radius: var(--radius-xl) !important;
+    overflow: hidden;
+    transition: var(--transition-standard) !important;
+    transition-property: transform, box-shadow !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0) !important; /* invisible initially */
+    transform: scale(1) !important;
+}
+
+/* Hover State - Scale Only */
+.card:hover .cardScalable,
+.card:focus-within .cardScalable {
+    transform: scale(1.03) !important;
+    box-shadow: var(--shadow-medium) !important;
+}
+
+/* Glass Overlay on Hover & Text Readability */
+.cardOverlayContainer {
+    background-color: rgba(0, 0, 0, 0.15) !important; /* Base legibility layer */
+    background-image: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%) !important; /* Bottom shadow for text */
+    transition: var(--transition-standard) !important;
+    transition-property: opacity, background-color, backdrop-filter !important;
+    opacity: 1; /* Keep gradient visible for text readability */
+}
+
+/* On hover, apply full glass blur */
+.card:hover .cardOverlayContainer,
+.card:focus-within .cardOverlayContainer {
+    background-color: var(--glass-bg-thin) !important;
+    backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+}
+
+/* Ensure no thick outlines or borders when focused */
+.card:focus .cardScalable,
+.card:focus-visible .cardScalable,
+.card.show-focus .cardScalable {
+    border: none !important;
+    outline: none !important;
+    box-shadow: var(--shadow-medium) !important;
+    transform: scale(1.03) !important;
+}

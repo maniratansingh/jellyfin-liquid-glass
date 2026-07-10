@@ -1,0 +1,98 @@
+/* 
+   variables.css
+   Apple Liquid Glass Design Tokens
+*/
+
+:root {
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+    --radius-pill: 9999px;
+
+    /* Spacing Grid (8px baseline) */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+
+    /* Base Colors & Fonts (Dark Mode Default) */
+    --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
+    --font-color-primary: rgba(255, 255, 255, 0.95);
+    --font-color-secondary: rgba(255, 255, 255, 0.6);
+    --bg-color-base: #000;
+    
+    /* Apple Shadows (Multiple layered shadows) */
+    --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+    --shadow-floating: 0 1px 1px rgba(255, 255, 255, 0.05) inset, 0 12px 32px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.08);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    /* Glass Effects (Base tokens) */
+    --glass-blur-thin: 24px;
+    --glass-blur-regular: 36px;
+    --glass-blur-thick: 48px;
+    --glass-saturation: 200%;
+    --glass-brightness: 110%;
+
+    /* Dark Mode Glass Variables */
+    --glass-bg-thin: rgba(30, 30, 30, 0.4);
+    --glass-bg-regular: rgba(40, 40, 40, 0.5);
+    --glass-bg-thick: rgba(50, 50, 50, 0.65);
+    
+    /* Fallbacks for non-supporting browsers */
+    --fallback-bg-thin: rgba(30, 30, 30, 0.85);
+    --fallback-bg-regular: rgba(30, 30, 30, 0.92);
+    --fallback-bg-thick: rgba(20, 20, 20, 0.98);
+    
+    --glass-gradient-thin: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
+    --glass-gradient-regular: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+    --glass-gradient-thick: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 100%);
+    
+    /* Edge Lighting */
+    --glass-edge-light: rgba(255, 255, 255, 0.15);
+}
+
+/* Light Mode Support */
+@media (prefers-color-scheme: light) {
+    :root {
+        --font-color-primary: rgba(0, 0, 0, 0.95);
+        --font-color-secondary: rgba(0, 0, 0, 0.6);
+        --bg-color-base: #f5f5f7;
+        
+        --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.05);
+        --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+        --shadow-floating: 0 1px 1px rgba(255, 255, 255, 0.5) inset, 0 12px 32px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.06);
+        --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        --glass-bg-thin: rgba(255, 255, 255, 0.4);
+        --glass-bg-regular: rgba(255, 255, 255, 0.5);
+        --glass-bg-thick: rgba(255, 255, 255, 0.65);
+        
+        --glass-gradient-thin: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+        --glass-gradient-regular: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
+        --glass-gradient-thick: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
+        
+        --fallback-bg-thin: rgba(245, 245, 247, 0.9);
+        --fallback-bg-regular: rgba(245, 245, 247, 0.95);
+        --fallback-bg-thick: rgba(245, 245, 247, 1);
+
+        --glass-edge-light: rgba(255, 255, 255, 0.8);
+        --glass-brightness: 100%;
+        --glass-saturation: 180%;
+    }
+}
+
+/* OLED Dark Mode (Apply .theme-oled to body or html) */
+html.theme-oled, body.theme-oled {
+    --bg-color-base: #000000;
+    --glass-bg-thin: rgba(0, 0, 0, 0.4);
+    --glass-bg-regular: rgba(0, 0, 0, 0.5);
+    --glass-bg-thick: rgba(0, 0, 0, 0.7);
+    --fallback-bg-thin: rgba(0, 0, 0, 0.85);
+    --fallback-bg-regular: rgba(0, 0, 0, 0.95);
+    --fallback-bg-thick: rgba(0, 0, 0, 1);
+}

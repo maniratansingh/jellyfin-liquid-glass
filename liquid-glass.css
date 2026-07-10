@@ -1,0 +1,25 @@
+/* 
+   Apple Liquid Glass UI for Jellyfin
+   A modular, high-performance, pure CSS theme inspired by macOS Tahoe and iOS 26.
+*/
+
+/* Core Theme Base (Fallback) */
+@import url('./theme.css');
+
+/* Apple Design System */
+@import url('./variables.css');
+@import url('./materials.css');
+@import url('./animations.css');
+@import url('./layout.css');
+@import url('./scrollbars.css');
+@import url('./utilities.css');
+
+/* UI Components */
+@import url('./buttons.css');
+@import url('./inputs.css');
+@import url('./cards.css');
+@import url('./sidebar.css');
+@import url('./header.css');
+@import url('./player.css');
+@import url('./dialogs.css');
+@import url('./login.css');

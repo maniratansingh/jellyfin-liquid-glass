@@ -1,0 +1,50 @@
+/* 
+   materials.css
+   Apple Glass Material Classes 
+*/
+
+/* Base properties shared by all glass materials */
+.glass-material, .glass-thin, .glass-regular, .glass-thick {
+    border: none !important;
+}
+
+/* Fallback for browsers without backdrop-filter */
+.glass-thin {
+    background-color: var(--fallback-bg-thin) !important;
+    box-shadow: inset 0 1px 0 var(--glass-edge-light), var(--shadow-medium) !important;
+}
+
+.glass-regular {
+    background-color: var(--fallback-bg-regular) !important;
+    box-shadow: inset 0 1px 0 var(--glass-edge-light), var(--shadow-floating) !important;
+}
+
+.glass-thick {
+    background-color: var(--fallback-bg-thick) !important;
+    box-shadow: inset 0 1px 0 var(--glass-edge-light), var(--shadow-floating) !important;
+}
+
+/* Progressive Enhancement with Backdrop Filter */
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    
+    .glass-thin {
+        background-color: var(--glass-bg-thin) !important;
+        background-image: var(--glass-gradient-thin) !important;
+        backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+        -webkit-backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    }
+
+    .glass-regular {
+        background-color: var(--glass-bg-regular) !important;
+        background-image: var(--glass-gradient-regular) !important;
+        backdrop-filter: blur(var(--glass-blur-regular)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+        -webkit-backdrop-filter: blur(var(--glass-blur-regular)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    }
+
+    .glass-thick {
+        background-color: var(--glass-bg-thick) !important;
+        background-image: var(--glass-gradient-thick) !important;
+        backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+        -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturation)) brightness(var(--glass-brightness)) !important;
+    }
+}

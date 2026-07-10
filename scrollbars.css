@@ -1,0 +1,27 @@
+/* 
+   scrollbars.css
+   Apple-style fading scrollbars
+*/
+
+::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+}
+
+::-webkit-scrollbar-track-piece {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(150, 150, 150, 0.2) !important;
+    border-radius: var(--radius-pill) !important;
+    border: 2px solid transparent !important;
+    background-clip: padding-box !important;
+    transition: background var(--transition-standard) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(150, 150, 150, 0.5) !important;
+    border: 2px solid transparent !important;
+    background-clip: padding-box !important;
+}

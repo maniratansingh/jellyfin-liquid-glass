@@ -1,0 +1,25 @@
+/* 
+   inputs.css
+   Search & Form Inputs
+*/
+
+.emby-input, .emby-textarea, .emby-select, .headerSearchInput {
+    border-radius: var(--radius-pill) !important;
+    background-color: var(--glass-bg-thin) !important;
+    border: 1px solid transparent !important;
+    color: var(--font-color-primary) !important;
+    padding: var(--spacing-sm) var(--spacing-lg) !important;
+    min-height: 40px !important;
+    
+    /* Apple Search/Input style */
+    box-shadow: var(--shadow-inner) !important;
+    
+    transition: var(--transition-standard) !important;
+    transition-property: background-color, box-shadow !important;
+}
+
+.emby-input:focus, .emby-textarea:focus, .emby-select:focus, .headerSearchInput:focus {
+    background-color: var(--glass-bg-regular) !important;
+    box-shadow: var(--shadow-inner), 0 0 0 2px var(--glass-edge-light) !important;
+    outline: none !important;
+}

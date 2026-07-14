@@ -391,7 +391,9 @@ html.ios .appfooter {
 /* Ensures the main play/pause button in the web player gets the exact premium orb style without affecting mobile */
 .videoOsdBottom .btnPlay,
 .videoOsdBottom .btnPause,
-.videoOsdBottom .btnPlayPause {
+.videoOsdBottom .btnPlayPause,
+.osdHeader .paper-icon-button-light,
+.videoOsdBottom .paper-icon-button-light {
   background-color: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
   border-radius: 50% !important;
@@ -418,7 +420,9 @@ html.ios .appfooter {
 
 .videoOsdBottom .btnPlay:hover,
 .videoOsdBottom .btnPause:hover,
-.videoOsdBottom .btnPlayPause:hover {
+.videoOsdBottom .btnPlayPause:hover,
+.osdHeader .paper-icon-button-light:hover,
+.videoOsdBottom .paper-icon-button-light:hover {
   background-color: rgba(255, 255, 255, 0.2) !important;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.4),

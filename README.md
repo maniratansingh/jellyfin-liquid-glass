@@ -13,12 +13,14 @@ If you add this CSS to your Jellyfin server, here is a comprehensive list of exa
 - Replaces solid dark backgrounds with translucent frosted glass (`backdrop-filter: blur`) across the entire application.
 - This applies to the main sidebar, pop-up dialog boxes, the user profile drawer, action sheets, and the mobile bottom navigation bar.
 
-### 2. Video Player Clean-Up (OSD)
-- **Hidden Buttons:** Completely removes the "Favorite (Heart)", "Next Track", "Previous Track", "Cast", and "SyncPlay" buttons from the video player to reduce screen clutter.
-- **Kept Buttons:** You will only see the Play/Pause orb, Rewind, Fast Forward, Volume, Settings, Subtitles, and Fullscreen.
-- **Resizing:** Slightly shrinks the top-bar icons and the main Play/Pause button so they take up less space on the screen.
+### 2. Video Player OSD — Floating Glass Pills
+- **Pill-Shaped Controls:** The top bar (back button, movie title, cast/sync icons) and the bottom bar (playback controls, seek bar) are restyled as floating rounded pill shapes instead of full-width bars.
+- **Clear Glass Transparency:** Both OSD pills use ultra-low `0.1` (10%) opacity, matching the central play orb for a uniform, see-through aesthetic. The movie behind the controls is clearly visible.
+- **No Double Overlay:** The parent OSD container is forced fully transparent to prevent layered glass effects that would make the bars look opaque.
+- **All Buttons Visible:** Play/Pause orb, Rewind, Fast Forward, Volume, Settings, Subtitles, Fullscreen, Favorite, Next/Previous Track, Cast, and SyncPlay are all accessible.
 
 ### 3. Mobile Device Optimizations
+- **Clear Glass (No Frosting):** On mobile devices, `backdrop-filter` blur is completely removed from OSD elements, resulting in a pure clear glass look without any frosting effect.
 - **Text Sizing:** Reduces the font size of movie and TV show titles specifically on mobile phones. This prevents long titles from getting cut off or hidden.
 - **Poster Sizing:** Adjusts the width of media cards on mobile so they fit the screen better.
 - **Screen Rotation:** Adds a smooth 0.5-second CSS transition animation to the video player. When you rotate your phone from portrait to landscape, the video controls resize smoothly instead of instantly snapping and glitching.

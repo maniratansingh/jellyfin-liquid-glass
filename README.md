@@ -45,10 +45,12 @@ Add one of the following to your **Jellyfin Dashboard -> General -> Custom CSS c
 Use this for normal, daily usage.
 
 - **Mobile & Desktop (Web/App):**
+  Use this for phones, tablets, browsers, and desktop clients.
   ```css
   @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-bundle.css");
   ```
 - **Android TV / Fire TV:**
+  Use this specifically for smart TVs and streaming sticks. It is optimized for TV layouts and remote control (D-Pad) focus states.
   ```css
   @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-tv.css");
   ```
@@ -67,6 +69,12 @@ Use this if you want to test experimental features (which may break things).
   ```css
   @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@testing/liquid-glass-tv.css");
   ```
+
+---
+
+### Why is the TV stylesheet separate?
+
+Jellyfin's TV client has a completely different layout from the mobile/desktop app. It is built for a **10-foot interface** (large text/buttons read from a distance) and navigated using a **D-pad TV remote** (requiring clear glowing focus indicator styles when selecting buttons). Using the mobile CSS on a TV would break D-pad navigation and ruin the TV layout, so the styles are separated to keep TV functionality working perfectly.
 
 ---
 

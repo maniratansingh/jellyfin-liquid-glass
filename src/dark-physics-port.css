@@ -390,6 +390,23 @@ html.ios .appfooter {
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
+/* Jellyfin App Optimized Special Version:
+   Fixes the player rotation UI breaking bug specifically for native mobile app users (.cordova, .layout-mobile)
+   by restricting transitions to non-layout properties. */
+.layout-mobile .videoOsdBottom,
+.layout-mobile .osdHeader,
+.layout-mobile .videoOsdBottom .osdControls,
+.layout-mobile .videoOsdBottom .nowPlayingBar,
+.cordova .videoOsdBottom,
+.cordova .osdHeader,
+.cordova .videoOsdBottom .osdControls,
+.cordova .videoOsdBottom .nowPlayingBar {
+  transition:
+    opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+    background-color 0.5s cubic-bezier(0.32, 0.72, 0, 1) !important;
+}
+
 /* ---------------------------------------------------------
    DESKTOP WEB PLAYER PLAY/PAUSE GLASS ORB (Standalone)
    --------------------------------------------------------- */

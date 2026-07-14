@@ -2765,6 +2765,7 @@ html.ios .appfooter {
 }
 
 /* Turns the top bar (which holds the back button and title) and the bottom bar into floating glassy ovals like the play orb */
+html body #videoOsdPage .skinHeader,
 html body .osdHeader,
 html body .skinHeader.osdHeader,
 html body .videoOsdBottom .osdControls {
@@ -2841,7 +2842,9 @@ html body .videoOsdBottom .osdControls {
   }
 
   /* User specifically requested clear glass (no frosting/blur) on mobile */
+  html body #videoOsdPage .skinHeader,
   html body .skinHeader.osdHeader,
+  html body .osdHeader,
   html body .videoOsdBottom .osdControls,
   html body .iconOsd,
   html body .mainDrawer,

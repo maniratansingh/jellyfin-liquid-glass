@@ -2767,21 +2767,12 @@ html.ios .appfooter {
 /* Turns the top bar (which holds the back button and title) and the bottom bar into floating glassy ovals like the play orb */
 .osdHeader,
 .videoOsdBottom .osdControls {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
+  background-color: rgba(var(--abyss-glass-tint), 0.1) !important;
+  backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
   border-radius: 50px !important; /* Oval/Pill shape */
-  background-image: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0) 50%
-  ) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-right: none !important;
-  border-bottom: none !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 
   /* Make them floating pills instead of full width */
   margin: 15px auto !important;

@@ -2630,7 +2630,7 @@ button[title="Mark played"] {
   .appfooter {
     backdrop-filter: blur(48px) saturate(180%) brightness(105%) !important;
     background-image: none !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    box-shadow: none !important;
   }
 }
 

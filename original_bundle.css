@@ -52,8 +52,8 @@
   --abyss-glass-tint: 30, 30, 30;
 
   /* Custom cubic-bezier */
-  --abyss-ease: cubic-bezier(0.32, 0.72, 0, 1);
-  --abyss-ease-snappy: cubic-bezier(0.34, 1.2, 0.64, 1);
+  --abyss-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --abyss-ease-snappy: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* 3. BASE / GLOBAL */
@@ -751,6 +751,8 @@ div[data-role="controlgroup"] a[data-role="button"] {
 }
 
 .iconOsd {
+  right: 24px;
+  top: 8.5%;
   border-radius: 18px !important;
 }
 
@@ -2330,9 +2332,9 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
 /* Global Animation Overrides (Liquid feel) */
 :root {
   /* Expo Out: Starts lightning fast, settles incredibly softly */
-  --abyss-ease: cubic-bezier(0.32, 0.72, 0, 1) !important;
+  --abyss-ease: cubic-bezier(0.16, 1, 0.3, 1) !important;
   /* Spring Bounce: Organic, fluid bounce for snappy interactions */
-  --abyss-ease-snappy: cubic-bezier(0.34, 1.2, 0.64, 1) !important;
+  --abyss-ease-snappy: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
 /* 1. Prevent Flash of Old Theme (FOUC) and set Tahoe Navy fallback */
@@ -2402,11 +2404,16 @@ body,
       rgba(255, 255, 255, 0) 50%
     ) !important;
 
+    /* Top border only, to avoid side edge rendering bugs on mobile */
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
     border-left: none !important;
     border-right: none !important;
     border-bottom: none !important;
-    border-top: none !important;
-    box-shadow: none !important;
+
+    /* Upward casting shadow instead of a deep atmospheric float */
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 -4px 20px rgba(0, 0, 0, 0.4) !important;
   }
 
   /* 3. Video Player Tinted Glass (Highly Transparent but Glossy) */
@@ -2623,7 +2630,7 @@ button[title="Mark played"] {
   .appfooter {
     backdrop-filter: blur(48px) saturate(180%) brightness(105%) !important;
     background-image: none !important;
-    box-shadow: none !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
   }
 }
 
@@ -2841,22 +2848,4 @@ button[data-action="toggleFavorite"] {
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-}
-
-/* =========================================================
-   JELLYFIN APP NATIVE OPTIMIZATIONS (iOS / Android)
-   ========================================================= */
-/* Target all mobile layouts (browsers and native apps) */
-.layout-mobile {
-  /* Disable text selection and callouts (long-press menus) for a native feel */
-  -webkit-user-select: none !important;
-  user-select: none !important;
-  -webkit-touch-callout: none !important;
-  /* Native scrolling */
-  -webkit-overflow-scrolling: touch !important;
-}
-
-/* Hide scrollbars completely on mobile apps */
-.layout-mobile ::-webkit-scrollbar {
-  display: none !important;
 }

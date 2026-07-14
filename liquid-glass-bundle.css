@@ -751,6 +751,8 @@ div[data-role="controlgroup"] a[data-role="button"] {
 }
 
 .iconOsd {
+  right: 24px;
+  top: 8.5%;
   border-radius: 18px !important;
 }
 

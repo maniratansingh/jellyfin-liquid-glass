@@ -2070,7 +2070,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
   .playerStats-stats,
   .appfooter {
     backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
-    background-color: rgba(var(--abyss-glass-tint), 0.69) !important;
+    background-color: rgba(var(--abyss-glass-tint), 0.1) !important;
   }
 
   .raised.cancel.block.btnForgotPassword.emby-button,

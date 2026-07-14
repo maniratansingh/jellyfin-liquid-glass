@@ -2714,7 +2714,10 @@ html.ios .appfooter {
 .videoOsdBottom .osdControls,
 .videoOsdBottom .nowPlayingBar {
   /* Smooth, elastic morphing animation to match OS rotation speed */
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  transition:
+    opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
 /* ---------------------------------------------------------

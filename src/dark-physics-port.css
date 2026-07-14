@@ -409,6 +409,10 @@ html.ios .appfooter {
 .videoOsdBottom .btnPlay,
 .videoOsdBottom .btnPause,
 .videoOsdBottom .btnPlayPause {
+  isolation: isolate;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
   background-color: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
   border-radius: 50% !important;
@@ -428,9 +432,9 @@ html.ios .appfooter {
     0 4px 12px rgba(0, 0, 0, 0.3) !important;
 
   color: white !important;
-  transition: none !important;
-  animation: none !important;
-  transform: none !important;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease !important;
 }
 
 .videoOsdBottom .btnPlay:hover,

@@ -2062,7 +2062,6 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
   .mainDrawer,
   .toast,
   .emby-tabs-slider,
-  .videoOsdBottom .osdControls,
   .readOnlyContent .verticalSection,
   .button-submit,
   .upNextContainer,
@@ -2076,7 +2075,6 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
   .raised.cancel.block.btnForgotPassword.emby-button,
   .btnQuick,
   .pageTitle,
-  .videoOsdBottom,
   .headerButton {
     backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
   }

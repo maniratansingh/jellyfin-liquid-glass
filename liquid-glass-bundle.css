@@ -2062,7 +2062,6 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
   .mainDrawer,
   .toast,
   .emby-tabs-slider,
-  .videoOsdBottom .osdControls,
   .readOnlyContent .verticalSection,
   .button-submit,
   .upNextContainer,
@@ -2076,7 +2075,6 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
   .raised.cancel.block.btnForgotPassword.emby-button,
   .btnQuick,
   .pageTitle,
-  .videoOsdBottom,
   .headerButton {
     backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
   }
@@ -2755,6 +2753,17 @@ html.ios .appfooter {
 /* =========================================================
    FLOATING GLASS PILLS FOR OSD MENUS (Top & Bottom)
    ========================================================= */
+
+/* Force parent container to have no background to prevent double overlay */
+.videoOsdBottom {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
 /* Turns the top bar (which holds the back button and title) and the bottom bar into floating glassy ovals like the play orb */
 .osdHeader,
 .videoOsdBottom .osdControls {

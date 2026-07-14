@@ -2840,13 +2840,13 @@ html .videoOsdBottom .osdControls {
   }
 
   /* User specifically requested clear glass (no frosting/blur) on mobile */
-  .osdHeader,
-  .videoOsdBottom .osdControls,
-  .iconOsd,
-  .mainDrawer,
-  .videoOsdBottom .btnPlay,
-  .videoOsdBottom .btnPause,
-  .videoOsdBottom .btnPlayPause {
+  html body .skinHeader.osdHeader,
+  html body .videoOsdBottom .osdControls,
+  html body .iconOsd,
+  html body .mainDrawer,
+  html body .videoOsdBottom .btnPlay,
+  html body .videoOsdBottom .btnPause,
+  html body .videoOsdBottom .btnPlayPause {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }

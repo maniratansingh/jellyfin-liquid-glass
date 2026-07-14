@@ -2719,6 +2719,16 @@ html.ios .appfooter {
 .videoOsdBottom .btnPlay,
 .videoOsdBottom .btnPause,
 .videoOsdBottom .btnPlayPause {
+  /* HARD FIX: Force perfect square dimensions so swapping play/pause icons never changes the button's physical width and shifts the layout */
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+
   background-color: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
   border-radius: 50% !important;
@@ -2738,9 +2748,11 @@ html.ios .appfooter {
     0 4px 12px rgba(0, 0, 0, 0.3) !important;
 
   color: white !important;
-  transition:
-    background-color 0.2s ease,
-    box-shadow 0.2s ease !important;
+
+  /* COMPLETELY REMOVE ALL ANIMATIONS AS REQUESTED */
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
 }
 
 .videoOsdBottom .btnPlay:hover,
@@ -2750,6 +2762,9 @@ html.ios .appfooter {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
     0 12px 28px rgba(0, 0, 0, 0.5) !important;
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
 }
 
 /* ---------------------------------------------------------

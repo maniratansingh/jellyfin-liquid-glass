@@ -83,6 +83,14 @@ body,
   background-position: center !important;
   background-attachment: fixed !important;
 }
+/* Serve compressed 1080p WebP on mobile to save bandwidth and load faster */
+@media (max-width: 1080px) {
+  body,
+  .backgroundContainer,
+  .backdropContainer {
+    background-image: url("https://wsrv.nl/?url=media.512pixels.net/downloads/macos-wallpapers-6k/26-Tahoe-Dark-6K.png&w=1080&output=webp&q=80") !important;
+  }
+}
 .backgroundContainer.withBackdrop {
   background: transparent !important;
 }

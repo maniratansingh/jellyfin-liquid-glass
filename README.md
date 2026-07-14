@@ -31,8 +31,18 @@ If you add this CSS to your Jellyfin server, here is a comprehensive list of exa
 - **Login Screen Bug Fix:** Removes aggressive CSS GPU hardware acceleration (`translateZ(0)` and `isolation`) specifically from the login form. This fixes a known bug where WebKit browsers (like Safari and iPhones) would freeze or ignore clicks on the username and password fields.
 
 ## How to use
-Add this to your **Jellyfin Dashboard -> General -> Custom CSS code**:
+Add one of the following to your **Jellyfin Dashboard -> General -> Custom CSS code**:
+
+### Stable (Main Branch)
+This is the current stable version. Use this for daily use.
 
 ```css
 @import url('https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-bundle.css');
+```
+
+### Testing (Beta Branch)
+This is the experimental version with the latest changes being tested (e.g. full OSD transparency on mobile). Use this only for testing — it may break things.
+
+```css
+@import url('https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@testing/liquid-glass-bundle.css');
 ```

@@ -2866,3 +2866,96 @@ button[data-action="toggleFavorite"] {
     0 20px 40px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
+
+/* =========================================================
+   JELLYFIN APP NATIVE OPTIMIZATIONS (iOS / Android)
+   ========================================================= */
+/* Target strictly native wrappers / apps */
+.layout-mobile.cordova,
+.layout-mobile.native-app,
+.cordova,
+.native-app {
+  /* Disable text selection and callouts (long-press menus) for a native feel */
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  /* Native scrolling */
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Hide scrollbars completely on mobile apps */
+.layout-mobile.cordova ::-webkit-scrollbar,
+.layout-mobile.native-app ::-webkit-scrollbar,
+.cordova ::-webkit-scrollbar,
+.native-app ::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* 1. Native Active States (Buttons and Cards Squish) */
+/* Override sticky hover states and replace with responsive active scale */
+.cordova .paper-icon-button-light:active,
+.cordova .card:active,
+.cordova .emby-button:active,
+.cordova .listItem:active,
+.native-app .paper-icon-button-light:active,
+.native-app .card:active,
+.native-app .emby-button:active,
+.native-app .listItem:active {
+  transform: scale(0.95) !important;
+  transition: transform 0.1s cubic-bezier(0.32, 0.72, 0, 1) !important;
+}
+
+/* 2. Edge-to-Edge Safe Area & Bottom Nav Pacing */
+/* Expands the bottom nav bar into the home indicator area (notch/island) */
+.cordova .appfooter,
+.native-app .appfooter,
+.layout-mobile.cordova .appfooter,
+.layout-mobile.native-app .appfooter {
+  padding-bottom: env(safe-area-inset-bottom, 20px) !important;
+  height: calc(56px + env(safe-area-inset-bottom, 20px)) !important;
+  backdrop-filter: blur(48px) saturate(200%) brightness(120%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(200%) brightness(120%) !important;
+  background-color: rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Pad the main content so it doesn't get hidden behind the taller nav bar */
+.cordova .mainAnimatedPages,
+.native-app .mainAnimatedPages {
+  padding-bottom: calc(56px + env(safe-area-inset-bottom, 20px)) !important;
+}
+
+/* Top safe area for header if needed */
+.cordova .skinHeader,
+.native-app .skinHeader {
+  padding-top: env(safe-area-inset-top) !important;
+}
+
+/* 3. Immersive, Floating Video Player */
+/* Float the bottom controls over the video as a glass pill on mobile */
+.cordova .videoOsdBottom,
+.native-app .videoOsdBottom {
+  bottom: calc(env(safe-area-inset-bottom, 10px) + 16px) !important;
+  left: 16px !important;
+  right: 16px !important;
+  width: auto !important;
+  border-radius: 24px !important;
+  padding: 8px 12px !important;
+  background-color: rgba(20, 20, 20, 0.6) !important;
+  backdrop-filter: blur(30px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Streamline the top OSD header on mobile apps */
+.cordova .osdHeader,
+.native-app .osdHeader {
+  padding-top: env(safe-area-inset-top, 24px) !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 0%,
+    transparent 100%
+  ) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}

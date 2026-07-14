@@ -550,3 +550,37 @@ button[data-action="toggleFavorite"] {
 .layout-mobile ::-webkit-scrollbar {
   display: none !important;
 }
+
+/* =========================================================
+   NUCLEAR OPTION: DISABLE ALL PLAY/PAUSE ORB ANIMATIONS ON MOBILE
+   ========================================================= */
+/* The user requested absolutely NO animations on the play/pause orb on mobile. 
+   This explicitly overrides any standard Jellyfin ripple, scale, or fade effects on tap. */
+.layout-mobile .videoOsdBottom .btnPlay,
+.layout-mobile .videoOsdBottom .btnPause,
+.layout-mobile .videoOsdBottom .btnPlayPause,
+.layout-mobile .videoOsdBottom .btnPlay:active,
+.layout-mobile .videoOsdBottom .btnPause:active,
+.layout-mobile .videoOsdBottom .btnPlayPause:active,
+.layout-mobile .videoOsdBottom .btnPlay:focus,
+.layout-mobile .videoOsdBottom .btnPause:focus,
+.layout-mobile .videoOsdBottom .btnPlayPause:focus,
+.layout-mobile .videoOsdBottom .btnPlay:hover,
+.layout-mobile .videoOsdBottom .btnPause:hover,
+.layout-mobile .videoOsdBottom .btnPlayPause:hover,
+.cordova .videoOsdBottom .btnPlay,
+.cordova .videoOsdBottom .btnPause,
+.cordova .videoOsdBottom .btnPlayPause,
+.cordova .videoOsdBottom .btnPlay:active,
+.cordova .videoOsdBottom .btnPause:active,
+.cordova .videoOsdBottom .btnPlayPause:active,
+.cordova .videoOsdBottom .btnPlay:focus,
+.cordova .videoOsdBottom .btnPause:focus,
+.cordova .videoOsdBottom .btnPlayPause:focus,
+.cordova .videoOsdBottom .btnPlay:hover,
+.cordova .videoOsdBottom .btnPause:hover,
+.cordova .videoOsdBottom .btnPlayPause:hover {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}

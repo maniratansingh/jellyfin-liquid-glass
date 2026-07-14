@@ -426,23 +426,6 @@ html.ios .appfooter {
 }
 
 /* ---------------------------------------------------------
-   VIDEO PLAYER MINIMALISM (Hide Clutter)
-   --------------------------------------------------------- */
-/* Hides unnecessary secondary buttons in the video player for a cleaner experience */
-.videoOsdBottom .btnPreviousTrack,
-.videoOsdBottom .btnNextTrack,
-.videoOsdBottom .btnVideoOsdFavorite,
-.videoOsdBottom .btnVideoFavorite,
-.videoOsdBottom .ratingbutton-withrating,
-.videoOsdBottom button[title*="Favorite" i],
-.videoOsdBottom button[title*="Like" i],
-button[data-action="nextTrack"],
-button[data-action="previousTrack"],
-button[data-action="toggleFavorite"] {
-  display: none !important;
-}
-
-/* ---------------------------------------------------------
    MOBILE VIDEO PLAYER REFINEMENT (Premium Sizing)
    --------------------------------------------------------- */
 /* Shrinks text and icons slightly on mobile so full movie names fit and the UI feels more high-end */

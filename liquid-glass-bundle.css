@@ -2765,8 +2765,9 @@ html.ios .appfooter {
 }
 
 /* Turns the top bar (which holds the back button and title) and the bottom bar into floating glassy ovals like the play orb */
-html .skinHeader.osdHeader,
-html .videoOsdBottom .osdControls {
+html body .osdHeader,
+html body .skinHeader.osdHeader,
+html body .videoOsdBottom .osdControls {
   background-color: rgba(var(--abyss-glass-tint), 0.1) !important;
   backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
   border-radius: 50px !important; /* Oval/Pill shape */

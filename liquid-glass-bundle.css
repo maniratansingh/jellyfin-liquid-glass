@@ -2709,7 +2709,7 @@ html.ios .appfooter {
 .videoOsdBottom .osdControls,
 .videoOsdBottom .nowPlayingBar {
   /* Smooth, elastic morphing animation to match OS rotation speed */
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
 /* Jellyfin App Optimized Special Version:
@@ -2755,20 +2755,8 @@ html.ios .appfooter {
     0 4px 12px rgba(0, 0, 0, 0.3) !important;
 
   color: white !important;
-  transition:
-    background-color 0.2s ease,
-    box-shadow 0.2s ease !important;
-}
-
-/* Fix jumping orb bug on mobile by completely stripping transitions */
-.layout-mobile .videoOsdBottom .btnPlay,
-.layout-mobile .videoOsdBottom .btnPause,
-.layout-mobile .videoOsdBottom .btnPlayPause,
-.cordova .videoOsdBottom .btnPlay,
-.cordova .videoOsdBottom .btnPause,
-.cordova .videoOsdBottom .btnPlayPause {
-  animation: none !important;
   transition: none !important;
+  animation: none !important;
   transform: none !important;
 }
 

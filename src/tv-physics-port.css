@@ -28,7 +28,12 @@
 .layout-tv .skinHeader,
 .layout-tv .videoOsdBottom .osdControls {
   backdrop-filter: none !important;
-  background-color: rgba(10, 15, 25, 0.9) !important; /* Solid dark background for readability */
+  background-color: rgba(
+    10,
+    15,
+    25,
+    0.9
+  ) !important; /* Solid dark background for readability */
   box-shadow: none !important;
   border: none !important;
 }

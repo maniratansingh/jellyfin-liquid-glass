@@ -2911,20 +2911,3 @@ button[data-action="toggleFavorite"] {
   transition: none !important;
   transform: none !important;
 }
-
-/* =========================================================
-   CENTER THE PLAY/PAUSE ORB ON MOBILE
-   ========================================================= */
-/* Move the play/pause orb from the bottom control bar to the absolute center of the video player on mobile */
-.layout-mobile .videoOsdBottom .btnPlay,
-.layout-mobile .videoOsdBottom .btnPause,
-.layout-mobile .videoOsdBottom .btnPlayPause,
-.cordova .videoOsdBottom .btnPlay,
-.cordova .videoOsdBottom .btnPause,
-.cordova .videoOsdBottom .btnPlayPause {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  margin: -28px 0 0 -28px !important; /* Perfectly center the 56x56 button */
-  z-index: 99999 !important;
-}

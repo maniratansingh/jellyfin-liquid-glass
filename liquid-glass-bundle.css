@@ -2743,16 +2743,6 @@ html.ios .appfooter {
     box-shadow 0.2s ease !important;
 }
 
-/* Prevent the global mobile active squish effect from glitching the play orb */
-.layout-mobile .videoOsdBottom .btnPlay:active,
-.layout-mobile .videoOsdBottom .btnPause:active,
-.layout-mobile .videoOsdBottom .btnPlayPause:active,
-.cordova .videoOsdBottom .btnPlay:active,
-.cordova .videoOsdBottom .btnPause:active,
-.cordova .videoOsdBottom .btnPlayPause:active {
-  transform: none !important;
-}
-
 .videoOsdBottom .btnPlay:hover,
 .videoOsdBottom .btnPause:hover,
 .videoOsdBottom .btnPlayPause:hover {
@@ -2871,14 +2861,4 @@ button[data-action="toggleFavorite"] {
 /* Hide scrollbars completely on mobile apps */
 .layout-mobile ::-webkit-scrollbar {
   display: none !important;
-}
-
-/* 1. Native Active States (Buttons and Cards Squish) */
-/* Override sticky hover states and replace with responsive active scale */
-.layout-mobile .paper-icon-button-light:active,
-.layout-mobile .card:active,
-.layout-mobile .emby-button:active,
-.layout-mobile .listItem:active {
-  transform: scale(0.95) !important;
-  transition: transform 0.1s cubic-bezier(0.32, 0.72, 0, 1) !important;
 }

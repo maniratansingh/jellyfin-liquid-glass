@@ -2904,8 +2904,6 @@ html body .videoOsdBottom .osdControls {
   background-color: rgba(var(--abyss-glass-tint), 0.1) !important;
   background-image: none !important;
   background: rgba(var(--abyss-glass-tint), 0.1) !important;
-  backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
-  -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
   border: none !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }

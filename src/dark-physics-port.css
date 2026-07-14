@@ -58,10 +58,6 @@ html, body, .backgroundContainer, .backdropContainer {
     
     /* 2. Mobile Bottom Navigation (.appfooter) */
     .appfooter {
-        isolation: isolate;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        
         background-color: rgba(10, 20, 40, 0.4) !important;
         
         /* Upward oriented shine */
@@ -86,13 +82,6 @@ html, body, .backgroundContainer, .backdropContainer {
     /* 3. Video Player Tinted Glass (Highly Transparent but Glossy) */
     .videoOsdBottom,
     .osdHeader {
-        /* Hardware acceleration to fix rotation lag */
-        isolation: isolate;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        will-change: transform, backdrop-filter, opacity;
-        transform: translateZ(0);
-        
         /* Lower blur so the movie behind it is slightly visible, like frosted glass */
         backdrop-filter: blur(12px) saturate(140%) brightness(110%) !important;
         
@@ -122,10 +111,6 @@ html, body, .backgroundContainer, .backdropContainer {
     /* 4. Glass Orbs (Video Player Buttons - Play/Pause, etc) */
     .videoOsdBottom .paper-icon-button-light,
     .osdHeader .paper-icon-button-light {
-        isolation: isolate;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        
         /* Highly visible white frosted glass */
         background-color: rgba(255, 255, 255, 0.1) !important;
         backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
@@ -343,10 +328,6 @@ html.cordova .appfooter, html.android .appfooter, html.ios .appfooter {
 .videoOsdBottom .btnPlay,
 .videoOsdBottom .btnPause,
 .videoOsdBottom .btnPlayPause {
-    isolation: isolate;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    
     background-color: rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
     border-radius: 50% !important;

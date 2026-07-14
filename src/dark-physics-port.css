@@ -413,6 +413,16 @@ html.ios .appfooter {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 
+  /* FIX FOR JUMPING: Force fixed square dimensions so icon swaps don't shift layout */
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+
   background-color: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
   border-radius: 50% !important;

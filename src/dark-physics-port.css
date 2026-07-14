@@ -433,6 +433,18 @@ html.ios .appfooter {
     box-shadow 0.2s ease !important;
 }
 
+/* Fix jumping orb bug on mobile by completely stripping transitions */
+.layout-mobile .videoOsdBottom .btnPlay,
+.layout-mobile .videoOsdBottom .btnPause,
+.layout-mobile .videoOsdBottom .btnPlayPause,
+.cordova .videoOsdBottom .btnPlay,
+.cordova .videoOsdBottom .btnPause,
+.cordova .videoOsdBottom .btnPlayPause {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
 .videoOsdBottom .btnPlay:hover,
 .videoOsdBottom .btnPause:hover,
 .videoOsdBottom .btnPlayPause:hover {

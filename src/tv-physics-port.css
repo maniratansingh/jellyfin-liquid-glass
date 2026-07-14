@@ -1,0 +1,96 @@
+/* ---------------------------------------------------------
+   JELLYFIN LIQUID GLASS - ANDROID TV 10-FOOT UI OPTIMIZATION
+   --------------------------------------------------------- */
+/* 
+   This file strips away GPU-heavy effects (like blurs) that cause lag on 
+   low-end smart TVs, scales up typography, and heavily emphasizes D-PAD 
+   navigation focus states for a premium, snappy living room experience.
+*/
+
+.layout-tv {
+  /* 1. PERFORMANCE: Remove all expensive blurs and deep shadows */
+  --abyss-blur: none !important;
+  --abyss-shadow: none !important;
+}
+
+/* Strip blurs from all transparent elements */
+.layout-tv .dialog,
+.layout-tv .toast,
+.layout-tv .mainDrawer,
+.layout-tv .emby-tabs-slider,
+.layout-tv .videoOsdBottom,
+.layout-tv .readOnlyContent,
+.layout-tv .button-submit,
+.layout-tv .upNextContainer,
+.layout-tv .selectionCommandsPanel,
+.layout-tv .playerStats-stats,
+.layout-tv .appfooter,
+.layout-tv .skinHeader,
+.layout-tv .videoOsdBottom .osdControls {
+  backdrop-filter: none !important;
+  background-color: rgba(10, 15, 25, 0.9) !important; /* Solid dark background for readability */
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* 2. D-PAD NAVIGATION: Thick, obvious focus rings and scale effects */
+.layout-tv .card:focus,
+.layout-tv .card:focus-visible,
+.layout-tv .card:hover {
+  transform: scale(1.08) !important;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1) !important;
+  z-index: 10 !important;
+}
+
+.layout-tv .cardBox {
+  border: 4px solid transparent !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.layout-tv .card:focus .cardBox,
+.layout-tv .card:focus-visible .cardBox {
+  border-color: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Ensure buttons have obvious focus states */
+.layout-tv .emby-button:focus,
+.layout-tv .emby-button:focus-visible,
+.layout-tv .paper-icon-button-light:focus {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50% !important;
+  outline: 3px solid white !important;
+  transform: scale(1.1) !important;
+}
+
+/* 3. TYPOGRAPHY & SPACING: 10-Foot UI Readability */
+.layout-tv .cardText {
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+.layout-tv .sectionTitle {
+  font-size: 1.8rem !important;
+  padding-bottom: 10px !important;
+}
+
+/* Make progress bars thicker for couch viewing */
+.layout-tv .itemProgressBar {
+  height: 8px !important;
+  border-radius: 4px !important;
+}
+
+/* 4. HIDE SCROLLBARS: TVs use D-Pad scrolling, scrollbars are ugly clutter */
+.layout-tv ::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* 5. OVERSCAN SAFE AREAS */
+.layout-tv .mainAnimatedPages {
+  padding-left: 4% !important;
+  padding-right: 4% !important;
+  padding-bottom: 5% !important;
+}

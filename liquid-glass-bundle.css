@@ -2352,13 +2352,6 @@ html, body, .backgroundContainer, .backdropContainer {
     .actionSheet,
     .paperList,
     .skinHeader {
-        /* Anti-flickering and GPU Hardware Acceleration */
-        isolation: isolate;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        will-change: transform, backdrop-filter, opacity;
-        transform: translateZ(0);
-        
         /* Premium Liquid Glass Backdrop Override (Super-saturated, high contrast) */
         backdrop-filter: blur(50px) saturate(220%) contrast(110%) brightness(105%) !important;
         
@@ -2661,11 +2654,7 @@ html.cordova .appfooter, html.android .appfooter, html.ios .appfooter {
 .videoOsdBottom,
 .osdHeader,
 .videoOsdBottom .osdControls,
-.videoOsdBottom .nowPlayingBar,
-#videoOsdPage {
-    will-change: transform, backdrop-filter, opacity, width, height !important;
-    transform: translateZ(0) !important;
-    
+.videoOsdBottom .nowPlayingBar {
     /* Smooth, elastic morphing animation to match OS rotation speed */
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }

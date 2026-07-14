@@ -572,10 +572,10 @@ html body .videoOsdBottom .osdControls {
    This block MUST remain at the very bottom of the file
    so it wins over every other rule in the cascade.
    ========================================================= */
-#videoOsdPage .skinHeader,
-#videoOsdPage .osdHeader,
-.skinHeader.osdHeader,
-.osdHeader {
+html body #videoOsdPage .skinHeader,
+html body #videoOsdPage .osdHeader,
+html body .skinHeader.osdHeader,
+html body .osdHeader {
   background-color: rgba(var(--abyss-glass-tint), 0.1) !important;
   background-image: none !important;
   background: rgba(var(--abyss-glass-tint), 0.1) !important;

@@ -77,8 +77,11 @@ body {
 body,
 .backgroundContainer,
 .backdropContainer {
-  background: url("https://media.512pixels.net/downloads/macos-wallpapers-6k/26-Tahoe-Dark-6K.png")
-    center/cover fixed !important;
+  background-color: #0b1524 !important;
+  background-image: url("https://media.512pixels.net/downloads/macos-wallpapers-6k/26-Tahoe-Dark-6K.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
 }
 .backgroundContainer.withBackdrop {
   background: transparent !important;

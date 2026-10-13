@@ -2573,29 +2573,35 @@ button[title="Filter"] {
   display: none !important;
 }
 
-/* Hide clutter buttons on movie details page, cards, and list items (Trailer, Info, Played, Favorite) but keep Download & More intact */
+/* Hide useless buttons on movie details page, cards, and list items (Trailer, Info, Played, Favorite, More) */
 .mainDetailButtons .btnPlayTrailer,
 .mainDetailButtons .btnUserItemRating,
 .mainDetailButtons .btnUserData,
+.mainDetailButtons .btnMoreCommands,
 .mainDetailButtons button[title="Trailer"],
 .mainDetailButtons button[title="Played"],
 .mainDetailButtons button[title="Favorite"],
+.mainDetailButtons button[title="More"],
 .card .btnPlayTrailer,
 .card .btnUserItemRating,
 .card .btnUserData,
+.card .btnMoreCommands,
 .card button[data-action="info"],
 .card button[title="Info"],
 .card button[title="Trailer"],
 .card button[title="Played"],
 .card button[title="Favorite"],
+.card button[title="More"],
 .listItem .btnPlayTrailer,
 .listItem .btnUserItemRating,
 .listItem .btnUserData,
+.listItem .btnMoreCommands,
 .listItem button[data-action="info"],
 .listItem button[title="Info"],
 .listItem button[title="Trailer"],
 .listItem button[title="Played"],
 .listItem button[title="Favorite"],
+.listItem button[title="More"],
 button[data-action="toggleuserdata"],
 button[data-action="togglefavorite"],
 button[data-action="markplayed"],
@@ -2610,101 +2616,90 @@ button[title="Mark played"] {
   display: none !important;
 }
 
-/* Clean list item buttons while preserving More/Menu for downloading */
+/* Brutal Nuke for List Item Buttons (Info, Mark Played, Fav, More) */
 .listItem .listViewUserDataButtons,
 .listItem:hover .listViewUserDataButtons,
-.listItem:focus .listViewUserDataButtons {
+.listItem:focus .listViewUserDataButtons,
+.listItem .paper-icon-button-light:not(.listItemImageButton),
+.listItem:hover .paper-icon-button-light:not(.listItemImageButton),
+.listItem button[data-action="menu"],
+.listItem:hover button[data-action="menu"] {
   display: none !important;
 }
 
-/* Explicitly unhide & elevate Download & More action commands */
+/* Only allow legitimate download button through */
 .btnDownload,
 .mainDetailButtons .btnDownload,
 button[title="Download"],
 button[data-action="download"],
-a[download],
-.actionSheetMenuItem[data-action="download"],
-.btnMoreCommands,
-.mainDetailButtons .btnMoreCommands,
-button[title="More"] {
+a[download] {
   display: inline-flex !important;
   visibility: visible !important;
   opacity: 1 !important;
 }
 
 /* =========================================================
-   IPHONE FOLD ULTRA-PROMINENT LIQUID GLASS CAPSULE AESTHETIC
+   ULTRA-PROMINENT LIQUID GLASS MEDIUM ACTION BUTTONS
    ========================================================= */
 
-/* Action Button Container */
+/* Action Button Container - Clean Medium Proportions */
 .mainDetailButtons {
   font-size: 100% !important;
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 12px !important;
   flex-wrap: wrap !important;
+  margin: 1em 0 !important;
 }
 
-/* Floating Ultra-Prominent Liquid Glass Action Pills */
+/* Medium Liquid Glass Action Pills */
 .mainDetailButtons .emby-button {
-  font-size: 0.9em !important;
-  height: 38px !important;
-  min-height: 38px !important;
-  max-height: 38px !important;
-  padding: 0 16px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  padding: 0 22px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
   border-radius: 9999px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 6px !important;
-  margin: 3px 6px 3px 0 !important;
+  gap: 8px !important;
+  margin: 4px 8px 4px 0 !important;
 
   /* Crystalline Refractive Acrylic Glass Body */
-  background-color: rgba(12, 18, 38, 0.28) !important;
   background-image:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.32) 0%,
-      rgba(255, 255, 255, 0.08) 25%,
-      rgba(255, 255, 255, 0) 50%,
-      rgba(0, 0, 0, 0.18) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(255, 255, 255, 0.02) 60%,
-      rgba(0, 0, 0, 0.1) 100%
-    ) !important;
-  backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
-  -webkit-backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.08) 35%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0.18) 100%) !important;
+  background-color: rgba(12, 18, 38, 0.28) !important;
+  backdrop-filter: blur(50px) saturate(300%) brightness(130%) contrast(115%) !important;
+  -webkit-backdrop-filter: blur(50px) saturate(300%) brightness(130%) contrast(115%) !important;
 
   /* Prismatic Razor Edge */
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.6) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.35) !important;
 
   /* Hyper-Layered Liquid Specular Halo & Floating Depth */
   box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 0 16px 0 rgba(140, 210, 255, 0.18),
-    inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.35),
-    0 8px 22px rgba(0, 0, 0, 0.45),
-    0 2px 6px rgba(56, 189, 248, 0.25) !important;
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 0 20px 0 rgba(120, 200, 255, 0.22),
+    inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.4),
+    0 10px 25px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(56, 189, 248, 0.3) !important;
   color: #ffffff !important;
-  font-weight: 500 !important;
-  letter-spacing: -0.01em !important;
-  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, background 0.28s ease !important;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease !important;
 }
 
 .mainDetailButtons .emby-button:hover,
 .mainDetailButtons .emby-button:focus-visible {
-  transform: translateY(-2px) scale(1.04) !important;
-  background-color: rgba(20, 30, 60, 0.4) !important;
+  transform: translateY(-2px) scale(1.03) !important;
   box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.85),
-    inset 0 0 20px 0 rgba(140, 210, 255, 0.3),
-    0 14px 30px rgba(0, 0, 0, 0.6),
-    0 0 22px rgba(6, 214, 160, 0.35) !important;
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 25px 0 rgba(140, 220, 255, 0.35),
+    0 16px 36px rgba(0, 0, 0, 0.65),
+    0 0 25px rgba(6, 214, 160, 0.45) !important;
 }
 
 /* iPhone Fold Action Sheet (Download & More Menu) */

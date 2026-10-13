@@ -207,35 +207,29 @@ button[title="Filter"] {
   display: none !important;
 }
 
-/* Hide useless buttons on movie details page, cards, and list items (Trailer, Info, Played, Favorite, More) */
+/* Hide clutter buttons on movie details page, cards, and list items (Trailer, Info, Played, Favorite) but keep Download & More intact */
 .mainDetailButtons .btnPlayTrailer,
 .mainDetailButtons .btnUserItemRating,
 .mainDetailButtons .btnUserData,
-.mainDetailButtons .btnMoreCommands,
 .mainDetailButtons button[title="Trailer"],
 .mainDetailButtons button[title="Played"],
 .mainDetailButtons button[title="Favorite"],
-.mainDetailButtons button[title="More"],
 .card .btnPlayTrailer,
 .card .btnUserItemRating,
 .card .btnUserData,
-.card .btnMoreCommands,
 .card button[data-action="info"],
 .card button[title="Info"],
 .card button[title="Trailer"],
 .card button[title="Played"],
 .card button[title="Favorite"],
-.card button[title="More"],
 .listItem .btnPlayTrailer,
 .listItem .btnUserItemRating,
 .listItem .btnUserData,
-.listItem .btnMoreCommands,
 .listItem button[data-action="info"],
 .listItem button[title="Info"],
 .listItem button[title="Trailer"],
 .listItem button[title="Played"],
 .listItem button[title="Favorite"],
-.listItem button[title="More"],
 button[data-action="toggleuserdata"],
 button[data-action="togglefavorite"],
 button[data-action="markplayed"],
@@ -250,15 +244,98 @@ button[title="Mark played"] {
   display: none !important;
 }
 
-/* Brutal Nuke for List Item Buttons (Info, Mark Played, Fav, More) */
+/* Clean list item buttons while preserving More/Menu for downloading */
 .listItem .listViewUserDataButtons,
 .listItem:hover .listViewUserDataButtons,
-.listItem:focus .listViewUserDataButtons,
-.listItem .paper-icon-button-light:not(.listItemImageButton),
-.listItem:hover .paper-icon-button-light:not(.listItemImageButton),
-.listItem button[data-action="menu"],
-.listItem:hover button[data-action="menu"] {
+.listItem:focus .listViewUserDataButtons {
   display: none !important;
+}
+
+/* Explicitly unhide & elevate Download & More action commands */
+.btnDownload,
+.mainDetailButtons .btnDownload,
+button[title="Download"],
+button[data-action="download"],
+a[download],
+.actionSheetMenuItem[data-action="download"],
+.btnMoreCommands,
+.mainDetailButtons .btnMoreCommands,
+button[title="More"] {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* =========================================================
+   IPHONE FOLD LIQUID GLASS CAPSULE AESTHETIC
+   ========================================================= */
+
+/* Floating Liquid Glass Action Pills */
+.mainDetailButtons .emby-button {
+  border-radius: 9999px !important;
+  padding: 0.6em 1.4em !important;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    rgba(15, 25, 45, 0.35) 70%,
+    rgba(10, 20, 35, 0.55) 100%
+  ) !important;
+  backdrop-filter: blur(40px) saturate(240%) brightness(115%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(240%) brightness(115%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow:
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 0 16px 0 rgba(255, 255, 255, 0.06),
+    0 10px 25px rgba(0, 0, 0, 0.4) !important;
+  color: #ffffff !important;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease !important;
+}
+
+.mainDetailButtons .emby-button:hover,
+.mainDetailButtons .emby-button:focus-visible {
+  transform: translateY(-3px) scale(1.04) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    rgba(20, 35, 65, 0.45) 70%,
+    rgba(15, 25, 45, 0.65) 100%
+  ) !important;
+  box-shadow:
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.65),
+    0 16px 35px rgba(0, 0, 0, 0.55),
+    0 0 25px rgba(56, 189, 248, 0.4) !important;
+}
+
+/* iPhone Fold Action Sheet (Download & More Menu) */
+.actionSheet {
+  background-color: rgba(12, 18, 36, 0.45) !important;
+  backdrop-filter: blur(50px) saturate(260%) brightness(120%) !important;
+  -webkit-backdrop-filter: blur(50px) saturate(260%) brightness(120%) !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow:
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 0 20px 0 rgba(255, 255, 255, 0.05),
+    0 25px 60px rgba(0, 0, 0, 0.65) !important;
+  padding: 12px !important;
+}
+
+.actionSheetMenuItem {
+  border-radius: 16px !important;
+  transition: background 0.2s ease, transform 0.2s var(--abyss-ease) !important;
+  color: #ffffff !important;
+}
+
+.actionSheetMenuItem:hover,
+.actionSheetMenuItem:focus {
+  background: rgba(255, 255, 255, 0.14) !important;
+  transform: scale(1.02) !important;
 }
 
 /* Hide Watched and Favorite Badge Indicators on Posters */

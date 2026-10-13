@@ -208,15 +208,13 @@ button[title="Filter"] {
   display: none !important;
 }
 
-/* Hide useless buttons on movie details page, cards, and list items (Trailer, Info, Played, Favorite, More) */
+/* Hide useless buttons on movie details page, cards, and list items (Trailer, Info, Played, Favorite) */
 .mainDetailButtons .btnPlayTrailer,
 .mainDetailButtons .btnUserItemRating,
 .mainDetailButtons .btnUserData,
-.mainDetailButtons .btnMoreCommands,
 .mainDetailButtons button[title="Trailer"],
 .mainDetailButtons button[title="Played"],
 .mainDetailButtons button[title="Favorite"],
-.mainDetailButtons button[title="More"],
 .card .btnPlayTrailer,
 .card .btnUserItemRating,
 .card .btnUserData,
@@ -262,15 +260,28 @@ button[title="Mark played"] {
   display: none !important;
 }
 
-/* Only allow legitimate download button through */
-.btnDownload,
+/* Only Play, Download, and Three-Dot button are shown on detail page - rest are hidden */
+.mainDetailButtons .btnPlay,
+.mainDetailButtons .btnResume,
 .mainDetailButtons .btnDownload,
-button[title="Download"],
-button[data-action="download"],
-a[download] {
+.mainDetailButtons button[title="Download"],
+.mainDetailButtons button[data-action="download"],
+.mainDetailButtons a[download],
+.mainDetailButtons .btnMoreCommands,
+.mainDetailButtons button[title="More"] {
   display: inline-flex !important;
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+/* Three-dot button round glass pill */
+.mainDetailButtons .btnMoreCommands,
+.mainDetailButtons button[title="More"] {
+  width: 42px !important;
+  min-width: 42px !important;
+  max-width: 42px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
 }
 
 /* =========================================================

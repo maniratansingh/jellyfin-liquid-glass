@@ -1623,7 +1623,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
 }
 
 #itemDetailPage .itemName.infoText.parentNameLast {
-  display: none;
+  display: block;
 }
 
 .hide + .detailPageWrapperContainer .itemName {

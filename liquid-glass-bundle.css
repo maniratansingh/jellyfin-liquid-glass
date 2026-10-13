@@ -1623,7 +1623,7 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
 }
 
 #itemDetailPage .itemName.infoText.parentNameLast {
-  display: none;
+  display: block;
 }
 
 .hide + .detailPageWrapperContainer .itemName {
@@ -2549,17 +2549,48 @@ button[title="Filter"],
   display: none !important;
 }
 
+/* ─── 4b. DETAIL PAGE TITLE & METADATA PRESERVATION ─────── */
+/* Ensure Movie, TV Series, Season, and Episode names are ALWAYS fully visible */
+#itemDetailPage .itemName,
+#itemDetailPage .parentName,
+#itemDetailPage .nameContainer,
+#itemDetailPage .itemMiscInfo,
+#itemDetailPage .detailRibbon,
+#itemDetailPage .detailRibbon .nameContainer,
+#itemDetailPage .detailRibbon .itemName,
+#itemDetailPage .detailRibbon .parentName,
+#itemDetailPage .itemName.infoText.parentNameLast,
+.nameContainer,
+.nameContainer h1,
+.nameContainer h2,
+.itemName,
+.parentName {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#itemDetailPage .nameContainer {
+  display: block !important;
+}
+
+#itemDetailPage .itemName,
+#itemDetailPage .itemName.infoText.parentNameLast {
+  display: block !important;
+}
+
+#itemDetailPage .parentName {
+  display: block !important;
+}
+
 /* ─── 5. DETAIL PAGE — 3-BUTTON STRICT RULE ─────────────── */
 /*
   Order matters:
-    A) Hide EVERY button on the detail page by default
+    A) Hide ALL buttons in the detail action button row by default
     B) Show ONLY: Play/Resume • Download • Three-Dot (⋮)
 */
 
-/* A — Nuke everything inside the button row */
-#itemDetailPage .mainDetailButtons > *,
-#itemDetailPage .detailButtons      > *,
-#itemDetailPage .detailRibbon       > * {
+/* A — Nuke only the action buttons inside the mainDetailButtons container */
+#itemDetailPage .mainDetailButtons > * {
   display: none !important;
   visibility: hidden !important;
 }

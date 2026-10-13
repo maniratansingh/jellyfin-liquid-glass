@@ -35,6 +35,9 @@ Hard-refresh after saving: `Ctrl+Shift+R` / `Cmd+Shift+R`
 
 | Commit | Description |
 |--------|-------------|
+| *latest* | **Fix:** Restore movie, TV show, season, and episode titles (`.nameContainer`, `.itemName`, `.parentName`) on detail pages |
+| `bfa1f4a` | **Fix:** Remove `.paging ~ div` rule which was hiding detail page contents |
+| `20acdb4` | **Docs:** Add `EXPERIMENTAL.md` documentation guide |
 | `795d750` | **Polish:** Clean rewrite — no cascade conflicts, refined glass, thin scrollbar, strict 3-button layout |
 | `9489cf3` | **Fix:** Strict 3-button layout (Play, Download, Three-Dot) and Apple Tahoe liquid glass optics |
 | `cf0a9cd` | **Feature:** Restrict to only Play, Download, and Three-Dot buttons; hide all others |

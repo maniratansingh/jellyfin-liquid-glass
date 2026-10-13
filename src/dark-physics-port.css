@@ -208,13 +208,139 @@ button[title="Filter"] {
   display: none !important;
 }
 
-/* Hide useless buttons on movie details page, cards, and list items (Trailer, Info, Played, Favorite) */
+/* 1. AGGRESSIVE DEFAULT HIDE: Nuke all detail buttons by default */
+.mainDetailButtons > * {
+  display: none !important;
+}
+.mainDetailButtons button,
+.mainDetailButtons a {
+  display: none !important;
+}
+
+/* 2. STRICT WHITELIST: ONLY unhide Button 1 (Play), Button 3 (Download), and Button 11 (Three-Dot) */
+.mainDetailButtons .btnPlay,
+.mainDetailButtons [data-action="play"],
+.mainDetailButtons > .btnPlay,
+.mainDetailButtons > [data-action="play"],
+.mainDetailButtons .btnResume,
+.mainDetailButtons [data-action="resume"],
+.mainDetailButtons > .btnResume,
+.mainDetailButtons > [data-action="resume"],
+.mainDetailButtons .btnDownload,
+.mainDetailButtons [data-action="download"],
+.mainDetailButtons a[download],
+.mainDetailButtons [title*="Download" i],
+.mainDetailButtons > .btnDownload,
+.mainDetailButtons > [data-action="download"],
+.mainDetailButtons > a[download],
+.mainDetailButtons > [title*="Download" i],
+.mainDetailButtons .btnMoreCommands,
+.mainDetailButtons [data-action="more"],
+.mainDetailButtons [data-action="menu"],
+.mainDetailButtons [title*="More" i],
+.mainDetailButtons > .btnMoreCommands,
+.mainDetailButtons > [data-action="more"],
+.mainDetailButtons > [data-action="menu"],
+.mainDetailButtons > [title*="More" i] {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 3. ABSOLUTE BLOCKLIST: Force-hide all other buttons seen in screenshot and UI (Restart, Compass, Shuffle, Delete, Record, Played, Favorite, Sync) */
+.mainDetailButtons .btnSplitPlay,
+.mainDetailButtons .btnRestart,
+.mainDetailButtons [data-action="restart"],
+.mainDetailButtons [title*="Restart" i],
+.mainDetailButtons [title*="beginning" i],
 .mainDetailButtons .btnPlayTrailer,
-.mainDetailButtons .btnUserItemRating,
+.mainDetailButtons [data-action="trailer"],
+.mainDetailButtons [data-action="playtrailer"],
+.mainDetailButtons [title*="Trailer" i],
+.mainDetailButtons [data-action="instantmix"],
+.mainDetailButtons [data-action="explore"],
+.mainDetailButtons [title*="Instant Mix" i],
+.mainDetailButtons [title*="Mix" i],
+.mainDetailButtons [data-action="shuffle"],
+.mainDetailButtons [title*="Shuffle" i],
+.mainDetailButtons [data-action="delete"],
+.mainDetailButtons [title*="Delete" i],
+.mainDetailButtons [data-action="record"],
+.mainDetailButtons [title*="Record" i],
+.mainDetailButtons [data-action="stop"],
+.mainDetailButtons [title*="Stop" i],
 .mainDetailButtons .btnUserData,
-.mainDetailButtons button[title="Trailer"],
-.mainDetailButtons button[title="Played"],
-.mainDetailButtons button[title="Favorite"],
+.mainDetailButtons .playstatebutton,
+.mainDetailButtons [data-action="markplayed"],
+.mainDetailButtons [data-action="toggleuserdata"],
+.mainDetailButtons [title*="Played" i],
+.mainDetailButtons [title*="Mark played" i],
+.mainDetailButtons [data-action="favorite"],
+.mainDetailButtons [data-action="togglefavorite"],
+.mainDetailButtons [data-action="markfavorite"],
+.mainDetailButtons [title*="Favorite" i],
+.mainDetailButtons [data-action="sync"],
+.mainDetailButtons [data-action="syncplay"],
+.mainDetailButtons .btnSyncPlay,
+.mainDetailButtons [title*="SyncPlay" i],
+.mainDetailButtons [title*="Sync" i],
+.mainDetailButtons [title*="Cast" i],
+.mainDetailButtons .btnUserItemRating,
+.mainDetailButtons [data-action="rate"],
+.mainDetailButtons [data-action="rating"],
+.mainDetailButtons [title*="Rate" i],
+.mainDetailButtons [title*="Rating" i],
+.mainDetailButtons [data-action="edit"],
+.mainDetailButtons [title*="Edit" i],
+.mainDetailButtons [data-action="custom"],
+#itemDetailPage .btnSplitPlay,
+#itemDetailPage .btnRestart,
+#itemDetailPage [data-action="restart"],
+#itemDetailPage [title*="Restart" i],
+#itemDetailPage [title*="beginning" i],
+#itemDetailPage .btnPlayTrailer,
+#itemDetailPage [data-action="trailer"],
+#itemDetailPage [data-action="playtrailer"],
+#itemDetailPage [title*="Trailer" i],
+#itemDetailPage [data-action="instantmix"],
+#itemDetailPage [data-action="explore"],
+#itemDetailPage [title*="Instant Mix" i],
+#itemDetailPage [title*="Mix" i],
+#itemDetailPage [data-action="shuffle"],
+#itemDetailPage [title*="Shuffle" i],
+#itemDetailPage [data-action="delete"],
+#itemDetailPage [title*="Delete" i],
+#itemDetailPage [data-action="record"],
+#itemDetailPage [title*="Record" i],
+#itemDetailPage [data-action="stop"],
+#itemDetailPage [title*="Stop" i],
+#itemDetailPage .btnUserData,
+#itemDetailPage .playstatebutton,
+#itemDetailPage [data-action="markplayed"],
+#itemDetailPage [data-action="toggleuserdata"],
+#itemDetailPage [title*="Played" i],
+#itemDetailPage [title*="Mark played" i],
+#itemDetailPage [data-action="favorite"],
+#itemDetailPage [data-action="togglefavorite"],
+#itemDetailPage [data-action="markfavorite"],
+#itemDetailPage [title*="Favorite" i],
+#itemDetailPage [data-action="sync"],
+#itemDetailPage [data-action="syncplay"],
+#itemDetailPage .btnSyncPlay,
+#itemDetailPage [title*="SyncPlay" i],
+#itemDetailPage [title*="Sync" i],
+#itemDetailPage [title*="Cast" i],
+#itemDetailPage .btnUserItemRating,
+#itemDetailPage [data-action="rate"],
+#itemDetailPage [data-action="rating"],
+#itemDetailPage [title*="Rate" i],
+#itemDetailPage [title*="Rating" i],
+#itemDetailPage [data-action="edit"],
+#itemDetailPage [title*="Edit" i] {
+  display: none !important;
+}
+
+/* 4. Complete button cleanup on cards and list items (Clean posters, zero clutter) */
 .card .btnPlayTrailer,
 .card .btnUserItemRating,
 .card .btnUserData,
@@ -225,6 +351,9 @@ button[title="Filter"] {
 .card button[title="Played"],
 .card button[title="Favorite"],
 .card button[title="More"],
+.card button[data-action="menu"],
+.card button[data-action="more"],
+.card .cardOverlayButton:not(.cardOverlayFab-primary),
 .listItem .btnPlayTrailer,
 .listItem .btnUserItemRating,
 .listItem .btnUserData,
@@ -235,6 +364,13 @@ button[title="Filter"] {
 .listItem button[title="Played"],
 .listItem button[title="Favorite"],
 .listItem button[title="More"],
+.listItem .listViewUserDataButtons,
+.listItem:hover .listViewUserDataButtons,
+.listItem:focus .listViewUserDataButtons,
+.listItem .paper-icon-button-light:not(.listItemImageButton),
+.listItem:hover .paper-icon-button-light:not(.listItemImageButton),
+.listItem button[data-action="menu"],
+.listItem:hover button[data-action="menu"],
 button[data-action="toggleuserdata"],
 button[data-action="togglefavorite"],
 button[data-action="markplayed"],
@@ -249,43 +385,8 @@ button[title="Mark played"] {
   display: none !important;
 }
 
-/* Brutal Nuke for List Item Buttons (Info, Mark Played, Fav, More) */
-.listItem .listViewUserDataButtons,
-.listItem:hover .listViewUserDataButtons,
-.listItem:focus .listViewUserDataButtons,
-.listItem .paper-icon-button-light:not(.listItemImageButton),
-.listItem:hover .paper-icon-button-light:not(.listItemImageButton),
-.listItem button[data-action="menu"],
-.listItem:hover button[data-action="menu"] {
-  display: none !important;
-}
-
-/* Only Play, Download, and Three-Dot button are shown on detail page - rest are hidden */
-.mainDetailButtons .btnPlay,
-.mainDetailButtons .btnResume,
-.mainDetailButtons .btnDownload,
-.mainDetailButtons button[title="Download"],
-.mainDetailButtons button[data-action="download"],
-.mainDetailButtons a[download],
-.mainDetailButtons .btnMoreCommands,
-.mainDetailButtons button[title="More"] {
-  display: inline-flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-/* Three-dot button round glass pill */
-.mainDetailButtons .btnMoreCommands,
-.mainDetailButtons button[title="More"] {
-  width: 42px !important;
-  min-width: 42px !important;
-  max-width: 42px !important;
-  padding: 0 !important;
-  border-radius: 50% !important;
-}
-
 /* =========================================================
-   ULTRA-PROMINENT LIQUID GLASS MEDIUM ACTION BUTTONS
+   TRUE APPLE TAHOE / iPHONE FOLD LUMINOUS LIQUID GLASS BUTTONS
    ========================================================= */
 
 /* Action Button Container - Clean Medium Proportions */
@@ -295,11 +396,16 @@ button[title="Mark played"] {
   align-items: center !important;
   gap: 12px !important;
   flex-wrap: wrap !important;
-  margin: 1em 0 !important;
+  margin: 1.2em 0 !important;
 }
 
-/* Medium Liquid Glass Action Pills */
-.mainDetailButtons .emby-button {
+/* Medium Luminous Liquid Glass Action Pills */
+.mainDetailButtons .emby-button,
+.mainDetailButtons .btnPlay,
+.mainDetailButtons .btnResume,
+.mainDetailButtons .btnDownload,
+.mainDetailButtons .btnMoreCommands,
+.mainDetailButtons button[title*="More" i] {
   height: 42px !important;
   min-height: 42px !important;
   max-height: 42px !important;
@@ -312,40 +418,100 @@ button[title="Mark played"] {
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
-  margin: 4px 8px 4px 0 !important;
+  margin: 0 4px !important;
 
-  /* Crystalline Refractive Acrylic Glass Body */
+  /* Crystalline White Refractive Body (Apple Tahoe Liquid Glass) */
+  background-color: rgba(255, 255, 255, 0.16) !important;
   background-image:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.08) 35%, rgba(255, 255, 255, 0) 55%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0.18) 100%) !important;
-  background-color: rgba(12, 18, 38, 0.28) !important;
-  backdrop-filter: blur(50px) saturate(300%) brightness(130%) contrast(115%) !important;
-  -webkit-backdrop-filter: blur(50px) saturate(300%) brightness(130%) contrast(115%) !important;
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.16) 38%,
+      rgba(255, 255, 255, 0.04) 65%,
+      rgba(255, 255, 255, 0.22) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(0, 0, 0, 0.12) 100%
+    ) !important;
+  backdrop-filter: blur(40px) saturate(350%) brightness(145%) contrast(115%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(350%) brightness(145%) contrast(115%) !important;
 
-  /* Prismatic Razor Edge */
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.7) !important;
-  border-left: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  /* Specular Razor Bevel Rim */
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
 
-  /* Hyper-Layered Liquid Specular Halo & Floating Depth */
+  /* Layered Luminous Refraction Glow & Ambient Depth */
   box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 0 20px 0 rgba(120, 200, 255, 0.22),
-    inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.4),
-    0 10px 25px rgba(0, 0, 0, 0.5),
-    0 2px 8px rgba(56, 189, 248, 0.3) !important;
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 20px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
+    0 10px 28px rgba(0, 0, 0, 0.45),
+    0 0 18px rgba(255, 255, 255, 0.2) !important;
+
   color: #ffffff !important;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.25s ease,
+    background-color 0.25s ease !important;
 }
 
 .mainDetailButtons .emby-button:hover,
-.mainDetailButtons .emby-button:focus-visible {
-  transform: translateY(-2px) scale(1.03) !important;
+.mainDetailButtons .emby-button:focus-visible,
+.mainDetailButtons .btnPlay:hover,
+.mainDetailButtons .btnResume:hover,
+.mainDetailButtons .btnDownload:hover,
+.mainDetailButtons .btnMoreCommands:hover,
+.mainDetailButtons button[title*="More" i]:hover {
+  transform: translateY(-2px) scale(1.04) !important;
+  background-color: rgba(255, 255, 255, 0.28) !important;
   box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 0 25px 0 rgba(140, 220, 255, 0.35),
-    0 16px 36px rgba(0, 0, 0, 0.65),
-    0 0 25px rgba(6, 214, 160, 0.45) !important;
+    inset 0 1.5px 1px 0 #ffffff,
+    inset 0 0 28px 0 rgba(255, 255, 255, 0.5),
+    0 16px 36px rgba(0, 0, 0, 0.55),
+    0 0 28px rgba(255, 255, 255, 0.4) !important;
+}
+
+.mainDetailButtons .emby-button:active,
+.mainDetailButtons .btnPlay:active,
+.mainDetailButtons .btnResume:active,
+.mainDetailButtons .btnDownload:active,
+.mainDetailButtons .btnMoreCommands:active,
+.mainDetailButtons button[title*="More" i]:active {
+  transform: translateY(0px) scale(0.98) !important;
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 0 12px 0 rgba(0, 0, 0, 0.3),
+    0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Three-Dot Button: Compact Glass Capsule/Orb */
+.mainDetailButtons .btnMoreCommands,
+.mainDetailButtons button[title*="More" i],
+.mainDetailButtons [data-action="more"],
+.mainDetailButtons [data-action="menu"] {
+  width: 42px !important;
+  min-width: 42px !important;
+  max-width: 42px !important;
+  height: 42px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.mainDetailButtons .btnMoreCommands .material-icons,
+.mainDetailButtons button[title*="More" i] .material-icons,
+.mainDetailButtons .btnMoreCommands span,
+.mainDetailButtons button[title*="More" i] span {
+  font-size: 20px !important;
+  line-height: 1 !important;
+  margin: 0 !important;
 }
 
 /* iPhone Fold Action Sheet (Download & More Menu) */

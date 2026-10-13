@@ -195,6 +195,11 @@ button[title="Filter"],
 #itemDetailPage .detailRibbon .itemName,
 #itemDetailPage .detailRibbon .parentName,
 #itemDetailPage .itemName.infoText.parentNameLast,
+#itemDetailPage .pageTitle,
+#itemDetailPage h1,
+#itemDetailPage h2,
+#itemDetailPage .nameContainer h1,
+#itemDetailPage .nameContainer h2,
 .nameContainer,
 .nameContainer h1,
 .nameContainer h2,
@@ -204,17 +209,57 @@ button[title="Filter"],
   opacity: 1 !important;
 }
 
-#itemDetailPage .nameContainer {
+#itemDetailPage .nameContainer,
+.nameContainer {
   display: block !important;
+  margin: 0.5em 0 !important;
 }
 
 #itemDetailPage .itemName,
-#itemDetailPage .itemName.infoText.parentNameLast {
+#itemDetailPage .itemName.infoText.parentNameLast,
+#itemDetailPage h1.itemName,
+.itemName {
   display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.25 !important;
+  margin: 0.25em 0 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
 }
 
-#itemDetailPage .parentName {
+#itemDetailPage .parentName,
+#itemDetailPage h2.parentName,
+.parentName {
   display: block !important;
+  visibility: visible !important;
+  opacity: 0.92 !important;
+  color: #ffffff !important;
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  margin: 0.25em 0 !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+}
+
+#itemDetailPage .parentName a,
+.parentName a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+#itemDetailPage .pageTitle {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+}
+
+#itemDetailPage .detailLogo {
+  display: none !important;
 }
 
 /* ─── 5. DETAIL PAGE — 3-BUTTON STRICT RULE ─────────────── */

@@ -35,7 +35,8 @@ Hard-refresh after saving: `Ctrl+Shift+R` / `Cmd+Shift+R`
 
 | Commit | Description |
 |--------|-------------|
-| *latest* | **Fix:** Restore movie, TV show, season, and episode titles (`.nameContainer`, `.itemName`, `.parentName`) on detail pages |
+| *latest* | **Fix:** Un-hide `.pageTitle`, disable displaced `.detailLogo`, and enforce bold white typography for movie, TV series, season, and episode titles (`.nameContainer`, `.itemName`, `.parentName`) |
+| `7f68ad0` | **Fix:** Restore movie, TV show, season, and episode titles on detail pages |
 | `bfa1f4a` | **Fix:** Remove `.paging ~ div` rule which was hiding detail page contents |
 | `20acdb4` | **Docs:** Add `EXPERIMENTAL.md` documentation guide |
 | `795d750` | **Polish:** Clean rewrite — no cascade conflicts, refined glass, thin scrollbar, strict 3-button layout |

@@ -282,8 +282,7 @@ input[type="radio"]:checked {
 
 #tvRecommendedPage .pageTitle,
 #moviesPage .pageTitle,
-#musicRecommendedPage .pageTitle,
-#itemDetailPage .pageTitle {
+#musicRecommendedPage .pageTitle {
   display: none !important;
 }
 
@@ -540,15 +539,7 @@ body:has(#itemDetailPage) .backdropImage {
 }
 
 #itemDetailPage .detailLogo {
-  position: static;
-  margin-left: 32.5%;
-  display: block;
-  filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75));
-  -webkit-filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75));
-  flex-shrink: 0;
-  background-position: 0 50%;
-  margin-top: -18vh;
-  margin-bottom: 2vh;
+  display: none !important;
 }
 
 /* Infobanner */

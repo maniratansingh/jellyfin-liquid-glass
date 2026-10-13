@@ -282,8 +282,7 @@ input[type="radio"]:checked {
 
 #tvRecommendedPage .pageTitle,
 #moviesPage .pageTitle,
-#musicRecommendedPage .pageTitle,
-#itemDetailPage .pageTitle {
+#musicRecommendedPage .pageTitle {
   display: none !important;
 }
 
@@ -540,15 +539,7 @@ body:has(#itemDetailPage) .backdropImage {
 }
 
 #itemDetailPage .detailLogo {
-  position: static;
-  margin-left: 32.5%;
-  display: block;
-  filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75));
-  -webkit-filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75));
-  flex-shrink: 0;
-  background-position: 0 50%;
-  margin-top: -18vh;
-  margin-bottom: 2vh;
+  display: none !important;
 }
 
 /* Infobanner */
@@ -2560,6 +2551,11 @@ button[title="Filter"],
 #itemDetailPage .detailRibbon .itemName,
 #itemDetailPage .detailRibbon .parentName,
 #itemDetailPage .itemName.infoText.parentNameLast,
+#itemDetailPage .pageTitle,
+#itemDetailPage h1,
+#itemDetailPage h2,
+#itemDetailPage .nameContainer h1,
+#itemDetailPage .nameContainer h2,
 .nameContainer,
 .nameContainer h1,
 .nameContainer h2,
@@ -2569,17 +2565,57 @@ button[title="Filter"],
   opacity: 1 !important;
 }
 
-#itemDetailPage .nameContainer {
+#itemDetailPage .nameContainer,
+.nameContainer {
   display: block !important;
+  margin: 0.5em 0 !important;
 }
 
 #itemDetailPage .itemName,
-#itemDetailPage .itemName.infoText.parentNameLast {
+#itemDetailPage .itemName.infoText.parentNameLast,
+#itemDetailPage h1.itemName,
+.itemName {
   display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.25 !important;
+  margin: 0.25em 0 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
 }
 
-#itemDetailPage .parentName {
+#itemDetailPage .parentName,
+#itemDetailPage h2.parentName,
+.parentName {
   display: block !important;
+  visibility: visible !important;
+  opacity: 0.92 !important;
+  color: #ffffff !important;
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  margin: 0.25em 0 !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+}
+
+#itemDetailPage .parentName a,
+.parentName a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+#itemDetailPage .pageTitle {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+}
+
+#itemDetailPage .detailLogo {
+  display: none !important;
 }
 
 /* ─── 5. DETAIL PAGE — 3-BUTTON STRICT RULE ─────────────── */

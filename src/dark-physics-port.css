@@ -178,7 +178,9 @@ button[data-action="filter"],
 button[title="Play all"],
 button[title="Sort"],
 button[title="Filter"],
-.paging ~ div {
+.libraryViewNav,
+.viewSettings,
+.alphabetPicker {
   display: none !important;
 }
 

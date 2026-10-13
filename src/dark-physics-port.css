@@ -1,16 +1,27 @@
-/* 
-   Dark Glass Physics - Hyper-Polished (Apple/visionOS level precision)
+/*
+  Jellyfin Liquid Glass — Dark Physics Port
+  Apple Tahoe / iPhone Fold aesthetic
+  Branch: experimental
+  ─────────────────────────────────────────────
+  RULE: Only 3 buttons on detail page — Play/Resume, Download, Three-Dot.
+        Everything else hidden. No exceptions.
 */
 
-/* Global Animation Overrides (Liquid feel) */
+/* ─── 0. TIMING FUNCTIONS ────────────────────────────────── */
 :root {
-  /* Expo Out: Starts lightning fast, settles incredibly softly */
-  --abyss-ease: cubic-bezier(0.32, 0.72, 0, 1) !important;
-  /* Spring Bounce: Organic, fluid bounce for snappy interactions */
-  --abyss-ease-snappy: cubic-bezier(0.34, 1.2, 0.64, 1) !important;
+  --lg-ease:        cubic-bezier(0.32, 0.72, 0, 1);
+  --lg-ease-spring: cubic-bezier(0.34, 1.2, 0.64, 1);
+  --lg-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Glass tint base (deep navy) */
+  --lg-tint:        10, 16, 36;
+  --lg-white-hi:    rgba(255, 255, 255, 0.95);
+  --lg-white-mid:   rgba(255, 255, 255, 0.35);
+  --lg-white-lo:    rgba(255, 255, 255, 0.08);
+  --lg-black-deep:  rgba(0, 0, 0, 0.45);
 }
 
-/* 1. Prevent Flash of Old Theme (FOUC) and set Tahoe Navy fallback */
+/* ─── 1. PAGE BASE — prevent FOUC ───────────────────────── */
 html,
 body,
 .backgroundContainer,
@@ -18,8 +29,10 @@ body,
   background-color: #0b1524 !important;
 }
 
-@supports (backdrop-filter: blur(48px)) {
-  /* 1. Heavy Glass Panels (Web/Dialogs) */
+/* ─── 2. GLASS PANELS (dialogs, drawers, header) ─────────── */
+@supports (backdrop-filter: blur(1px)) {
+
+  /* Heavy Glass — dialogs, drawers, detail wrappers */
   .dialog,
   .toast,
   .mainDrawer,
@@ -31,533 +44,204 @@ body,
   .actionSheet,
   .paperList,
   .skinHeader {
-    /* Ultra-Prominent iPhone Fold Liquid Glass - High Refractive Saturation & Crystal Specular */
-    backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
-    -webkit-backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
+    backdrop-filter:
+      blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
+    -webkit-backdrop-filter:
+      blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
 
-    /* Crystal-clear tinted base to let radiant background colors blaze through */
-    background-color: rgba(10, 16, 36, 0.25) !important;
-
-    /* Dual-axis high-gloss specular shine */
+    background-color: rgba(var(--lg-tint), 0.25) !important;
     background-image:
       linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.28) 0%,
-        rgba(255, 255, 255, 0.06) 25%,
-        rgba(255, 255, 255, 0) 50%,
-        rgba(0, 0, 0, 0.2) 100%
+        rgba(255, 255, 255, 0.26) 0%,
+        rgba(255, 255, 255, 0.06) 28%,
+        rgba(255, 255, 255, 0.00) 55%,
+        rgba(0, 0, 0, 0.18) 100%
       ),
       linear-gradient(
         180deg,
-        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.09) 0%,
         rgba(255, 255, 255, 0.02) 60%,
-        rgba(0, 0, 0, 0.12) 100%
+        rgba(0, 0, 0, 0.10) 100%
       ) !important;
 
-    /* Razor-sharp chromatic bevel rim borders */
-    border-top: 1.5px solid rgba(255, 255, 255, 0.55) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-top:    1.5px solid rgba(255, 255, 255, 0.55) !important;
+    border-left:   1px   solid rgba(255, 255, 255, 0.28) !important;
+    border-right:  1px   solid rgba(255, 255, 255, 0.08) !important;
+    border-bottom: 1px   solid rgba(255, 255, 255, 0.05) !important;
 
-    /* High-definition optical rim refraction & deep floating atmosphere */
-    box-shadow: 
-      inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.6),
-      inset 0 0 24px 0 rgba(255, 255, 255, 0.08),
-      inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.4),
-      0 18px 40px rgba(0, 0, 0, 0.5),
-      0 40px 90px rgba(0, 0, 0, 0.45) !important;
+    box-shadow:
+      inset 0  1.5px 1px rgba(255, 255, 255, 0.55),
+      inset 0  0    24px rgba(255, 255, 255, 0.06),
+      inset 0 -1.5px 1px rgba(0, 0, 0, 0.40),
+      0 18px  40px rgba(0, 0, 0, 0.50),
+      0 40px  90px rgba(0, 0, 0, 0.40) !important;
   }
 
-  /* 2. Mobile Bottom Navigation (.appfooter) */
+  /* Bottom nav bar — lighter, no heavy shadow */
   .appfooter {
-    background-color: rgba(10, 20, 40, 0.4) !important;
-
-    /* Upward oriented shine */
+    background-color: rgba(10, 20, 40, 0.40) !important;
     background-image: linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.05) 0%,
-      rgba(255, 255, 255, 0) 50%
+      rgba(255, 255, 255, 0.00) 50%
     ) !important;
-
-    border-left: none !important;
-    border-right: none !important;
-    border-bottom: none !important;
-    border-top: none !important;
+    border:     none !important;
     box-shadow: none !important;
+    backdrop-filter: blur(40px) saturate(200%) brightness(110%) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(110%) !important;
   }
 
-  /* 3. Video Player Tinted Glass (Highly Transparent but Glossy) */
+  /* Video OSD bars — thin frost, keep content readable */
   .videoOsdBottom,
   .osdHeader {
-    /* Lower blur so the movie behind it is slightly visible, like frosted glass */
     backdrop-filter: blur(12px) saturate(140%) brightness(110%) !important;
-
-    /* Very light tint for maximum visibility */
+    -webkit-backdrop-filter: blur(12px) saturate(140%) brightness(110%) !important;
     background-color: rgba(10, 20, 30, 0.15) !important;
-
-    /* Stronger glassy specular shine to make it look physical */
     background-image: linear-gradient(
       0deg,
-      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.08) 0%,
       rgba(255, 255, 255, 0.02) 40%,
-      rgba(255, 255, 255, 0) 100%
+      rgba(255, 255, 255, 0.00) 100%
     ) !important;
-
-    /* Crisp white edge to catch the light */
-    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
-    border-left: none !important;
-    border-right: none !important;
+    border-top:    1px solid rgba(255, 255, 255, 0.16) !important;
+    border-left:   none !important;
+    border-right:  none !important;
     border-bottom: none !important;
-
-    /* Subtle rim light, no massive drop shadow (flush with screen) */
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.08),
-      0 -4px 20px rgba(0, 0, 0, 0.3) !important;
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      0 -4px 20px rgba(0, 0, 0, 0.28) !important;
   }
 
-  /* 4. Glass Orbs (Video Player Buttons - Play/Pause, etc) */
+  /* OSD icon buttons — glass orbs */
   .videoOsdBottom .paper-icon-button-light,
-  .osdHeader .paper-icon-button-light {
-    /* Highly visible white frosted glass */
-    background-color: rgba(255, 255, 255, 0.1) !important;
+  .osdHeader      .paper-icon-button-light {
+    background-color: rgba(255, 255, 255, 0.10) !important;
     backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
-
-    /* Force perfect circles */
+    -webkit-backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
     border-radius: 50% !important;
-
-    /* Curved orb surface shine */
     background-image: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.2) 0%,
-      rgba(255, 255, 255, 0) 50%
+      rgba(255, 255, 255, 0.20) 0%,
+      rgba(255, 255, 255, 0.00) 55%
     ) !important;
-
-    /* Crisp physical edges */
-    border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-right: none !important;
+    border-top:    1px solid rgba(255, 255, 255, 0.28) !important;
+    border-left:   1px solid rgba(255, 255, 255, 0.14) !important;
+    border-right:  none !important;
     border-bottom: none !important;
-
-    /* 3D Orb Shadow */
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      0 4px 12px rgba(0, 0, 0, 0.3) !important;
-
-    /* Ensure the icon inside stays visible */
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      0 4px 12px rgba(0, 0, 0, 0.28) !important;
     color: white !important;
-
-    /* Smooth transitions for hover without buggy transforms */
     transition:
-      background-color 0.2s ease,
-      box-shadow 0.2s ease !important;
+      background-color 0.18s ease,
+      box-shadow       0.18s ease !important;
   }
 
-  /* Hover state for Glass Orbs (Subtle Brighten) */
   .videoOsdBottom .paper-icon-button-light:hover,
-  .osdHeader .paper-icon-button-light:hover {
-    background-color: rgba(255, 255, 255, 0.2) !important;
+  .osdHeader      .paper-icon-button-light:hover {
+    background-color: rgba(255, 255, 255, 0.20) !important;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.4),
-      0 12px 28px rgba(0, 0, 0, 0.5) !important;
+      inset 0 1px 0 rgba(255, 255, 255, 0.38),
+      0 10px 26px rgba(0, 0, 0, 0.48) !important;
   }
 }
 
-/* Hide the entire library tabs container (removes the dark pill and Movies tab) */
-.headerTabs {
-  display: none !important;
-}
-
-/* Custom Premium Glass Scrollbar */
+/* ─── 3. SCROLLBAR — thin Mac-style ──────────────────────── */
 ::-webkit-scrollbar {
-  width: 14px;
-  height: 14px;
+  width:  6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  border: 4px solid transparent;
-  background-clip: padding-box;
+  background:    rgba(255, 255, 255, 0.18);
+  border-radius: 99px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border: 4px solid transparent;
-  background-clip: padding-box;
+  background: rgba(255, 255, 255, 0.32);
 }
 
-/* Hide library view controls (Play all, Shuffle, Layout, Sort, Filter) */
+/* ─── 4. HIDE LIBRARY TABS & VIEW CONTROLS ───────────────── */
+.headerTabs {
+  display: none !important;
+}
+
+/* Library header controls — Play all / Shuffle / Sort / Filter */
 button[data-action="playall"],
-button[data-action="shuffle"],
 button[data-action="sort"],
 button[data-action="filter"],
 .btnChangeLayout,
 .btnSortBy,
 .btnFilter,
 button[title="Play all"],
-button[title="Shuffle"],
 button[title="Sort"],
-button[title="Filter"] {
-  display: none !important;
-}
-
-/* Aggressively hide the remaining view settings next to pagination (Play, Grid) */
+button[title="Filter"],
 .paging ~ div {
   display: none !important;
 }
 
-/* 1. AGGRESSIVE DEFAULT HIDE: Nuke all detail buttons by default */
-.mainDetailButtons > * {
+/* ─── 5. DETAIL PAGE — 3-BUTTON STRICT RULE ─────────────── */
+/*
+  Order matters:
+    A) Hide EVERY button on the detail page by default
+    B) Show ONLY: Play/Resume • Download • Three-Dot (⋮)
+*/
+
+/* A — Nuke everything inside the button row */
+#itemDetailPage .mainDetailButtons > *,
+#itemDetailPage .detailButtons      > *,
+#itemDetailPage .detailRibbon       > * {
   display: none !important;
-}
-.mainDetailButtons button,
-.mainDetailButtons a {
-  display: none !important;
+  visibility: hidden !important;
 }
 
-/* 2. STRICT WHITELIST: ONLY unhide Button 1 (Play), Button 3 (Download), and Button 11 (Three-Dot) */
-.mainDetailButtons .btnPlay,
-.mainDetailButtons [data-action="play"],
-.mainDetailButtons > .btnPlay,
-.mainDetailButtons > [data-action="play"],
-.mainDetailButtons .btnResume,
-.mainDetailButtons [data-action="resume"],
-.mainDetailButtons > .btnResume,
-.mainDetailButtons > [data-action="resume"],
-.mainDetailButtons .btnDownload,
-.mainDetailButtons [data-action="download"],
-.mainDetailButtons a[download],
-.mainDetailButtons [title*="Download" i],
-.mainDetailButtons > .btnDownload,
-.mainDetailButtons > [data-action="download"],
-.mainDetailButtons > a[download],
-.mainDetailButtons > [title*="Download" i],
-.mainDetailButtons .btnMoreCommands,
-.mainDetailButtons [data-action="more"],
-.mainDetailButtons [data-action="menu"],
-.mainDetailButtons [title*="More" i],
-.mainDetailButtons > .btnMoreCommands,
-.mainDetailButtons > [data-action="more"],
-.mainDetailButtons > [data-action="menu"],
-.mainDetailButtons > [title*="More" i] {
-  display: inline-flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+/* B — Whitelist: Play / Resume */
+#itemDetailPage .mainDetailButtons .btnPlay,
+#itemDetailPage .mainDetailButtons .btnResume,
+#itemDetailPage .mainDetailButtons [data-action="play"],
+#itemDetailPage .mainDetailButtons [data-action="resume"],
+#itemDetailPage .mainDetailButtons button[title="Play"],
+#itemDetailPage .mainDetailButtons button[title="Resume"],
+/* Whitelist: Download */
+#itemDetailPage .mainDetailButtons .btnDownload,
+#itemDetailPage .mainDetailButtons [data-action="download"],
+#itemDetailPage .mainDetailButtons a[download],
+#itemDetailPage .mainDetailButtons [title*="Download" i],
+/* Whitelist: Three-Dot / More */
+#itemDetailPage .mainDetailButtons .btnMoreCommands,
+#itemDetailPage .mainDetailButtons [data-action="more"],
+#itemDetailPage .mainDetailButtons [data-action="menu"],
+#itemDetailPage .mainDetailButtons [title*="More" i] {
+  display:    inline-flex !important;
+  visibility: visible     !important;
 }
 
-/* 3. ABSOLUTE BLOCKLIST: Force-hide all other buttons seen in screenshot and UI (Restart, Compass, Shuffle, Delete, Record, Played, Favorite, Sync) */
-.mainDetailButtons .btnSplitPlay,
-.mainDetailButtons .btnRestart,
-.mainDetailButtons [data-action="restart"],
-.mainDetailButtons [title*="Restart" i],
-.mainDetailButtons [title*="beginning" i],
-.mainDetailButtons .btnPlayTrailer,
-.mainDetailButtons [data-action="trailer"],
-.mainDetailButtons [data-action="playtrailer"],
-.mainDetailButtons [title*="Trailer" i],
-.mainDetailButtons [data-action="instantmix"],
-.mainDetailButtons [data-action="explore"],
-.mainDetailButtons [title*="Instant Mix" i],
-.mainDetailButtons [title*="Mix" i],
-.mainDetailButtons [data-action="shuffle"],
-.mainDetailButtons [title*="Shuffle" i],
-.mainDetailButtons [data-action="delete"],
-.mainDetailButtons [title*="Delete" i],
-.mainDetailButtons [data-action="record"],
-.mainDetailButtons [title*="Record" i],
-.mainDetailButtons [data-action="stop"],
-.mainDetailButtons [title*="Stop" i],
-.mainDetailButtons .btnUserData,
-.mainDetailButtons .playstatebutton,
-.mainDetailButtons [data-action="markplayed"],
-.mainDetailButtons [data-action="toggleuserdata"],
-.mainDetailButtons [title*="Played" i],
-.mainDetailButtons [title*="Mark played" i],
-.mainDetailButtons [data-action="favorite"],
-.mainDetailButtons [data-action="togglefavorite"],
-.mainDetailButtons [data-action="markfavorite"],
-.mainDetailButtons [title*="Favorite" i],
-.mainDetailButtons [data-action="sync"],
-.mainDetailButtons [data-action="syncplay"],
-.mainDetailButtons .btnSyncPlay,
-.mainDetailButtons [title*="SyncPlay" i],
-.mainDetailButtons [title*="Sync" i],
-.mainDetailButtons [title*="Cast" i],
-.mainDetailButtons .btnUserItemRating,
-.mainDetailButtons [data-action="rate"],
-.mainDetailButtons [data-action="rating"],
-.mainDetailButtons [title*="Rate" i],
-.mainDetailButtons [title*="Rating" i],
-.mainDetailButtons [data-action="edit"],
-.mainDetailButtons [title*="Edit" i],
-.mainDetailButtons [data-action="custom"],
-#itemDetailPage .btnSplitPlay,
-#itemDetailPage .btnRestart,
-#itemDetailPage [data-action="restart"],
-#itemDetailPage [title*="Restart" i],
-#itemDetailPage [title*="beginning" i],
-#itemDetailPage .btnPlayTrailer,
-#itemDetailPage [data-action="trailer"],
-#itemDetailPage [data-action="playtrailer"],
-#itemDetailPage [title*="Trailer" i],
-#itemDetailPage [data-action="instantmix"],
-#itemDetailPage [data-action="explore"],
-#itemDetailPage [title*="Instant Mix" i],
-#itemDetailPage [title*="Mix" i],
-#itemDetailPage [data-action="shuffle"],
-#itemDetailPage [title*="Shuffle" i],
-#itemDetailPage [data-action="delete"],
-#itemDetailPage [title*="Delete" i],
-#itemDetailPage [data-action="record"],
-#itemDetailPage [title*="Record" i],
-#itemDetailPage [data-action="stop"],
-#itemDetailPage [title*="Stop" i],
-#itemDetailPage .btnUserData,
-#itemDetailPage .playstatebutton,
-#itemDetailPage [data-action="markplayed"],
-#itemDetailPage [data-action="toggleuserdata"],
-#itemDetailPage [title*="Played" i],
-#itemDetailPage [title*="Mark played" i],
-#itemDetailPage [data-action="favorite"],
-#itemDetailPage [data-action="togglefavorite"],
-#itemDetailPage [data-action="markfavorite"],
-#itemDetailPage [title*="Favorite" i],
-#itemDetailPage [data-action="sync"],
-#itemDetailPage [data-action="syncplay"],
-#itemDetailPage .btnSyncPlay,
-#itemDetailPage [title*="SyncPlay" i],
-#itemDetailPage [title*="Sync" i],
-#itemDetailPage [title*="Cast" i],
-#itemDetailPage .btnUserItemRating,
-#itemDetailPage [data-action="rate"],
-#itemDetailPage [data-action="rating"],
-#itemDetailPage [title*="Rate" i],
-#itemDetailPage [title*="Rating" i],
-#itemDetailPage [data-action="edit"],
-#itemDetailPage [title*="Edit" i] {
-  display: none !important;
-}
-
-/* 4. Complete button cleanup on cards and list items (Clean posters, zero clutter) */
+/* ─── 6. CARD & LIST ITEM CLUTTER CLEANUP ───────────────── */
+/* Remove overlay buttons on poster cards (keep play FAB only) */
+.card .cardOverlayButton:not(.cardOverlayFab-primary),
 .card .btnPlayTrailer,
 .card .btnUserItemRating,
 .card .btnUserData,
 .card .btnMoreCommands,
 .card button[data-action="info"],
-.card button[title="Info"],
-.card button[title="Trailer"],
-.card button[title="Played"],
-.card button[title="Favorite"],
-.card button[title="More"],
 .card button[data-action="menu"],
 .card button[data-action="more"],
-.card .cardOverlayButton:not(.cardOverlayFab-primary),
+/* List item side buttons */
+.listItem .listViewUserDataButtons,
+.listItem .paper-icon-button-light:not(.listItemImageButton),
 .listItem .btnPlayTrailer,
 .listItem .btnUserItemRating,
 .listItem .btnUserData,
 .listItem .btnMoreCommands,
-.listItem button[data-action="info"],
-.listItem button[title="Info"],
-.listItem button[title="Trailer"],
-.listItem button[title="Played"],
-.listItem button[title="Favorite"],
-.listItem button[title="More"],
-.listItem .listViewUserDataButtons,
-.listItem:hover .listViewUserDataButtons,
-.listItem:focus .listViewUserDataButtons,
-.listItem .paper-icon-button-light:not(.listItemImageButton),
-.listItem:hover .paper-icon-button-light:not(.listItemImageButton),
 .listItem button[data-action="menu"],
-.listItem:hover button[data-action="menu"],
+/* Global data-action hiding */
 button[data-action="toggleuserdata"],
 button[data-action="togglefavorite"],
 button[data-action="markplayed"],
 button[data-action="markfavorite"],
-button[data-action="info"],
-.btnUserItemRating,
-.btnUserData,
-button[title="Favorite"],
-button[title="Add to favorites"],
-button[title="Played"],
-button[title="Mark played"] {
-  display: none !important;
-}
-
-/* =========================================================
-   TRUE APPLE TAHOE / iPHONE FOLD LUMINOUS LIQUID GLASS BUTTONS
-   ========================================================= */
-
-/* Action Button Container - Clean Medium Proportions */
-.mainDetailButtons {
-  font-size: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  flex-wrap: wrap !important;
-  margin: 1.2em 0 !important;
-}
-
-/* Medium Luminous Liquid Glass Action Pills */
-.mainDetailButtons .emby-button,
-.mainDetailButtons .btnPlay,
-.mainDetailButtons .btnResume,
-.mainDetailButtons .btnDownload,
-.mainDetailButtons .btnMoreCommands,
-.mainDetailButtons button[title*="More" i] {
-  height: 42px !important;
-  min-height: 42px !important;
-  max-height: 42px !important;
-  padding: 0 22px !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.01em !important;
-  border-radius: 9999px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-  margin: 0 4px !important;
-
-  /* Crystalline White Refractive Body (Apple Tahoe Liquid Glass) */
-  background-color: rgba(255, 255, 255, 0.16) !important;
-  background-image:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0.16) 38%,
-      rgba(255, 255, 255, 0.04) 65%,
-      rgba(255, 255, 255, 0.22) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.25) 0%,
-      rgba(255, 255, 255, 0.05) 50%,
-      rgba(0, 0, 0, 0.12) 100%
-    ) !important;
-  backdrop-filter: blur(40px) saturate(350%) brightness(145%) contrast(115%) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(350%) brightness(145%) contrast(115%) !important;
-
-  /* Specular Razor Bevel Rim */
-  border: 1px solid rgba(255, 255, 255, 0.35) !important;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.95) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-
-  /* Layered Luminous Refraction Glow & Ambient Depth */
-  box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 0 20px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
-    0 10px 28px rgba(0, 0, 0, 0.45),
-    0 0 18px rgba(255, 255, 255, 0.2) !important;
-
-  color: #ffffff !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
-  transition:
-    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.25s ease,
-    background-color 0.25s ease !important;
-}
-
-.mainDetailButtons .emby-button:hover,
-.mainDetailButtons .emby-button:focus-visible,
-.mainDetailButtons .btnPlay:hover,
-.mainDetailButtons .btnResume:hover,
-.mainDetailButtons .btnDownload:hover,
-.mainDetailButtons .btnMoreCommands:hover,
-.mainDetailButtons button[title*="More" i]:hover {
-  transform: translateY(-2px) scale(1.04) !important;
-  background-color: rgba(255, 255, 255, 0.28) !important;
-  box-shadow:
-    inset 0 1.5px 1px 0 #ffffff,
-    inset 0 0 28px 0 rgba(255, 255, 255, 0.5),
-    0 16px 36px rgba(0, 0, 0, 0.55),
-    0 0 28px rgba(255, 255, 255, 0.4) !important;
-}
-
-.mainDetailButtons .emby-button:active,
-.mainDetailButtons .btnPlay:active,
-.mainDetailButtons .btnResume:active,
-.mainDetailButtons .btnDownload:active,
-.mainDetailButtons .btnMoreCommands:active,
-.mainDetailButtons button[title*="More" i]:active {
-  transform: translateY(0px) scale(0.98) !important;
-  box-shadow:
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 0 12px 0 rgba(0, 0, 0, 0.3),
-    0 6px 16px rgba(0, 0, 0, 0.4) !important;
-}
-
-/* Three-Dot Button: Compact Glass Capsule/Orb */
-.mainDetailButtons .btnMoreCommands,
-.mainDetailButtons button[title*="More" i],
-.mainDetailButtons [data-action="more"],
-.mainDetailButtons [data-action="menu"] {
-  width: 42px !important;
-  min-width: 42px !important;
-  max-width: 42px !important;
-  height: 42px !important;
-  padding: 0 !important;
-  border-radius: 50% !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.mainDetailButtons .btnMoreCommands .material-icons,
-.mainDetailButtons button[title*="More" i] .material-icons,
-.mainDetailButtons .btnMoreCommands span,
-.mainDetailButtons button[title*="More" i] span {
-  font-size: 20px !important;
-  line-height: 1 !important;
-  margin: 0 !important;
-}
-
-/* iPhone Fold Action Sheet (Download & More Menu) */
-.actionSheet {
-  background-color: rgba(10, 16, 36, 0.4) !important;
-  background-image:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.28) 0%,
-      rgba(255, 255, 255, 0.06) 25%,
-      rgba(255, 255, 255, 0) 50%,
-      rgba(0, 0, 0, 0.2) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.02) 60%,
-      rgba(0, 0, 0, 0.12) 100%
-    ) !important;
-  backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
-  -webkit-backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
-  border-radius: 28px !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.55) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
-  box-shadow:
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 0 24px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.4),
-    0 25px 60px rgba(0, 0, 0, 0.65) !important;
-  padding: 12px !important;
-}
-
-.actionSheetMenuItem {
-  border-radius: 16px !important;
-  transition: background 0.2s ease, transform 0.2s var(--abyss-ease) !important;
-  color: #ffffff !important;
-}
-
-.actionSheetMenuItem:hover,
-.actionSheetMenuItem:focus {
-  background: rgba(255, 255, 255, 0.14) !important;
-  transform: scale(1.02) !important;
-}
-
-/* Hide Watched and Favorite Badge Indicators on Posters */
+/* Indicators on posters */
 .playedIndicator,
 .favoriteIndicator,
 .indicator[data-type="Played"],
@@ -568,11 +252,322 @@ button[title="Mark played"] {
   display: none !important;
 }
 
-/* ---------------------------------------------------------
-   MOBILE PERFORMANCE OPTIMIZATIONS (LIGHTNING SPEED + FROSTED GLASS)
-   --------------------------------------------------------- */
+/* ─── 7. LIQUID GLASS BUTTONS ────────────────────────────── */
+
+/* Container */
+#itemDetailPage .mainDetailButtons,
+.mainDetailButtons {
+  display:     flex       !important;
+  align-items: center    !important;
+  flex-wrap:   wrap      !important;
+  gap:         10px      !important;
+  margin:      1.2em 0   !important;
+  padding:     0         !important;
+}
+
+/* Glass pill — base style for Play, Resume, Download */
+#itemDetailPage .mainDetailButtons .btnPlay,
+#itemDetailPage .mainDetailButtons .btnResume,
+#itemDetailPage .mainDetailButtons .btnDownload,
+#itemDetailPage .mainDetailButtons [data-action="play"],
+#itemDetailPage .mainDetailButtons [data-action="resume"],
+#itemDetailPage .mainDetailButtons [data-action="download"],
+#itemDetailPage .mainDetailButtons [title*="Download" i] {
+  height:         42px      !important;
+  min-height:     42px      !important;
+  padding:        0 22px    !important;
+  font-size:      14px      !important;
+  font-weight:    600       !important;
+  letter-spacing: -0.01em  !important;
+  line-height:    1         !important;
+  border-radius:  9999px   !important;
+  display:        inline-flex !important;
+  align-items:    center    !important;
+  justify-content: center   !important;
+  gap:            7px       !important;
+  margin:         0         !important;
+  white-space:    nowrap    !important;
+  cursor:         pointer   !important;
+
+  /* Glass body */
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  background-image:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.48) 0%,
+      rgba(255, 255, 255, 0.14) 35%,
+      rgba(255, 255, 255, 0.04) 65%,
+      rgba(255, 255, 255, 0.20) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.04) 55%,
+      rgba(0, 0, 0, 0.10) 100%
+    ) !important;
+  backdrop-filter:
+    blur(40px) saturate(360%) brightness(148%) contrast(114%) !important;
+  -webkit-backdrop-filter:
+    blur(40px) saturate(360%) brightness(148%) contrast(114%) !important;
+
+  /* Specular bevel rim */
+  border:        1px   solid rgba(255, 255, 255, 0.32) !important;
+  border-top:    1.5px solid rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px   solid rgba(255, 255, 255, 0.18) !important;
+
+  /* Layered glow */
+  box-shadow:
+    inset 0  1.5px 1px rgba(255, 255, 255, 0.90),
+    inset 0  0    18px rgba(255, 255, 255, 0.22),
+    inset 0 -1px   1px rgba(0, 0, 0, 0.22),
+    0  8px 24px rgba(0, 0, 0, 0.40),
+    0  0   16px rgba(255, 255, 255, 0.16) !important;
+
+  color:       #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45) !important;
+  transition:
+    transform         0.22s var(--lg-ease-bounce),
+    box-shadow        0.22s ease,
+    background-color  0.22s ease !important;
+}
+
+/* Hover */
+#itemDetailPage .mainDetailButtons .btnPlay:hover,
+#itemDetailPage .mainDetailButtons .btnResume:hover,
+#itemDetailPage .mainDetailButtons .btnDownload:hover,
+#itemDetailPage .mainDetailButtons [data-action="play"]:hover,
+#itemDetailPage .mainDetailButtons [data-action="resume"]:hover,
+#itemDetailPage .mainDetailButtons [data-action="download"]:hover,
+#itemDetailPage .mainDetailButtons [title*="Download" i]:hover {
+  transform:        translateY(-2px) scale(1.03) !important;
+  background-color: rgba(255, 255, 255, 0.26) !important;
+  box-shadow:
+    inset 0  1.5px 1px #ffffff,
+    inset 0  0    26px rgba(255, 255, 255, 0.44),
+    0 14px 32px rgba(0, 0, 0, 0.50),
+    0  0   26px rgba(255, 255, 255, 0.32) !important;
+}
+
+/* Press */
+#itemDetailPage .mainDetailButtons .btnPlay:active,
+#itemDetailPage .mainDetailButtons .btnResume:active,
+#itemDetailPage .mainDetailButtons .btnDownload:active,
+#itemDetailPage .mainDetailButtons [data-action="play"]:active,
+#itemDetailPage .mainDetailButtons [data-action="resume"]:active,
+#itemDetailPage .mainDetailButtons [data-action="download"]:active {
+  transform:  translateY(0) scale(0.97) !important;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.75),
+    inset 0 0  12px rgba(0, 0, 0, 0.28),
+    0 4px 14px rgba(0, 0, 0, 0.38) !important;
+}
+
+/* Three-Dot glass orb */
+#itemDetailPage .mainDetailButtons .btnMoreCommands,
+#itemDetailPage .mainDetailButtons [data-action="more"],
+#itemDetailPage .mainDetailButtons [data-action="menu"],
+#itemDetailPage .mainDetailButtons [title*="More" i] {
+  width:          42px        !important;
+  min-width:      42px        !important;
+  max-width:      42px        !important;
+  height:         42px        !important;
+  padding:        0           !important;
+  border-radius:  50%         !important;
+  display:        inline-flex !important;
+  align-items:    center      !important;
+  justify-content: center     !important;
+  margin:         0           !important;
+  cursor:         pointer     !important;
+  flex-shrink:    0           !important;
+
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.48) 0%,
+      rgba(255, 255, 255, 0.08) 55%,
+      rgba(255, 255, 255, 0.18) 100%
+    ) !important;
+  backdrop-filter:
+    blur(40px) saturate(360%) brightness(148%) contrast(114%) !important;
+  -webkit-backdrop-filter:
+    blur(40px) saturate(360%) brightness(148%) contrast(114%) !important;
+
+  border:        1px   solid rgba(255, 255, 255, 0.32) !important;
+  border-top:    1.5px solid rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px   solid rgba(255, 255, 255, 0.18) !important;
+
+  box-shadow:
+    inset 0  1.5px 1px rgba(255, 255, 255, 0.90),
+    inset 0  0    18px rgba(255, 255, 255, 0.22),
+    inset 0 -1px   1px rgba(0, 0, 0, 0.22),
+    0  8px 24px rgba(0, 0, 0, 0.40),
+    0  0   16px rgba(255, 255, 255, 0.16) !important;
+
+  color:      #ffffff !important;
+  transition:
+    transform        0.22s var(--lg-ease-bounce),
+    box-shadow       0.22s ease,
+    background-color 0.22s ease !important;
+}
+
+#itemDetailPage .mainDetailButtons .btnMoreCommands:hover,
+#itemDetailPage .mainDetailButtons [data-action="more"]:hover,
+#itemDetailPage .mainDetailButtons [data-action="menu"]:hover,
+#itemDetailPage .mainDetailButtons [title*="More" i]:hover {
+  transform:        translateY(-2px) scale(1.06) !important;
+  background-color: rgba(255, 255, 255, 0.26) !important;
+  box-shadow:
+    inset 0  1.5px 1px #ffffff,
+    inset 0  0    26px rgba(255, 255, 255, 0.44),
+    0 14px 32px rgba(0, 0, 0, 0.50),
+    0  0   26px rgba(255, 255, 255, 0.32) !important;
+}
+
+#itemDetailPage .mainDetailButtons .btnMoreCommands:active,
+#itemDetailPage .mainDetailButtons [data-action="more"]:active,
+#itemDetailPage .mainDetailButtons [data-action="menu"]:active {
+  transform:  scale(0.94) !important;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.70),
+    inset 0 0  10px rgba(0, 0, 0, 0.30),
+    0 4px 14px rgba(0, 0, 0, 0.36) !important;
+}
+
+/* Icons inside glass buttons — clean sizing */
+#itemDetailPage .mainDetailButtons .btnMoreCommands .material-icons,
+#itemDetailPage .mainDetailButtons [data-action="more"]  .material-icons,
+#itemDetailPage .mainDetailButtons [data-action="menu"]  .material-icons,
+#itemDetailPage .mainDetailButtons [title*="More" i]     .material-icons,
+#itemDetailPage .mainDetailButtons .btnMoreCommands span,
+#itemDetailPage .mainDetailButtons [data-action="more"]  span {
+  font-size:   20px !important;
+  line-height: 1    !important;
+  margin:      0    !important;
+  display:     flex !important;
+  align-items: center !important;
+}
+
+/* ─── 8. ACTION SHEET (dropdown menu) ────────────────────── */
+.actionSheet {
+  background-color: rgba(var(--lg-tint), 0.40) !important;
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.26) 0%,
+      rgba(255, 255, 255, 0.06) 28%,
+      rgba(255, 255, 255, 0.00) 55%,
+      rgba(0, 0, 0, 0.18) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.09) 0%,
+      rgba(255, 255, 255, 0.02) 60%,
+      rgba(0, 0, 0, 0.10) 100%
+    ) !important;
+  backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
+  border-radius:  24px !important;
+  border:         1px   solid rgba(255, 255, 255, 0.16) !important;
+  border-top:     1.5px solid rgba(255, 255, 255, 0.50) !important;
+  border-left:    1px   solid rgba(255, 255, 255, 0.26) !important;
+  box-shadow:
+    inset 0  1.5px 1px rgba(255, 255, 255, 0.55),
+    inset 0  0    22px rgba(255, 255, 255, 0.06),
+    inset 0 -1.5px 1px rgba(0, 0, 0, 0.38),
+    0 24px 56px rgba(0, 0, 0, 0.60) !important;
+  padding: 10px !important;
+  overflow: hidden !important;
+}
+
+.actionSheetMenuItem {
+  border-radius: 14px !important;
+  padding:       10px 16px !important;
+  color:         #ffffff !important;
+  transition:
+    background 0.16s ease,
+    transform  0.16s var(--lg-ease) !important;
+}
+
+.actionSheetMenuItem:hover,
+.actionSheetMenuItem:focus {
+  background: rgba(255, 255, 255, 0.12) !important;
+  transform:  scale(1.015) !important;
+}
+
+/* ─── 9. VIDEO PLAYER OSD — glass pill bars ──────────────── */
+.videoOsdBottom {
+  background:            transparent !important;
+  background-color:      transparent !important;
+  background-image:      none        !important;
+  backdrop-filter:       none        !important;
+  -webkit-backdrop-filter: none      !important;
+  box-shadow:            none        !important;
+}
+
+html body #videoOsdPage .skinHeader,
+html body .osdHeader,
+html body .skinHeader.osdHeader,
+html body .videoOsdBottom .osdControls {
+  background-color:  rgba(10, 16, 36, 0.10) !important;
+  backdrop-filter:   blur(48px) saturate(180%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
+  border-radius:     50px !important;
+  background-image:  none !important;
+  border:            1px solid rgba(255, 255, 255, 0.12) !important;
+  border-top:        1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow:        0 4px 14px rgba(0, 0, 0, 0.30) !important;
+  margin:            14px auto !important;
+  width:             max-content !important;
+  max-width:         95% !important;
+  padding:           4px 18px !important;
+}
+
+/* OSD Play/Pause orb */
+.videoOsdBottom .btnPlay,
+.videoOsdBottom .btnPause,
+.videoOsdBottom .btnPlayPause {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  backdrop-filter:  blur(30px) saturate(150%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
+  border-radius:    50% !important;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.20) 0%,
+    rgba(255, 255, 255, 0.00) 55%
+  ) !important;
+  border-top:    1px solid rgba(255, 255, 255, 0.28) !important;
+  border-left:   1px solid rgba(255, 255, 255, 0.14) !important;
+  border-right:  none !important;
+  border-bottom: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 4px 12px rgba(0, 0, 0, 0.28) !important;
+  color:      white !important;
+  transition:
+    background-color 0.18s ease,
+    box-shadow       0.18s ease !important;
+}
+
+.videoOsdBottom .btnPlay:hover,
+.videoOsdBottom .btnPause:hover,
+.videoOsdBottom .btnPlayPause:hover {
+  background-color: rgba(255, 255, 255, 0.20) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    0 10px 26px rgba(0, 0, 0, 0.48) !important;
+}
+
+/* Smooth rotation/resize transition */
+.videoOsdBottom,
+.osdHeader,
+.videoOsdBottom .osdControls,
+.videoOsdBottom .nowPlayingBar {
+  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* ─── 10. MOBILE — lighter glass for performance ─────────── */
 @media (max-width: 768px) {
-  .manualLoginForm,
   .dialog,
   .toast,
   .mainDrawer,
@@ -584,237 +579,65 @@ button[title="Mark played"] {
   .actionSheet,
   .paperList,
   .skinHeader {
-    /* WE KEEP THE FROSTED GLASS */
-    backdrop-filter: blur(50px) saturate(220%) brightness(105%) !important;
-
-    /* SPEED FIX 1 & 2: No double gradient, no 70px shadow (Web Mobile Only) */
+    backdrop-filter: blur(44px) saturate(220%) brightness(108%) !important;
+    -webkit-backdrop-filter: blur(44px) saturate(220%) brightness(108%) !important;
     background-image: none !important;
-    background-color: rgba(15, 25, 45, 0.4) !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(15, 25, 45, 0.40) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
   }
 
   .appfooter {
-    backdrop-filter: blur(48px) saturate(180%) brightness(105%) !important;
+    backdrop-filter: blur(40px) saturate(180%) brightness(108%) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(108%) !important;
     background-image: none !important;
-    box-shadow: none !important;
+    box-shadow:       none !important;
   }
-}
 
-/* ---------------------------------------------------------
-   NATIVE APP HEAVY PHYSICS OVERRIDE (More GPU Resources)
-   --------------------------------------------------------- */
-html.cordova .manualLoginForm,
-html.cordova .dialog,
-html.cordova .toast,
-html.cordova .mainDrawer,
-html.cordova .selectionCommandsPanel,
-html.cordova .playerStats-stats,
-html.cordova .upNextDialog,
-html.cordova .detailPageWrapperContainer,
-html.cordova .detailPagePrimaryContainer,
-html.cordova .actionSheet,
-html.cordova .paperList,
-html.cordova .skinHeader,
-html.android .manualLoginForm,
-html.android .dialog,
-html.android .toast,
-html.android .mainDrawer,
-html.android .selectionCommandsPanel,
-html.android .playerStats-stats,
-html.android .upNextDialog,
-html.android .detailPageWrapperContainer,
-html.android .detailPagePrimaryContainer,
-html.android .actionSheet,
-html.android .paperList,
-html.android .skinHeader,
-html.ios .manualLoginForm,
-html.ios .dialog,
-html.ios .toast,
-html.ios .mainDrawer,
-html.ios .selectionCommandsPanel,
-html.ios .playerStats-stats,
-html.ios .upNextDialog,
-html.ios .detailPageWrapperContainer,
-html.ios .detailPagePrimaryContainer,
-html.ios .actionSheet,
-html.ios .paperList,
-html.ios .skinHeader {
-  background-image:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.02) 20%,
-      rgba(255, 255, 255, 0) 50%,
-      rgba(0, 0, 0, 0.2) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.03) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
-    0 10px 20px rgba(0, 0, 0, 0.4),
-    0 30px 70px rgba(0, 0, 0, 0.5) !important;
-}
-html.cordova .appfooter,
-html.android .appfooter,
-html.ios .appfooter {
-  background-image: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0) 50%
-  ) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 -4px 20px rgba(0, 0, 0, 0.4) !important;
-}
-
-/* ---------------------------------------------------------
-   VIDEO PLAYER ROTATION ANIMATION (Smooth Morphing)
-   --------------------------------------------------------- */
-/* By animating all layout properties, the UI will smoothly stretch and morph during screen rotation instead of glitching or snapping instantly. */
-.videoOsdBottom,
-.osdHeader,
-.videoOsdBottom .osdControls,
-.videoOsdBottom .nowPlayingBar {
-  /* Smooth, elastic morphing animation to match OS rotation speed */
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
-}
-
-/* ---------------------------------------------------------
-   DESKTOP WEB PLAYER PLAY/PAUSE GLASS ORB (Standalone)
-   --------------------------------------------------------- */
-/* Ensures the main play/pause button in the web player gets the exact premium orb style without affecting mobile */
-.videoOsdBottom .btnPlay,
-.videoOsdBottom .btnPause,
-.videoOsdBottom .btnPlayPause {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
-  border-radius: 50% !important;
-
-  background-image: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0) 50%
-  ) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-right: none !important;
-  border-bottom: none !important;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 4px 12px rgba(0, 0, 0, 0.3) !important;
-
-  color: white !important;
-  transition:
-    background-color 0.2s ease,
-    box-shadow 0.2s ease !important;
-}
-
-.videoOsdBottom .btnPlay:hover,
-.videoOsdBottom .btnPause:hover,
-.videoOsdBottom .btnPlayPause:hover {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 12px 28px rgba(0, 0, 0, 0.5) !important;
-}
-
-/* =========================================================
-   FLOATING GLASS PILLS FOR OSD MENUS (Top & Bottom)
-   ========================================================= */
-
-/* Force parent container to have no background to prevent double overlay */
-.videoOsdBottom {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  box-shadow: none !important;
-}
-
-/* Turns the top bar (which holds the back button and title) and the bottom bar into floating glassy ovals like the play orb */
-html body #videoOsdPage .skinHeader,
-html body .osdHeader,
-html body .skinHeader.osdHeader,
-html body .videoOsdBottom .osdControls {
-  background-color: rgba(var(--abyss-glass-tint), 0.1) !important;
-  backdrop-filter: blur(48px) saturate(180%) brightness(110%) !important;
-  border-radius: 50px !important; /* Oval/Pill shape */
-  background-image: none !important;
-  border: none !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-
-  /* Make them floating pills instead of full width */
-  margin: 15px auto !important;
-  width: max-content !important;
-  max-width: 95% !important;
-  padding: 5px 20px !important;
-  justify-content: center;
-}
-
-/* ---------------------------------------------------------
-   MOBILE VIDEO PLAYER REFINEMENT (Premium Sizing)
-   --------------------------------------------------------- */
-/* Shrinks text and icons slightly on mobile so full movie names fit and the UI feels more high-end */
-@media (max-width: 768px) {
-  /* Shrink the movie/show title further, and force it to wrap instead of cutting off */
+  /* Tighter OSD title on mobile */
   .osdHeader .pageTitle,
   .osdHeader .videoOsdTitle,
   .osdHeader h1,
   .osdHeader h2,
   .osdHeader h3,
-  .osdHeader .textActionButton,
   #videoOsdPage .pageTitle {
-    font-size: 0.75rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.5px !important;
-
-    /* Force wrapping so long titles are fully visible */
-    white-space: normal !important;
-    line-height: 1.3 !important;
-    max-width: none !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
+    font-size:     0.76rem !important;
+    font-weight:   500     !important;
+    letter-spacing: 0.4px !important;
+    white-space:   normal  !important;
+    line-height:   1.3     !important;
+    overflow:      visible !important;
+    text-overflow: clip    !important;
   }
 
-  /* Hide the year and secondary info to free up more space for the title */
   .osdHeader .secondaryText,
   .osdHeader .videoOsdSecondaryTitle,
-  .osdHeader .videoOsdSecondaryText,
   .osdHeader .videoOsdParentTitle,
   #videoOsdPage .videoOsdSecondaryText {
     display: none !important;
   }
 
-  /* Reduce padding to give the title more horizontal space */
   .osdHeader {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left:  8px !important;
+    padding-right: 8px !important;
   }
 
-  /* Shrink the top bar buttons slightly */
   .osdHeader .paper-icon-button-light {
-    width: 36px !important;
-    height: 36px !important;
-    padding: 6px !important;
+    width:   34px !important;
+    height:  34px !important;
+    padding: 5px  !important;
   }
 
-  /* Shrink the center glass orb play button so it feels more refined */
+  /* Smaller play orb on mobile */
   .iconOsd {
-    width: 85px !important;
-    height: 85px !important;
+    width:  82px !important;
+    height: 82px !important;
   }
 
   .iconOsdIcon {
-    font-size: 42px !important;
+    font-size: 40px !important;
   }
 
-  /* User specifically requested clear glass (no frosting/blur) on mobile */
+  /* No blur on mobile OSD — battery/perf */
   html body #videoOsdPage .skinHeader,
   html body .skinHeader.osdHeader,
   html body .osdHeader,
@@ -824,61 +647,107 @@ html body .videoOsdBottom .osdControls {
   html body .videoOsdBottom .btnPlay,
   html body .videoOsdBottom .btnPause,
   html body .videoOsdBottom .btnPlayPause {
-    backdrop-filter: none !important;
+    backdrop-filter:         none !important;
     -webkit-backdrop-filter: none !important;
   }
 }
 
-/* Login form glass (without aggressive GPU acceleration) */
+/* ─── 11. NATIVE APP (Cordova / iOS / Android) ───────────── */
+html.cordova .dialog,
+html.cordova .toast,
+html.cordova .mainDrawer,
+html.cordova .detailPageWrapperContainer,
+html.cordova .detailPagePrimaryContainer,
+html.cordova .actionSheet,
+html.cordova .skinHeader,
+html.android .dialog,
+html.android .toast,
+html.android .mainDrawer,
+html.android .detailPageWrapperContainer,
+html.android .detailPagePrimaryContainer,
+html.android .actionSheet,
+html.android .skinHeader,
+html.ios     .dialog,
+html.ios     .toast,
+html.ios     .mainDrawer,
+html.ios     .detailPageWrapperContainer,
+html.ios     .detailPagePrimaryContainer,
+html.ios     .actionSheet,
+html.ios     .skinHeader {
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.10) 0%,
+      rgba(255, 255, 255, 0.02) 22%,
+      rgba(255, 255, 255, 0.00) 55%,
+      rgba(0, 0, 0, 0.18) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.00) 100%
+    ) !important;
+  box-shadow:
+    inset 0  1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.38),
+    0 10px 20px rgba(0, 0, 0, 0.38),
+    0 28px 65px rgba(0, 0, 0, 0.48) !important;
+}
+
+html.cordova .appfooter,
+html.android .appfooter,
+html.ios     .appfooter {
+  background-image: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.00) 50%
+  ) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    0 -4px 18px rgba(0, 0, 0, 0.36) !important;
+}
+
+/* ─── 12. LOGIN FORM GLASS ───────────────────────────────── */
 .manualLoginForm {
   backdrop-filter: blur(50px) saturate(220%) contrast(110%) brightness(105%) !important;
-  background-color: rgba(15, 25, 45, 0.4) !important;
+  -webkit-backdrop-filter: blur(50px) saturate(220%) contrast(110%) brightness(105%) !important;
+  background-color: rgba(15, 25, 45, 0.40) !important;
   background-image: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0) 50%
+    rgba(255, 255, 255, 0.00) 55%
   ) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
-  border-right: none !important;
+  border-top:    1px solid rgba(255, 255, 255, 0.10) !important;
+  border-left:   1px solid rgba(255, 255, 255, 0.05) !important;
+  border-right:  none !important;
   border-bottom: none !important;
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 20px 40px rgba(0, 0, 0, 0.48),
     inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
 
-/* =========================================================
-   JELLYFIN APP NATIVE OPTIMIZATIONS (iOS / Android)
-   ========================================================= */
-/* Target all mobile layouts (browsers and native apps) */
+/* ─── 13. MOBILE NATIVE FEEL ─────────────────────────────── */
 .layout-mobile {
-  /* Disable text selection and callouts (long-press menus) for a native feel */
-  -webkit-user-select: none !important;
-  user-select: none !important;
-  -webkit-touch-callout: none !important;
-  /* Native scrolling */
+  -webkit-user-select:    none !important;
+  user-select:            none !important;
+  -webkit-touch-callout:  none !important;
   -webkit-overflow-scrolling: touch !important;
 }
 
-/* Hide scrollbars completely on mobile apps */
 .layout-mobile ::-webkit-scrollbar {
   display: none !important;
 }
 
-/* =========================================================
-   FINAL OVERRIDE: OSD TOP BAR MUST BE TRANSPARENT
-   This block MUST remain at the very bottom of the file
-   so it wins over every other rule in the cascade.
-   ========================================================= */
+/* ─── 14. FINAL OSD OVERRIDE (must stay last) ────────────── */
 html body #videoOsdPage .skinHeader,
 html body #videoOsdPage .osdHeader,
 html body .skinHeader.osdHeader,
 html body .osdHeader {
-  background-color: rgba(var(--abyss-glass-tint), 0.1) !important;
-  background-image: none !important;
-  background: rgba(var(--abyss-glass-tint), 0.1) !important;
-  backdrop-filter: none !important;
+  background-color:        rgba(10, 16, 36, 0.10) !important;
+  background-image:        none !important;
+  background:              rgba(10, 16, 36, 0.10) !important;
+  backdrop-filter:         none !important;
   -webkit-backdrop-filter: none !important;
-  border: none !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  border:                  none !important;
+  box-shadow:              0 4px 12px rgba(0, 0, 0, 0.28) !important;
 }

@@ -77,22 +77,48 @@ body {
 body,
 .backgroundContainer,
 .backdropContainer {
-  background-color: #0b1524 !important;
-  background-image: url("https://media.512pixels.net/downloads/macos-wallpapers-6k/26-Tahoe-Dark-6K.png") !important;
-  background-size: cover !important;
-  background-position: center !important;
+  background-color: #080d1a !important;
+  background-image:
+    radial-gradient(at 10% 10%, rgba(49, 98, 238, 0.8) 0px, transparent 55%),
+    radial-gradient(at 90% 15%, rgba(232, 130, 204, 0.7) 0px, transparent 50%),
+    radial-gradient(at 85% 85%, rgba(89, 181, 243, 0.75) 0px, transparent 50%),
+    radial-gradient(at 15% 85%, rgba(244, 205, 159, 0.65) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(49, 98, 238, 0.4) 0px, transparent 65%) !important;
+  background-size: 180% 180% !important;
   background-attachment: fixed !important;
+  animation: liquidMeshFlow 22s ease-in-out infinite alternate !important;
 }
-/* Serve compressed 1080p WebP on mobile to save bandwidth and load faster */
-@media (max-width: 1080px) {
+
+@keyframes liquidMeshFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 40%;
+  }
+  50% {
+    background-position: 60% 100%;
+  }
+  75% {
+    background-position: 0% 70%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   body,
   .backgroundContainer,
   .backdropContainer {
-    background-image: url("https://wsrv.nl/?url=media.512pixels.net/downloads/macos-wallpapers-6k/26-Tahoe-Dark-6K.png&w=1080&output=webp&q=80") !important;
+    animation: none !important;
   }
 }
+
 .backgroundContainer.withBackdrop {
   background: transparent !important;
+  background-image: none !important;
+  animation: none !important;
 }
 
 .material-icons {

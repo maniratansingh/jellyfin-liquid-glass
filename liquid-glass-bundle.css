@@ -3012,14 +3012,15 @@ html body .videoOsdBottom .osdControls {
   transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
-/* ─── 9b. WEBPLAYER SUBTITLES — clean cinema scaling ──────── */
-::cue,
-video::cue,
-.videoSubtitles,
-.videoSubtitlesInner,
-.videoSubtitles .subtitleText,
-video::-webkit-media-text-track-display,
-video::-webkit-media-text-track-container {
+/* ─── 9b. WEBPLAYER SUBTITLES — browser-only cinema scaling ── */
+/* Laptop / Desktop Web Player — keep the sleek 16-24px scale */
+html:not(.android):not(.ios):not(.cordova) ::cue,
+html:not(.android):not(.ios):not(.cordova) video::cue,
+html:not(.android):not(.ios):not(.cordova) .videoSubtitles,
+html:not(.android):not(.ios):not(.cordova) .videoSubtitlesInner,
+html:not(.android):not(.ios):not(.cordova) .videoSubtitles .subtitleText,
+html:not(.android):not(.ios):not(.cordova) video::-webkit-media-text-track-display,
+html:not(.android):not(.ios):not(.cordova) video::-webkit-media-text-track-container {
   font-size: clamp(16px, 2.2vw, 24px) !important;
   line-height: 1.35 !important;
   font-weight: 500 !important;
@@ -3114,20 +3115,53 @@ video::-webkit-media-text-track-container {
     -webkit-backdrop-filter: none !important;
   }
 
-  /* Mobile subtitle sizing */
-  ::cue,
-  video::cue,
-  .videoSubtitles,
-  .videoSubtitlesInner,
-  .videoSubtitles .subtitleText,
-  video::-webkit-media-text-track-display,
-  video::-webkit-media-text-track-container {
-    font-size: clamp(14px, 3.8vw, 18px) !important;
-    line-height: 1.3 !important;
+  /* Mobile Web Player Subtitles — scaled down to fit phone screen height */
+  html:not(.android):not(.ios):not(.cordova) ::cue,
+  html:not(.android):not(.ios):not(.cordova) video::cue,
+  html:not(.android):not(.ios):not(.cordova) .videoSubtitles,
+  html:not(.android):not(.ios):not(.cordova) .videoSubtitlesInner,
+  html:not(.android):not(.ios):not(.cordova) .videoSubtitles .subtitleText,
+  html:not(.android):not(.ios):not(.cordova) video::-webkit-media-text-track-display,
+  html:not(.android):not(.ios):not(.cordova) video::-webkit-media-text-track-container {
+    font-size: clamp(12px, 3.2vh, 14.5px) !important;
+    line-height: 1.25 !important;
+  }
+}
+
+/* Mobile Landscape Web Player Subtitles — preserve video area */
+@media (max-height: 500px) and (orientation: landscape) {
+  html:not(.android):not(.ios):not(.cordova) ::cue,
+  html:not(.android):not(.ios):not(.cordova) video::cue,
+  html:not(.android):not(.ios):not(.cordova) .videoSubtitles,
+  html:not(.android):not(.ios):not(.cordova) .videoSubtitlesInner,
+  html:not(.android):not(.ios):not(.cordova) .videoSubtitles .subtitleText,
+  html:not(.android):not(.ios):not(.cordova) video::-webkit-media-text-track-display,
+  html:not(.android):not(.ios):not(.cordova) video::-webkit-media-text-track-container {
+    font-size: clamp(11.5px, 3.6vh, 14px) !important;
+    line-height: 1.25 !important;
   }
 }
 
 /* ─── 11. NATIVE APP (Cordova / iOS / Android) ───────────── */
+/* Subtitles in Native / Integrated App — full slack, native player handles sizing */
+html.cordova ::cue,
+html.cordova video::cue,
+html.cordova .videoSubtitles,
+html.cordova .videoSubtitlesInner,
+html.cordova .videoSubtitles .subtitleText,
+html.android ::cue,
+html.android video::cue,
+html.android .videoSubtitles,
+html.android .videoSubtitlesInner,
+html.android .videoSubtitles .subtitleText,
+html.ios     ::cue,
+html.ios     video::cue,
+html.ios     .videoSubtitles,
+html.ios     .videoSubtitlesInner,
+html.ios     .videoSubtitles .subtitleText {
+  font-size: unset !important;
+  line-height: normal !important;
+}
 html.cordova .dialog,
 html.cordova .toast,
 html.cordova .mainDrawer,

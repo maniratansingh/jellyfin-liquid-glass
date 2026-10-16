@@ -49,33 +49,33 @@ body,
     -webkit-backdrop-filter:
       blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
 
-    background-color: rgba(var(--lg-tint), 0.25) !important;
+    background-color: rgba(var(--lg-tint), 0.28) !important;
     background-image:
       linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.26) 0%,
-        rgba(255, 255, 255, 0.06) 28%,
-        rgba(255, 255, 255, 0.00) 55%,
-        rgba(0, 0, 0, 0.18) 100%
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(255, 255, 255, 0.06) 25%,
+        rgba(255, 255, 255, 0.00) 50%,
+        rgba(0, 0, 0, 0.20) 100%
       ),
       linear-gradient(
         180deg,
-        rgba(255, 255, 255, 0.09) 0%,
+        rgba(255, 255, 255, 0.10) 0%,
         rgba(255, 255, 255, 0.02) 60%,
-        rgba(0, 0, 0, 0.10) 100%
+        rgba(0, 0, 0, 0.12) 100%
       ) !important;
 
     border-top:    1.5px solid rgba(255, 255, 255, 0.55) !important;
-    border-left:   1px   solid rgba(255, 255, 255, 0.28) !important;
-    border-right:  1px   solid rgba(255, 255, 255, 0.08) !important;
-    border-bottom: 1px   solid rgba(255, 255, 255, 0.05) !important;
+    border-left:   1px   solid rgba(255, 255, 255, 0.30) !important;
+    border-right:  1px   solid rgba(255, 255, 255, 0.10) !important;
+    border-bottom: 1px   solid rgba(255, 255, 255, 0.06) !important;
 
     box-shadow:
-      inset 0  1.5px 1px rgba(255, 255, 255, 0.55),
-      inset 0  0    24px rgba(255, 255, 255, 0.06),
-      inset 0 -1.5px 1px rgba(0, 0, 0, 0.40),
+      inset 0  1.5px 1px 0 rgba(255, 255, 255, 0.60),
+      inset 0  0    24px 0 rgba(140, 210, 255, 0.08),
+      inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.40),
       0 18px  40px rgba(0, 0, 0, 0.50),
-      0 40px  90px rgba(0, 0, 0, 0.40) !important;
+      0 40px  90px rgba(0, 0, 0, 0.45) !important;
   }
 
   /* Bottom nav bar — lighter, no heavy shadow */
@@ -367,46 +367,47 @@ button[data-action="markfavorite"],
   white-space:    nowrap    !important;
   cursor:         pointer   !important;
 
-  /* Glass body */
-  background-color: rgba(255, 255, 255, 0.14) !important;
+  /* Crystalline Refractive Acrylic Glass Body */
+  background-color: rgba(12, 18, 38, 0.28) !important;
   background-image:
     linear-gradient(
-      160deg,
-      rgba(255, 255, 255, 0.48) 0%,
-      rgba(255, 255, 255, 0.14) 35%,
-      rgba(255, 255, 255, 0.04) 65%,
-      rgba(255, 255, 255, 0.20) 100%
+      135deg,
+      rgba(255, 255, 255, 0.32) 0%,
+      rgba(255, 255, 255, 0.08) 25%,
+      rgba(255, 255, 255, 0.00) 50%,
+      rgba(0, 0, 0, 0.18) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.22) 0%,
-      rgba(255, 255, 255, 0.04) 55%,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.02) 60%,
       rgba(0, 0, 0, 0.10) 100%
     ) !important;
   backdrop-filter:
-    blur(40px) saturate(360%) brightness(148%) contrast(114%) !important;
+    blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
   -webkit-backdrop-filter:
-    blur(40px) saturate(360%) brightness(148%) contrast(114%) !important;
+    blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
 
-  /* Specular bevel rim */
-  border:        1px   solid rgba(255, 255, 255, 0.32) !important;
-  border-top:    1.5px solid rgba(255, 255, 255, 0.92) !important;
-  border-bottom: 1px   solid rgba(255, 255, 255, 0.18) !important;
+  /* Prismatic Razor Edge */
+  border:        1px   solid rgba(255, 255, 255, 0.18) !important;
+  border-top:    1.5px solid rgba(255, 255, 255, 0.60) !important;
+  border-left:   1px   solid rgba(255, 255, 255, 0.30) !important;
+  border-bottom: 1px   solid rgba(255, 255, 255, 0.10) !important;
 
-  /* Layered glow */
+  /* Hyper-Layered Liquid Specular Halo & Floating Depth */
   box-shadow:
-    inset 0  1.5px 1px rgba(255, 255, 255, 0.90),
-    inset 0  0    18px rgba(255, 255, 255, 0.22),
-    inset 0 -1px   1px rgba(0, 0, 0, 0.22),
-    0  8px 24px rgba(0, 0, 0, 0.40),
-    0  0   16px rgba(255, 255, 255, 0.16) !important;
+    inset 0  1.5px 1px 0 rgba(255, 255, 255, 0.70),
+    inset 0  0    16px 0 rgba(140, 210, 255, 0.18),
+    inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.35),
+    0 8px 22px rgba(0, 0, 0, 0.45),
+    0 2px  6px rgba(56, 189, 248, 0.25) !important;
 
   color:       #ffffff !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65) !important;
   transition:
-    transform         0.22s var(--lg-ease-bounce),
-    box-shadow        0.22s ease,
-    background-color  0.22s ease !important;
+    transform         0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow        0.28s ease,
+    background-color  0.28s ease !important;
 }
 
 /* Hover */
@@ -417,13 +418,13 @@ button[data-action="markfavorite"],
 #itemDetailPage .mainDetailButtons [data-action="resume"]:hover,
 #itemDetailPage .mainDetailButtons [data-action="download"]:hover,
 #itemDetailPage .mainDetailButtons [title*="Download" i]:hover {
-  transform:        translateY(-2px) scale(1.03) !important;
-  background-color: rgba(255, 255, 255, 0.26) !important;
+  transform:        translateY(-2px) scale(1.04) !important;
+  background-color: rgba(20, 30, 60, 0.40) !important;
   box-shadow:
-    inset 0  1.5px 1px #ffffff,
-    inset 0  0    26px rgba(255, 255, 255, 0.44),
-    0 14px 32px rgba(0, 0, 0, 0.50),
-    0  0   26px rgba(255, 255, 255, 0.32) !important;
+    inset 0  1.5px 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0  0    20px 0 rgba(140, 210, 255, 0.30),
+    0 14px 30px rgba(0, 0, 0, 0.60),
+    0  0   22px rgba(6, 214, 160, 0.35) !important;
 }
 
 /* Press */
@@ -435,9 +436,9 @@ button[data-action="markfavorite"],
 #itemDetailPage .mainDetailButtons [data-action="download"]:active {
   transform:  translateY(0) scale(0.97) !important;
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.75),
-    inset 0 0  12px rgba(0, 0, 0, 0.28),
-    0 4px 14px rgba(0, 0, 0, 0.38) !important;
+    inset 0 1px 1px rgba(255, 255, 255, 0.70),
+    inset 0 0  10px rgba(0, 0, 0, 0.30),
+    0 4px 14px rgba(0, 0, 0, 0.36) !important;
 }
 
 /* Three-Dot glass orb */
@@ -458,35 +459,46 @@ button[data-action="markfavorite"],
   cursor:         pointer     !important;
   flex-shrink:    0           !important;
 
-  background-color: rgba(255, 255, 255, 0.14) !important;
+  /* Crystalline Refractive Acrylic Glass Body */
+  background-color: rgba(12, 18, 38, 0.28) !important;
   background-image:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.48) 0%,
-      rgba(255, 255, 255, 0.08) 55%,
-      rgba(255, 255, 255, 0.18) 100%
+      rgba(255, 255, 255, 0.32) 0%,
+      rgba(255, 255, 255, 0.08) 25%,
+      rgba(255, 255, 255, 0.00) 50%,
+      rgba(0, 0, 0, 0.18) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.02) 60%,
+      rgba(0, 0, 0, 0.10) 100%
     ) !important;
   backdrop-filter:
-    blur(40px) saturate(360%) brightness(148%) contrast(114%) !important;
+    blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
   -webkit-backdrop-filter:
-    blur(40px) saturate(360%) brightness(148%) contrast(114%) !important;
+    blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
 
-  border:        1px   solid rgba(255, 255, 255, 0.32) !important;
-  border-top:    1.5px solid rgba(255, 255, 255, 0.92) !important;
-  border-bottom: 1px   solid rgba(255, 255, 255, 0.18) !important;
+  /* Prismatic Razor Edge */
+  border:        1px   solid rgba(255, 255, 255, 0.18) !important;
+  border-top:    1.5px solid rgba(255, 255, 255, 0.60) !important;
+  border-left:   1px   solid rgba(255, 255, 255, 0.30) !important;
+  border-bottom: 1px   solid rgba(255, 255, 255, 0.10) !important;
 
+  /* Hyper-Layered Liquid Specular Halo & Floating Depth */
   box-shadow:
-    inset 0  1.5px 1px rgba(255, 255, 255, 0.90),
-    inset 0  0    18px rgba(255, 255, 255, 0.22),
-    inset 0 -1px   1px rgba(0, 0, 0, 0.22),
-    0  8px 24px rgba(0, 0, 0, 0.40),
-    0  0   16px rgba(255, 255, 255, 0.16) !important;
+    inset 0  1.5px 1px 0 rgba(255, 255, 255, 0.70),
+    inset 0  0    16px 0 rgba(140, 210, 255, 0.18),
+    inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.35),
+    0 8px 22px rgba(0, 0, 0, 0.45),
+    0 2px  6px rgba(56, 189, 248, 0.25) !important;
 
   color:      #ffffff !important;
   transition:
-    transform        0.22s var(--lg-ease-bounce),
-    box-shadow       0.22s ease,
-    background-color 0.22s ease !important;
+    transform        0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow       0.28s ease,
+    background-color 0.28s ease !important;
 }
 
 #itemDetailPage .mainDetailButtons .btnMoreCommands:hover,
@@ -494,12 +506,12 @@ button[data-action="markfavorite"],
 #itemDetailPage .mainDetailButtons [data-action="menu"]:hover,
 #itemDetailPage .mainDetailButtons [title*="More" i]:hover {
   transform:        translateY(-2px) scale(1.06) !important;
-  background-color: rgba(255, 255, 255, 0.26) !important;
+  background-color: rgba(20, 30, 60, 0.40) !important;
   box-shadow:
-    inset 0  1.5px 1px #ffffff,
-    inset 0  0    26px rgba(255, 255, 255, 0.44),
-    0 14px 32px rgba(0, 0, 0, 0.50),
-    0  0   26px rgba(255, 255, 255, 0.32) !important;
+    inset 0  1.5px 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0  0    20px 0 rgba(140, 210, 255, 0.30),
+    0 14px 30px rgba(0, 0, 0, 0.60),
+    0  0   22px rgba(6, 214, 160, 0.35) !important;
 }
 
 #itemDetailPage .mainDetailButtons .btnMoreCommands:active,
@@ -528,32 +540,32 @@ button[data-action="markfavorite"],
 
 /* ─── 8. ACTION SHEET (dropdown menu) ────────────────────── */
 .actionSheet {
-  background-color: rgba(var(--lg-tint), 0.40) !important;
+  background-color: rgba(10, 16, 36, 0.40) !important;
   background-image:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.26) 0%,
-      rgba(255, 255, 255, 0.06) 28%,
-      rgba(255, 255, 255, 0.00) 55%,
-      rgba(0, 0, 0, 0.18) 100%
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0.06) 25%,
+      rgba(255, 255, 255, 0.00) 50%,
+      rgba(0, 0, 0, 0.20) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.09) 0%,
+      rgba(255, 255, 255, 0.10) 0%,
       rgba(255, 255, 255, 0.02) 60%,
-      rgba(0, 0, 0, 0.10) 100%
+      rgba(0, 0, 0, 0.12) 100%
     ) !important;
   backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
   -webkit-backdrop-filter: blur(48px) saturate(280%) brightness(125%) contrast(112%) !important;
   border-radius:  24px !important;
-  border:         1px   solid rgba(255, 255, 255, 0.16) !important;
-  border-top:     1.5px solid rgba(255, 255, 255, 0.50) !important;
-  border-left:    1px   solid rgba(255, 255, 255, 0.26) !important;
+  border:         1px   solid rgba(255, 255, 255, 0.18) !important;
+  border-top:     1.5px solid rgba(255, 255, 255, 0.55) !important;
+  border-left:    1px   solid rgba(255, 255, 255, 0.30) !important;
   box-shadow:
-    inset 0  1.5px 1px rgba(255, 255, 255, 0.55),
-    inset 0  0    22px rgba(255, 255, 255, 0.06),
-    inset 0 -1.5px 1px rgba(0, 0, 0, 0.38),
-    0 24px 56px rgba(0, 0, 0, 0.60) !important;
+    inset 0  1.5px 1px 0 rgba(255, 255, 255, 0.60),
+    inset 0  0    24px 0 rgba(140, 210, 255, 0.08),
+    inset 0 -1.5px 1px 0 rgba(0, 0, 0, 0.40),
+    0 25px 60px rgba(0, 0, 0, 0.65) !important;
   padding: 10px !important;
   overflow: hidden !important;
 }
@@ -814,6 +826,39 @@ html.ios     .appfooter {
 
 .layout-mobile ::-webkit-scrollbar {
   display: none !important;
+}
+
+/* ─── 13b. LIQUID GLASS FORM CONTROLS & SEARCH ───────────── */
+.emby-input,
+.emby-textarea,
+.emby-select-withcolor {
+  background-color: rgba(10, 16, 36, 0.35) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.32) !important;
+  border-radius: 14px !important;
+  color: #ffffff !important;
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.35),
+    inset 0 0 12px rgba(0, 0, 0, 0.20) !important;
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease !important;
+}
+
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select-withcolor:focus {
+  background-color: rgba(12, 20, 44, 0.50) !important;
+  border-color: rgba(56, 189, 248, 0.55) !important;
+  border-top-color: rgba(255, 255, 255, 0.60) !important;
+  box-shadow:
+    0 0 0 3px rgba(56, 189, 248, 0.22),
+    inset 0 1px 1px rgba(255, 255, 255, 0.40),
+    0 8px 20px rgba(0, 0, 0, 0.35) !important;
+  outline: none !important;
 }
 
 /* ─── 14. FINAL OSD OVERRIDE (must stay last) ────────────── */

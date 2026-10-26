@@ -853,20 +853,20 @@ header.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButtonGroup-cont
   scrolling never repaints it. TVs keep the gradients but never the optional image blur.
 */
 /*
-  Liquid Glass "Ink Dissolved in Water" Ambient Flow:
-  - Deep midnight inky base (#040711)
-  - Diffuse organic pigments: deep indigo, aquatic cerulean, royal plum & midnight azure
-  - Serene 42s ambient drift with heavy feathering (50px Gaussian blur)
-  - Zero distraction: high contrast makes glass controls, text, and artwork pop
+  Liquid Glass "Molten Amber & Midnight Velvet" Specular Ambient Flow:
+  - Deepest midnight velvet violet-black base (#070312)
+  - Diffuse organic specular pigments: rich royal amethyst, dusk magenta, molten honey-amber & sunset copper
+  - Serene 36s ambient drift with heavy feathering (50px Gaussian blur)
+  - Warm specular caustics that illuminate frosted glass edges and cards
 */
 body,
 .backgroundContainer,
 .backdropContainer {
-  background-color: #040711 !important;
+  background-color: #070312 !important;
 }
 
 body {
-  background-image: radial-gradient(circle at 50% 30%, #0d1b38 0%, #040711 75%);
+  background-image: radial-gradient(circle at 50% 30%, #150928 0%, #070312 75%);
   background-attachment: fixed;
 }
 
@@ -885,17 +885,17 @@ body {
   left: -12%;
   width: 124%;
   height: 124%;
-  background-color: #040711;
+  background-color: #070312;
   background-image:
-    radial-gradient(ellipse 65% 55% at 20% 20%, rgba(18, 65, 145, 0.42) 0%, transparent 68%),
-    radial-gradient(ellipse 70% 60% at 80% 25%, rgba(68, 28, 110, 0.38) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 70% at 75% 80%, rgba(8, 110, 140, 0.32) 0%, transparent 65%),
-    radial-gradient(ellipse 75% 65% at 15% 85%, rgba(20, 45, 115, 0.4) 0%, transparent 70%),
-    radial-gradient(ellipse 85% 75% at 50% 50%, rgba(42, 20, 85, 0.28) 0%, transparent 75%);
+    radial-gradient(ellipse 65% 55% at 82% 75%, rgba(230, 110, 20, 0.48) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 70% at 70% 88%, rgba(200, 70, 30, 0.38) 0%, transparent 68%),
+    radial-gradient(ellipse 70% 60% at 20% 22%, rgba(95, 22, 145, 0.52) 0%, transparent 70%),
+    radial-gradient(ellipse 65% 65% at 32% 65%, rgba(130, 32, 90, 0.38) 0%, transparent 68%),
+    radial-gradient(ellipse 85% 75% at 52% 40%, rgba(45, 12, 85, 0.42) 0%, transparent 75%);
   filter: blur(50px);
   -webkit-filter: blur(50px);
   transform: translate3d(0, 0, 0);
-  animation: inkDrift 42s ease-in-out infinite alternate;
+  animation: moltenGlow 36s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: -2;
 }
@@ -907,23 +907,23 @@ body {
   inset: 0;
   background:
     radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(4, 7, 17, 0.15) 0%, rgba(4, 7, 17, 0.55) 100%);
+    linear-gradient(180deg, rgba(7, 3, 18, 0.15) 0%, rgba(7, 3, 18, 0.55) 100%);
   pointer-events: none;
   z-index: -1;
 }
 
-@keyframes inkDrift {
+@keyframes moltenGlow {
   0% {
     transform: scale(1) translate(0%, 0%) rotate(0deg);
   }
   33% {
-    transform: scale(1.06) translate(3%, -2%) rotate(2deg);
+    transform: scale(1.08) translate(-2%, -2%) rotate(1.5deg);
   }
   66% {
-    transform: scale(1.03) translate(-2%, 3%) rotate(-1.5deg);
+    transform: scale(1.04) translate(2.5%, -1.5%) rotate(-1deg);
   }
   100% {
-    transform: scale(1.08) translate(1%, -1%) rotate(1deg);
+    transform: scale(1.07) translate(1.5%, 2%) rotate(1.2deg);
   }
 }
 

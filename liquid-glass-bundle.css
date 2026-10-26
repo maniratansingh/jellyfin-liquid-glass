@@ -854,6 +854,10 @@ header.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButtonGroup-cont
 */
 body {
   background-color: var(--lg-bg);
+  background-image:
+    radial-gradient(90% 70% at 18% 0%, rgb(30 90 220 / 0.35), transparent 70%),
+    linear-gradient(165deg, #0d318a, #0a2466 45%, #071a4a);
+  background-attachment: fixed;
 }
 
 .backgroundContainer::before,
@@ -9183,7 +9187,6 @@ html.layout-tv .playedIndicator .indicatorIcon {
   html body .osdHeader,
   html body .videoOsdBottom .osdControls,
   html body .iconOsd,
-  html body .mainDrawer,
   html body .videoOsdBottom .btnPlay,
   html body .videoOsdBottom .btnPause,
   html body .videoOsdBottom .btnPlayPause {
@@ -9197,7 +9200,7 @@ html.layout-tv .playedIndicator .indicatorIcon {
 #videoOsdPage,
 .videoOsdBottom,
 .videoOsdTop {
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* 5. Final OSD Top Bar: Fully Transparent Container (Eliminates the giant ghost pill outline) */

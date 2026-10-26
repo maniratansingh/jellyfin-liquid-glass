@@ -7602,14 +7602,33 @@ html.layout-mobile .nowPlayingBar .nowPlayingImage {
   }
 }
 /*
-  The fixed bottom bar on phones. With the queue closed stock turns it see-through
-  (`.playlistSectionButtonTransparent`, background with !important), so the open direction
-  pad scrolled under it showed straight through its controls; it keeps its backing here.
+  The fixed bottom bar on phones / Now Playing.
+  Transparent glass so background wallpaper flows seamlessly to bottom of screen.
 */
-html.layout-mobile .playlistSectionButton {
+html.layout-mobile .playlistSectionButton,
+.playlistSectionButton,
+.playlistSectionButtonTransparent,
+.nowPlayingPage .playlistSectionButton,
+.nowPlayingPage .nowPlayingSecondaryButtons,
+.nowPlayingPage .nowPlayingSecondaryButtonsContainer,
+.nowPlayingPage .nowPlayingPageBottom,
+#nowPlayingPage .appfooter,
+.nowPlayingPage .appfooter {
   z-index: 10;
-  background: rgb(var(--lg-bg-rgb) / 0.95) !important; /* beats the stock transparent !important */
-  box-shadow: inset 0 0.5px 0 var(--lg-separator);
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.playlistSectionButton .paper-icon-button-light {
+  color: var(--lg-text);
+}
+
+html.layout-mobile .nowPlayingPlaylist:not(.hide) {
+  background: rgba(15, 15, 20, 0.72) !important;
+  backdrop-filter: blur(30px) saturate(1.8) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(1.8) !important;
 }
 
 /*

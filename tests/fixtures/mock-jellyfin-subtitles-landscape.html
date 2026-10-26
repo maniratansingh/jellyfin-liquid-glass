@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=844, height=390, initial-scale=1.0">
+  <title>Mock Jellyfin Subtitles Landscape</title>
+  <link rel="stylesheet" href="../../dist/jellyfin-liquid-glass.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 390px;
+      width: 844px;
+      overflow: hidden;
+    }
+    .videoContainer {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .mockFrame {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, #2b3a4a 0%, #0d131a 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="videoContainer">
+    <div class="mockFrame"></div>
+    <div class="videoSubtitles">
+      <div class="videoSubtitlesInner" style="font-size: 2.2em;">
+        <span>My innate desire to seek out other life...</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

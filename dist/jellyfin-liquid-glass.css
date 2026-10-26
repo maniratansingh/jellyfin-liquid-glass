@@ -852,101 +852,43 @@ header.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButtonGroup-cont
   (.backgroundContainer-transparent). The layer is static, so it is painted once and
   scrolling never repaints it. TVs keep the gradients but never the optional image blur.
 */
-/*
-  Liquid Glass "Molten Amber & Midnight Velvet" Specular Ambient Flow:
-  - Deepest midnight velvet violet-black base (#070312)
-  - Diffuse organic specular pigments: rich royal amethyst, dusk magenta, molten honey-amber & sunset copper
-  - Serene 36s ambient drift with heavy feathering (50px Gaussian blur)
-  - Warm specular caustics that illuminate frosted glass edges and cards
-*/
-body,
-.backgroundContainer,
-.backdropContainer {
-  background-color: #070312 !important;
-}
-
 body {
-  background-color: #070312 !important;
-  background-image:
-    radial-gradient(ellipse 70% 60% at 78% 65%, rgba(245, 130, 32, 0.45) 0%, rgba(220, 75, 20, 0.20) 35%, transparent 68%),
-    radial-gradient(ellipse 55% 50% at 85% 25%, rgba(255, 155, 40, 0.30) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 65% at 18% 25%, rgba(120, 25, 175, 0.45) 0%, transparent 70%),
-    radial-gradient(ellipse 65% 60% at 25% 78%, rgba(145, 30, 110, 0.35) 0%, transparent 68%),
-    radial-gradient(circle at 50% 50%, #150928 0%, #070312 85%) !important;
-  background-attachment: fixed !important;
+  background-color: var(--lg-bg);
 }
 
-.backgroundContainer {
-  position: fixed !important;
-  inset: 0 !important;
-  overflow: hidden !important;
-  z-index: -1 !important;
-  background-color: transparent !important;
-}
-
-.backgroundContainer::before {
-  content: "";
-  display: block !important;
-  position: absolute;
-  top: -12%;
-  left: -12%;
-  width: 124%;
-  height: 124%;
-  background-color: transparent;
-  background-image:
-    radial-gradient(ellipse 70% 60% at 78% 65%, rgba(245, 130, 32, 0.75) 0%, rgba(220, 75, 20, 0.40) 35%, transparent 68%),
-    radial-gradient(ellipse 55% 50% at 85% 25%, rgba(255, 155, 40, 0.50) 0%, transparent 65%),
-    radial-gradient(ellipse 70% 65% at 18% 25%, rgba(120, 25, 175, 0.70) 0%, transparent 70%),
-    radial-gradient(ellipse 65% 60% at 25% 78%, rgba(145, 30, 110, 0.50) 0%, transparent 68%),
-    radial-gradient(ellipse 85% 75% at 50% 45%, rgba(55, 15, 95, 0.55) 0%, transparent 75%);
-  filter: blur(50px);
-  -webkit-filter: blur(50px);
-  transform: translate3d(0, 0, 0);
-  animation: moltenGlow 36s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: -2;
-}
-
+.backgroundContainer::before,
 .backgroundContainer::after {
   content: "";
-  display: block !important;
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(7, 3, 18, 0.05) 0%, rgba(7, 3, 18, 0.25) 100%);
   pointer-events: none;
-  z-index: -1;
 }
-
-@keyframes moltenGlow {
-  0% {
-    transform: scale(1) translate(0%, 0%) rotate(0deg);
-  }
-  33% {
-    transform: scale(1.08) translate(-2%, -2%) rotate(1.5deg);
-  }
-  66% {
-    transform: scale(1.04) translate(2.5%, -1.5%) rotate(-1deg);
-  }
-  100% {
-    transform: scale(1.07) translate(1.5%, 2%) rotate(1.2deg);
-  }
+.backgroundContainer::before {
+  top: -8%;
+  right: -8%;
+  bottom: -8%;
+  left: -8%;
+  /* Screen-blending the render over the tint turns its black into the tint and leaves the glass. */
+  background: var(--lg-wallpaper), var(--lg-wallpaper-tint);
+  background-repeat: no-repeat;
+  background-blend-mode: screen, normal;
+  background-color: var(--lg-bg);
+  filter: var(--lg-wallpaper-filter);
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .backgroundContainer::before {
-    animation: none !important;
-  }
+.backgroundContainer::after {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--lg-wallpaper-veil);
 }
-
-.backgroundContainer.withBackdrop::before {
-  opacity: 0.45;
+.backgroundContainer.withBackdrop::before,
+.backgroundContainer.withBackdrop::after,
+.backgroundContainer.backgroundContainer-transparent::before,
+.backgroundContainer.backgroundContainer-transparent::after {
+  display: none;
 }
-
-.backgroundContainer.withBackdrop {
-  background-color: transparent !important;
-  animation: none !important;
+html.layout-tv .backgroundContainer::before {
+  filter: none;
 }
 
 /*

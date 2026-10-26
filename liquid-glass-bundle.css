@@ -853,57 +853,90 @@ header.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButtonGroup-cont
   scrolling never repaints it. TVs keep the gradients but never the optional image blur.
 */
 /*
-  Liquid Glass Animated 8-Color Shifting Mesh Gradient (from test branch):
-  - 8 glowing radial nodes: Emerald, Coral Pink, Cyan, Amber, Violet, Royal Blue, Sunset Orange, Indigo
-  - Silky 20s infinite keyframe flow with reduced-motion support
-  - Blends and refracts dynamically through all Liquid Glass panels
+  Liquid Glass "Ink Dissolved in Water" Ambient Flow:
+  - Deep midnight inky base (#040711)
+  - Diffuse organic pigments: deep indigo, aquatic cerulean, royal plum & midnight azure
+  - Serene 42s ambient drift with heavy feathering (50px Gaussian blur)
+  - Zero distraction: high contrast makes glass controls, text, and artwork pop
 */
 body,
 .backgroundContainer,
 .backdropContainer {
-  background-color: #040612 !important;
-  background-image:
-    radial-gradient(ellipse at 10% 15%, rgba(6, 214, 160, 0.9) 0%, transparent 48%),
-    radial-gradient(ellipse at 90% 12%, rgba(255, 75, 110, 0.9) 0%, transparent 46%),
-    radial-gradient(ellipse at 88% 88%, rgba(34, 211, 238, 0.92) 0%, transparent 50%),
-    radial-gradient(ellipse at 12% 86%, rgba(255, 184, 48, 0.85) 0%, transparent 46%),
-    radial-gradient(ellipse at 50% 25%, rgba(147, 51, 234, 0.85) 0%, transparent 52%),
-    radial-gradient(ellipse at 50% 75%, rgba(26, 86, 255, 0.92) 0%, transparent 52%),
-    radial-gradient(ellipse at 78% 50%, rgba(251, 146, 60, 0.82) 0%, transparent 45%),
-    radial-gradient(ellipse at 22% 50%, rgba(79, 70, 229, 0.88) 0%, transparent 48%) !important;
-  background-size: 220% 220% !important;
-  background-attachment: fixed !important;
-  animation: liquidMultiColorFlow 20s ease-in-out infinite alternate !important;
+  background-color: #040711 !important;
 }
 
-@keyframes liquidMultiColorFlow {
+body {
+  background-image: radial-gradient(circle at 50% 30%, #0d1b38 0%, #040711 75%);
+  background-attachment: fixed;
+}
+
+.backgroundContainer {
+  position: fixed !important;
+  inset: 0 !important;
+  overflow: hidden !important;
+  z-index: -1 !important;
+}
+
+.backgroundContainer::before {
+  content: "";
+  display: block !important;
+  position: absolute;
+  top: -12%;
+  left: -12%;
+  width: 124%;
+  height: 124%;
+  background-color: #040711;
+  background-image:
+    radial-gradient(ellipse 65% 55% at 20% 20%, rgba(18, 65, 145, 0.42) 0%, transparent 68%),
+    radial-gradient(ellipse 70% 60% at 80% 25%, rgba(68, 28, 110, 0.38) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 70% at 75% 80%, rgba(8, 110, 140, 0.32) 0%, transparent 65%),
+    radial-gradient(ellipse 75% 65% at 15% 85%, rgba(20, 45, 115, 0.4) 0%, transparent 70%),
+    radial-gradient(ellipse 85% 75% at 50% 50%, rgba(42, 20, 85, 0.28) 0%, transparent 75%);
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
+  transform: translate3d(0, 0, 0);
+  animation: inkDrift 42s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.backgroundContainer::after {
+  content: "";
+  display: block !important;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(4, 7, 17, 0.15) 0%, rgba(4, 7, 17, 0.55) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes inkDrift {
   0% {
-    background-position: 0% 0%;
+    transform: scale(1) translate(0%, 0%) rotate(0deg);
   }
-  25% {
-    background-position: 100% 35%;
+  33% {
+    transform: scale(1.06) translate(3%, -2%) rotate(2deg);
   }
-  50% {
-    background-position: 65% 100%;
-  }
-  75% {
-    background-position: 0% 70%;
+  66% {
+    transform: scale(1.03) translate(-2%, 3%) rotate(-1.5deg);
   }
   100% {
-    background-position: 100% 0%;
+    transform: scale(1.08) translate(1%, -1%) rotate(1deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body,
-  .backgroundContainer,
-  .backdropContainer {
+  .backgroundContainer::before {
     animation: none !important;
   }
 }
 
-.backgroundContainer::before,
-.backgroundContainer::after {
+.backgroundContainer.withBackdrop::before,
+.backgroundContainer.withBackdrop::after,
+.backgroundContainer.backgroundContainer-transparent::before,
+.backgroundContainer.backgroundContainer-transparent::after {
   display: none !important;
 }
 

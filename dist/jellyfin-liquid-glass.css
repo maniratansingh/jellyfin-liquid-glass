@@ -9005,23 +9005,33 @@ html.layout-tv .playedIndicator .indicatorIcon {
    USER CUSTOMIZATIONS & PLATFORM HARDENING (From Liquid Glass Baseline)
    ========================================================================== */
 
-/* 1. Login Form Glass — WebKit / Safari Hardware Freeze Fix */
-.manualLoginForm {
+/* 1. Login Form — Seamless Rounded Glass Card (Eliminates sharp square blue box inside card) */
+#loginPage > .padded-bottom-page {
+  border-radius: var(--lg-radius-panel) !important;
+  overflow: hidden !important;
+}
+
+#loginPage .manualLoginForm,
+#loginPage form,
+#loginPage .readOnlyContent {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: inherit !important;
+}
+
+/* Standalone fallback for login forms without .padded-bottom-page wrapper */
+.manualLoginForm:not(#loginPage > .padded-bottom-page *) {
+  border-radius: var(--lg-radius-panel) !important;
+  overflow: hidden !important;
   backdrop-filter: blur(50px) saturate(220%) contrast(110%) brightness(105%) !important;
   -webkit-backdrop-filter: blur(50px) saturate(220%) contrast(110%) brightness(105%) !important;
   background-color: rgba(15, 25, 45, 0.4) !important;
-  background-image: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0) 50%
-  ) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
-  border-right: none !important;
-  border-bottom: none !important;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* 2. Mobile Native Feel & Text Selection */

@@ -166,11 +166,16 @@
     <div class="videoPlayerContainer" style="position: relative; height: 320px; border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 8px 32px rgba(0,0,0,0.6); display: flex; flex-direction: column; justify-content: space-between; padding: 16px; box-sizing: border-box;">
       <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, #203a43 0%, #0f2027 100%); z-index: 0;"></div>
       
-      <!-- OSD Top Bar (Short, compact, centered pill) -->
-      <div class="videoOsdTop osdHeader">
-        <button class="paper-icon-button-light" style="color: #fff;"><span class="material-icons-round">arrow_back</span></button>
-        <span class="pageTitle videoOsdTitle">Spider-Man: Homecoming</span>
-        <button class="paper-icon-button-light" style="color: #fff;"><span class="material-icons-round">settings</span></button>
+      <!-- OSD Top Bar -->
+      <div class="videoOsdTop osdHeader" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button class="paper-icon-button-light" style="color: #fff;"><span class="material-icons-round">arrow_back</span></button>
+          <span style="font-weight: 600; font-size: 1.1rem;">Interstellar (2014)</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="paper-icon-button-light" style="color: #fff;"><span class="material-icons-round">cast</span></button>
+          <button class="paper-icon-button-light" style="color: #fff;"><span class="material-icons-round">settings</span></button>
+        </div>
       </div>
 
       <!-- Central Play Orb -->

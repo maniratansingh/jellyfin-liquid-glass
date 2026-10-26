@@ -57,7 +57,7 @@
         <div class="buttons" style="display: flex; align-items: center; justify-content: space-between;">
           <div style="display: flex; gap: 8px; align-items: center;">
             <button class="paper-icon-button-light"><span class="material-icons">fast_rewind</span></button>
-            <button class="btnPlayPause btnPause paper-icon-button-light">
+            <button class="btnPlayPause btnPause paper-icon-button-light" onclick="window.__CLICKED = true; console.log('BUTTON_CLICK_TRIGGERED');">
               <span class="material-icons pause">pause</span>
             </button>
             <button class="paper-icon-button-light"><span class="material-icons">fast_forward</span></button>
@@ -70,5 +70,21 @@
       </div>
     </div>
   </div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const x = window.innerWidth / 2;
+  const y = window.innerHeight / 2;
+  const hit = document.elementFromPoint(x, y);
+  const btn = document.querySelector('.btnPause');
+  const cs = window.getComputedStyle(btn, '::before');
+  console.log('CENTER_HIT:', hit ? hit.tagName + '.' + hit.className : 'null');
+  console.log('BEFORE_TOP:', cs.top, 'BEFORE_LEFT:', cs.left);
+  if (hit) {
+    hit.click();
+    console.log('AFTER_CLICK_FLAG:', window.__CLICKED);
+  }
+});
+</script>
 </body>
 </html>

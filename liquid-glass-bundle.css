@@ -7324,7 +7324,9 @@ body:has(#videoOsdPage:not(.hide) .upNextDialog:not(.hide):not(.upNextDialog-hid
   padding: 0 16px !important;
   box-sizing: border-box !important;
   text-align: center !important;
-  display: block !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   pointer-events: none !important;
   z-index: 1000 !important;
 }
@@ -9259,12 +9261,14 @@ html.layout-tv .playedIndicator .indicatorIcon {
   }
 }
 
-/* 4. Smooth Phone Rotation Physics */
+/* 4. Smooth OSD Fade Transitions (No Layout Jumping) */
 .videoPlayerContainer,
 #videoOsdPage,
-.videoOsdBottom,
 .videoOsdTop {
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: opacity 0.3s ease !important;
+}
+.videoOsdBottom {
+  transition: opacity 0.3s ease !important;
 }
 
 /* 5. Final OSD Top Bar: Fully Transparent Container (Eliminates the giant ghost pill outline) */
@@ -9291,6 +9295,22 @@ html body .osdHeader::after {
 }
 
 /* 6. Apple Liquid Glass Center Play/Pause Orb (Screen Center Preference) */
+/* Prevent containing block trapping on btnPause and osdControls */
+.videoOsdBottom .osdControls {
+  animation: none !important;
+}
+
+.videoOsdBottom .btnPause,
+.videoOsdBottom .btnPlayPause {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transform: none !important;
+  scale: none !important;
+  filter: none !important;
+  contain: none !important;
+  will-change: auto !important;
+}
+
 /* The Center Frosted Glass Disc */
 #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause::before,
 #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause::before,
@@ -9321,11 +9341,15 @@ html body .osdHeader::after {
     0 8px 24px rgba(0, 0, 0, 0.35) !important;
   pointer-events: auto !important;
   cursor: pointer !important;
-  z-index: 1000 !important;
+  z-index: 99999 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: opacity 0.25s ease !important;
+  will-change: opacity !important;
 }
 
-/* Center Orb Icon: Pause State */
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause::after,
+/* Center Orb Icon: Pause State (When video is playing, click will pause) */
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.pause)::after,
 #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.pause)::after {
   content: "" !important;
   position: fixed !important;
@@ -9336,12 +9360,17 @@ html body .osdHeader::after {
   height: 92px !important;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/%3E%3C/svg%3E") center / 40px 40px no-repeat !important;
   pointer-events: none !important;
-  z-index: 1001 !important;
+  z-index: 100000 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: opacity 0.2s ease !important;
 }
 
-/* Center Orb Icon: Play State */
+/* Center Orb Icon: Play State (When video is paused, click will play) */
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.play_arrow)::after,
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.play_arrow)::after,
 #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::after,
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.play_arrow)::after {
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(:has(.pause))::after {
   content: "" !important;
   position: fixed !important;
   top: 50% !important;
@@ -9351,19 +9380,24 @@ html body .osdHeader::after {
   height: 92px !important;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center calc(50% + 1px) / 40px 40px no-repeat !important;
   pointer-events: none !important;
-  z-index: 1001 !important;
+  z-index: 100000 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: opacity 0.2s ease !important;
 }
 
-/* Hide center orb when OSD is hidden during playback */
+/* Smooth fade out when OSD is hidden (No jumping) */
 .videoOsdBottom-hidden .btnPlayPause::before,
 .videoOsdBottom-hidden .btnPlayPause::after,
 .videoOsdBottom-hidden .btnPause::before,
 .videoOsdBottom-hidden .btnPause::after,
 .videoOsdBottom-hidden .btnPlay::before,
-.videoOsdBottom-hidden .btnPlay::after {
-  display: none !important;
+.videoOsdBottom-hidden .btnPlay::after,
+#videoOsdPage.videoOsdBottom-hidden .btnPause::before,
+#videoOsdPage.videoOsdBottom-hidden .btnPause::after {
   opacity: 0 !important;
   pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 /* Also support center .iconOsd popups */

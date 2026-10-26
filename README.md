@@ -1,92 +1,91 @@
 # Jellyfin Liquid Glass Theme
 
-> **Note:** This is a personal CSS theme I use for my own Jellyfin server. I am sharing it in case someone else finds it useful, but it is provided as-is. It is highly experimental and might break when Jellyfin updates.
+> **Note:** A luxury, Apple-inspired Liquid Glass CSS theme for Jellyfin media servers, featuring refractive frosted glass optics, an animated multi-color shifting mesh gradient, and minimalist floating controls.
 
 ## Credits
 
-This is a direct modification of the **Abyss Jellyfin Theme** by **AumGupta**. I used their work as the foundation and modified it heavily to fit my own needs. Full credit goes to them for the original theme.
+This theme is built upon the foundation of the **Abyss Jellyfin Theme** by **AumGupta**. Full credit goes to them for the original groundwork and architecture.  
 Source: https://github.com/AumGupta/abyss-jellyfin
 
-## Comprehensive Explanation of Changes
+---
 
-If you add this CSS to your Jellyfin server, here is a comprehensive list of exactly what it changes compared to the stock Jellyfin UI:
+## Comprehensive Explanation of Features & Design
 
-### 1. Frosted Glass UI (Backdrop Filters)
+If you add this CSS to your Jellyfin server, here is a breakdown of the design language and visual transformations:
 
-- Replaces solid dark backgrounds with translucent frosted glass (`backdrop-filter: blur`) across the entire application.
-- This applies to the main sidebar, pop-up dialog boxes, the user profile drawer, action sheets, and the mobile bottom navigation bar.
+### 1. Animated Multi-Color Shifting Mesh Gradient
+- **Fluid Luminous Backdrop:** Features an 8-color glowing mesh gradient (emerald, coral pink, cyan, amber, violet, royal blue, sunset orange, and indigo) flowing across a deep `#040612` midnight base.
+- **20s Keyframe Morphing (`liquidMultiColorFlow`):** Generates subtle fluid movement behind all frosted glass panels, giving the UI depth and life.
+- **Hardware-Accelerated & Accessible:** Automatically turns off on devices with `prefers-reduced-motion` enabled to conserve battery and eliminate visual distractions.
 
-### 2. Video Player OSD — Floating Glass Pills
+### 2. Apple Tahoe Liquid Glass Optics
+- **High Refraction & Saturation:** Deep frosted glass panels utilizing `backdrop-filter: blur(48px) saturate(280%) brightness(125%)` to refract background lighting dynamically.
+- **Dual-Axis Specular Sheens:** 135° and 180° lighting highlights along top borders with subpixel razor bevels and fading lower edges.
+- **Applied Universally:** Restyles the main navigation header, sidebar drawer, dialogs, user profiles, action sheets, and modal menus into cohesive floating glass surfaces.
 
-- **Pill-Shaped Controls:** The top bar (back button, movie title, cast/sync icons) and the bottom bar (playback controls, seek bar) are restyled as floating rounded pill shapes instead of full-width bars.
-- **Clear Glass Transparency:** Both OSD pills use ultra-low `0.1` (10%) opacity, matching the central play orb for a uniform, see-through aesthetic. The movie behind the controls is clearly visible.
-- **No Double Overlay:** The parent OSD container is forced fully transparent to prevent layered glass effects that would make the bars look opaque.
-- **All Buttons Visible:** Play/Pause orb, Rewind, Fast Forward, Volume, Settings, Subtitles, Fullscreen, Favorite, Next/Previous Track, Cast, and SyncPlay are all accessible.
+### 3. Video Player OSD — Floating Glass Pills
+- **Pill-Shaped Controls:** Both top (navigation and title) and bottom (playback slider and controls) bars are detached and styled as floating rounded capsule pills.
+- **Glass Play Orb:** The central play/pause button is an Apple-standard circular glass orb (`border-radius: 50%`) with dedicated specular highlights.
+- **Zero Double-Glass Layering:** The parent player overlay is transparent to eliminate muddy, stacked blur artifacts.
+- **Cinema-Grade Subtitles:** Proportional caption scaling with Apple SF Pro typography, high-contrast outlines, and responsive bounds to prevent oversized wrapping.
 
-### 3. Mobile Device Optimizations
+### 4. Minimalist 3-Button Media Detail Pages
+- **Clutter Elimination:** Hides cluttered secondary buttons on movie and episode detail pages, prioritizing a clean, distraction-free 3-button layout:
+  1. ▶ **Play / Resume**
+  2. ↓ **Download** (visible if user has download rights)
+  3. ⋮ **More Options (Three-Dot)**
+- **Apple Capsule Action Buttons:** Medium 42px height with full pill radius, dual-layer bevel rims, and tactile press micro-interactions.
 
-- **Clear Glass (No Frosting):** On mobile devices, `backdrop-filter` blur is completely removed from OSD elements, resulting in a pure clear glass look without any frosting effect.
-- **Text Sizing:** Reduces the font size of movie and TV show titles specifically on mobile phones. This prevents long titles from getting cut off or hidden.
-- **Poster Sizing:** Adjusts the width of media cards on mobile so they fit the screen better.
-- **Screen Rotation:** Adds a smooth 0.5-second CSS transition animation to the video player. When you rotate your phone from portrait to landscape, the video controls resize smoothly instead of instantly snapping and glitching.
-- **Bottom Navigation:** Adds a subtle top border to the mobile bottom navigation bar to separate it from the main content.
+### 5. macOS Thin Overlay Scrollbar
+- **Discreet & Functional:** Replaces bulky 14px scrollbars with a sleek, 6px semi-transparent rounded scrollbar that seamlessly fades when not in active use.
 
-### 4. General Tweaks & Bug Fixes
+### 6. Mobile & Client Optimizations
+- **Performance Budget:** Lightened blur and reduced gradient overhead on mobile clients (`layout-mobile`) and native wrappers (`html.cordova`, `html.android`, `html.ios`) for 60fps scrolling.
+- **Orientation Transitions:** Smooth 0.5s CSS transition for video controls when rotating between portrait and landscape modes.
+- **Clean Poster Cards:** Clutter-free media cards with unobtrusive badges.
 
-- **Hidden Badges:** Hides the small "Watched" (Checkmark) and "Favorite" (Heart) badge indicators that usually sit on top of movie posters.
-- **Login Screen Bug Fix:** Removes aggressive CSS GPU hardware acceleration (`translateZ(0)` and `isolation`) specifically from the login form. This fixes a known bug where WebKit browsers (like Safari and iPhones) would freeze or ignore clicks on the username and password fields.
+---
 
-## How to use
+## How to Use
 
-Add one of the following to your **Jellyfin Dashboard -> General -> Custom CSS code**:
+Copy and paste one of the following `@import` rules into your **Jellyfin Dashboard → General → Custom CSS**:
 
 ### 1. Stable Version (Main Branch)
 
-Use this for normal, daily usage.
+Recommended for everyday personal use:
 
-- **Mobile & Desktop (Web/App):**
-  Use this for phones, tablets, browsers, and desktop clients.
+- **Mobile, Tablet, Desktop (Web & Desktop Apps):**
   ```css
   @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-bundle.css");
   ```
 - **Android TV / Fire TV:**
-  Use this specifically for smart TVs and streaming sticks. It is optimized for TV layouts and remote control (D-Pad) focus states.
   ```css
   @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-tv.css");
   ```
 
 ---
 
-### 2. Testing Version (Beta Branch)
+### 2. Testing Version (Test Branch)
 
-Use this if you want to test experimental features (which may break things).
+For testing experimental updates and early previews:
 
-- **Mobile & Desktop (Web/App):**
+- **Mobile, Tablet, Desktop:**
   ```css
-  @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@testing/liquid-glass-bundle.css");
-  ```
-- **Android TV / Fire TV:**
-  ```css
-  @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@testing/liquid-glass-tv.css");
+  @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@test/liquid-glass-bundle.css");
   ```
 
 ---
 
-### Why is the TV stylesheet separate?
+### Why is the TV Stylesheet Separate?
 
-Jellyfin's TV client has a completely different layout from the mobile/desktop app. It is built for a **10-foot interface** (large text/buttons read from a distance) and navigated using a **D-pad TV remote** (requiring clear glowing focus indicator styles when selecting buttons). Using the mobile CSS on a TV would break D-pad navigation and ruin the TV layout, so the styles are separated to keep TV functionality working perfectly.
+Jellyfin's TV client is built for a 10-foot viewing distance and navigated via D-pad remote controls. It requires prominent glowing focus states and larger targets. Keeping `liquid-glass-tv.css` separate preserves TV remote navigation without compromising the mobile and desktop glass layout.
 
 ---
 
-### Note on Caching (Force Updating)
+### Cache Busting (Force Instant Updates)
 
-Because CDNs and browsers cache CSS files heavily, you might not see changes immediately when the theme is updated.
-
-To force your browser or mobile app to bypass the cache and load the updates instantly, append a version parameter like `?v=1` or `?v=2` to the end of your import link:
+CDNs like jsDelivr and browsers cache CSS files. To force your Jellyfin client or browser to pull the latest update immediately, append a version query string (e.g. `?v=2`, `?v=3`):
 
 ```css
-/* Example of force-updating the main bundle */
 @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-bundle.css?v=2");
 ```
-
-If the CSS changes again in the future, simply increase the number (e.g., `?v=3`) to force another update.

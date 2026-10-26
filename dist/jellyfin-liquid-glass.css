@@ -9105,19 +9105,25 @@ html.layout-tv .playedIndicator .indicatorIcon {
   transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* 5. Final OSD Top Bar Transparent Floating Pill Override */
+/* 5. Final OSD Top Bar: Fully Transparent Container (Eliminates the giant ghost pill outline) */
 html body #videoOsdPage .skinHeader,
 html body #videoOsdPage .osdHeader,
 html body .skinHeader.osdHeader,
 html body .osdHeader {
-  background-color: rgba(18, 18, 24, 0.12) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   background-image: none !important;
-  background: rgba(18, 18, 24, 0.12) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 
-    inset 1.5px 0.75px 0 -0.5px rgba(255, 255, 255, 0.45),
-    0 8px 24px rgba(0, 0, 0, 0.35) !important;
-  border-radius: 9999px !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+html body #videoOsdPage .skinHeader::before,
+html body #videoOsdPage .skinHeader::after,
+html body .osdHeader::before,
+html body .osdHeader::after {
+  display: none !important;
+  content: none !important;
 }

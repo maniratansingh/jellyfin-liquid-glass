@@ -866,8 +866,14 @@ body,
 }
 
 body {
-  background-image: radial-gradient(circle at 50% 30%, #150928 0%, #070312 75%);
-  background-attachment: fixed;
+  background-color: #070312 !important;
+  background-image:
+    radial-gradient(ellipse 70% 60% at 78% 65%, rgba(245, 130, 32, 0.45) 0%, rgba(220, 75, 20, 0.20) 35%, transparent 68%),
+    radial-gradient(ellipse 55% 50% at 85% 25%, rgba(255, 155, 40, 0.30) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 65% at 18% 25%, rgba(120, 25, 175, 0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 65% 60% at 25% 78%, rgba(145, 30, 110, 0.35) 0%, transparent 68%),
+    radial-gradient(circle at 50% 50%, #150928 0%, #070312 85%) !important;
+  background-attachment: fixed !important;
 }
 
 .backgroundContainer {
@@ -875,6 +881,7 @@ body {
   inset: 0 !important;
   overflow: hidden !important;
   z-index: -1 !important;
+  background-color: transparent !important;
 }
 
 .backgroundContainer::before {
@@ -885,13 +892,13 @@ body {
   left: -12%;
   width: 124%;
   height: 124%;
-  background-color: #070312;
+  background-color: transparent;
   background-image:
-    radial-gradient(ellipse 65% 55% at 82% 75%, rgba(230, 110, 20, 0.48) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 70% at 70% 88%, rgba(200, 70, 30, 0.38) 0%, transparent 68%),
-    radial-gradient(ellipse 70% 60% at 20% 22%, rgba(95, 22, 145, 0.52) 0%, transparent 70%),
-    radial-gradient(ellipse 65% 65% at 32% 65%, rgba(130, 32, 90, 0.38) 0%, transparent 68%),
-    radial-gradient(ellipse 85% 75% at 52% 40%, rgba(45, 12, 85, 0.42) 0%, transparent 75%);
+    radial-gradient(ellipse 70% 60% at 78% 65%, rgba(245, 130, 32, 0.75) 0%, rgba(220, 75, 20, 0.40) 35%, transparent 68%),
+    radial-gradient(ellipse 55% 50% at 85% 25%, rgba(255, 155, 40, 0.50) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 65% at 18% 25%, rgba(120, 25, 175, 0.70) 0%, transparent 70%),
+    radial-gradient(ellipse 65% 60% at 25% 78%, rgba(145, 30, 110, 0.50) 0%, transparent 68%),
+    radial-gradient(ellipse 85% 75% at 50% 45%, rgba(55, 15, 95, 0.55) 0%, transparent 75%);
   filter: blur(50px);
   -webkit-filter: blur(50px);
   transform: translate3d(0, 0, 0);
@@ -907,7 +914,7 @@ body {
   inset: 0;
   background:
     radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(7, 3, 18, 0.15) 0%, rgba(7, 3, 18, 0.55) 100%);
+    linear-gradient(180deg, rgba(7, 3, 18, 0.05) 0%, rgba(7, 3, 18, 0.25) 100%);
   pointer-events: none;
   z-index: -1;
 }
@@ -933,16 +940,12 @@ body {
   }
 }
 
-.backgroundContainer.withBackdrop::before,
-.backgroundContainer.withBackdrop::after,
-.backgroundContainer.backgroundContainer-transparent::before,
-.backgroundContainer.backgroundContainer-transparent::after {
-  display: none !important;
+.backgroundContainer.withBackdrop::before {
+  opacity: 0.45;
 }
 
 .backgroundContainer.withBackdrop {
-  background: transparent !important;
-  background-image: none !important;
+  background-color: transparent !important;
   animation: none !important;
 }
 

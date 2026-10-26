@@ -1,6 +1,12 @@
 # Jellyfin Liquid Glass Theme — `beta` Branch
 
-> **Note:** This is the active **`beta` development branch** of the Jellyfin Liquid Glass theme. It runs the full production-grade **Apple Liquid Glass Engine** (reverse-engineered from Apple Human Interface Guidelines) featuring static 3D rendered iridescent glass art, a tailored dual-experience video player OSD, and zero-animation performance optimizations.
+> [!CAUTION]
+> ### ⚠️ EXPERIMENTAL BRANCH — DO NOT USE / DO NOT TRY
+> **Please do not use or try this `beta` branch on a regular or daily Jellyfin server.**
+> 
+> This branch is an **unstable, highly experimental testing playground with heavy mix-and-match customizations** (deep engine modifications, conflicting experiment merges, desktop vs mobile divergence, custom subtitle patches, and local test harnesses). There is too much mix-and-match occurring here—elements may break, jump, or behave unexpectedly at any time.
+> 
+> 👉 **For regular, stable, and plug-and-play daily usage, please stick strictly to the [`main`](https://github.com/maniratansingh/jellyfin-liquid-glass/tree/main) branch.**
 
 ---
 
@@ -50,7 +56,10 @@ The `beta` branch is an architectural evolution compared to `main`. Here is how 
 
 ---
 
-## 🚀 How to Use `beta`
+## 🚀 How to Use `beta` (Testers & Developers Only)
+
+> [!WARNING]
+> **Reminder:** Only import this branch if you are actively participating in testing. Because this branch contains aggressive mix-and-match overrides, elements may conflict or break across Jellyfin releases. If you want a reliable daily driver, use `@main` instead.
 
 Add one of the following `@import` rules to your **Jellyfin Dashboard → General → Custom CSS code**:
 

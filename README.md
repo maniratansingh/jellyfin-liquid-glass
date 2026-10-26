@@ -36,6 +36,30 @@ If you add this CSS to your Jellyfin server, here is a comprehensive list of exa
 - **Hidden Badges:** Hides the small "Watched" (Checkmark) and "Favorite" (Heart) badge indicators that usually sit on top of movie posters.
 - **Login Screen Bug Fix:** Removes aggressive CSS GPU hardware acceleration (`translateZ(0)` and `isolation`) specifically from the login form. This fixes a known bug where WebKit browsers (like Safari and iPhones) would freeze or ignore clicks on the username and password fields.
 
+## 🍏 Apple Liquid Glass Redesign (CSS-Only)
+
+A cinematic, pure CSS-only redesign reverse-engineered from **Apple's Liquid Glass** and Human Interface Guidelines (HIG).
+
+### Key Highlights:
+- **Floating Glass Capsule Navigation:** Desktop app bar floats as an elegant capsule with authentic top/bottom specular rim highlights and 24px backdrop blur.
+- **Content is Hero:** Media posters, hero artwork, and backdrops remain crisp with zero blur or contrast reduction over media.
+- **Floating Video Player OSD:** Clear glass pills for top and bottom controls with a central glowing specular play orb.
+- **Zero External Dependencies:** Native Apple San Francisco font stack (`-apple-system`), zero `@import` calls, zero JS/WebGL overhead.
+- **Graceful Fallbacks & Accessibility:** High-contrast focus indicators (`:focus-visible`), reduced-motion support, and automatic solid glass fallbacks for browsers without `backdrop-filter`.
+
+### Pasteable Stylesheet:
+The complete, self-contained stylesheet is located at:
+[`dist/jellyfin-liquid-glass.css`](dist/jellyfin-liquid-glass.css)
+
+You can copy the entire content of `dist/jellyfin-liquid-glass.css` and paste it directly into your Jellyfin **Dashboard → General → Custom CSS** box.
+
+### Rollback / Recovery:
+To revert back to the previous baseline theme at any time:
+1. Re-paste the original baseline stylesheet from [`research/baseline-theme.css`](research/baseline-theme.css) or your preferred CDN `@import` link below.
+2. Click **Save** in the Jellyfin Dashboard.
+
+---
+
 ## How to use
 
 Add one of the following to your **Jellyfin Dashboard -> General -> Custom CSS code**:

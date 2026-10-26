@@ -1,93 +1,61 @@
-# Jellyfin Liquid Glass Theme — `beta` Branch
+# Jellyfin Liquid Glass Theme — `test` Branch
 
 > [!CAUTION]
-> ### ⚠️ EXPERIMENTAL BRANCH — DO NOT USE / DO NOT TRY
-> **Please do not use or try this `beta` branch on a regular or daily Jellyfin server.**
+> ### 🛑 DO NOT USE THIS BRANCH — ALWAYS IN-FLIGHT / UNSTABLE
+> **Users should NEVER use or import from this `test` branch.**
 > 
-> This branch is an **unstable, highly experimental testing playground with heavy mix-and-match customizations** (deep engine modifications, conflicting experiment merges, desktop vs mobile divergence, custom subtitle patches, and local test harnesses). There is too much mix-and-match occurring here—elements may break, jump, or behave unexpectedly at any time.
+> This branch is an **unstable, internal development staging ground that is ALWAYS in between something**. Code here frequently represents incomplete features, work-in-progress refactors, experimental debugging sessions, or broken interim commits. It is not maintained for direct consumption and can break your Jellyfin UI at any moment without warning.
 > 
-> 👉 **For regular, stable, and plug-and-play daily usage, please stick strictly to the [`main`](https://github.com/maniratansingh/jellyfin-liquid-glass/tree/main) branch.**
+> 👉 **Which branch should you use?**
+> - **[`main`](https://github.com/maniratansingh/jellyfin-liquid-glass/tree/main)**: The official **stable branch** for normal, daily, plug-and-play usage.
+> - **[`beta`](https://github.com/maniratansingh/jellyfin-liquid-glass/tree/beta)**: The **experimental preview branch** featuring the next-generation Apple Liquid Glass engine.
 
 ---
 
-## ⚖️ Branch Comparison: `beta` vs `main`
+## ⚖️ Branch Architecture Overview
 
-The `beta` branch is an architectural evolution compared to `main`. Here is how they differ:
+The `test` branch tracks active in-flight experiments cloned from `beta`. Here is how the branches relate:
 
-| Feature / Aspect | `main` Branch (Legacy Base) | `beta` Branch (Next-Gen Liquid Glass) |
-| :--- | :--- | :--- |
-| **Theme Engine** | Abyss-derived base (~2.5k lines) | Full Apple Liquid Glass HIG Engine (`dist/jellyfin-liquid-glass.css`, 9.5k+ lines) |
-| **Wallpaper** | Animated 8-color moving CSS gradient loop (`liquidMultiColorFlow`) | Static 3D Rendered Glass Art (**`iridescent.webp`**) screen-blended over deep ambient tint |
-| **Performance & Battery** | Continuous GPU keyframe animation loop | **Zero continuous background animation overhead** (completely static, smooth 60fps scrolling, no battery drain) |
-| **Desktop Player OSD** | Modified pill overlay | **100% Stock Desktop Liquid Glass OSD** (pristine desktop controls, authentic scrubber, zero distortion) |
-| **Mobile Player OSD** | Generic mobile controls | **Dedicated Centered Frosted Glass Play/Pause Orb** (`border-radius: 50%`) with matched OSD transparency + intact bottom bar |
-| **Subtitles / Closed Captions** | Standard browser placement | **Centered Apple TV Cinema Subtitles** with proportional SF Pro typography, dark contrast halo, and responsive bounds |
-| **Design System** | Basic custom CSS variables | **Apple iOS 26 / macOS Tahoe HIG Dark Appearance** ladder (`--lg-accent`, `--lg-bg`, 3-tier material system, dual-axis rim lighting) |
+| Feature / Aspect | `main` Branch (Stable) | `beta` Branch (Staged Preview) | `test` Branch (Internal In-Flight) |
+| :--- | :--- | :--- | :--- |
+| **Status** | 🟢 **Stable & Daily Driver** | 🟡 **Experimental Preview** | 🔴 **DO NOT USE (Always Mid-Work)** |
+| **Theme Engine** | Abyss-derived base (~2.5k lines) | Full Apple Liquid Glass HIG Engine (`dist/jellyfin-liquid-glass.css`, 9.5k+ lines) | Cloned from `beta` with active in-flight changes |
+| **Wallpaper** | Animated 8-color moving CSS gradient loop (`liquidMultiColorFlow`) | Static 3D Rendered Glass Art (**`iridescent.webp`**) | Static 3D Rendered Glass Art or active test renders |
+| **Performance** | Continuous GPU keyframe animation loop | **Zero continuous background animation overhead** (static, 60fps scrolling) | Unoptimized / fluctuating profiling state |
+| **Desktop Player OSD** | Modified pill overlay | **100% Stock Desktop Liquid Glass OSD** | In-flight testing modifications |
+| **Mobile Player OSD** | Generic mobile controls | **Dedicated Centered Frosted Glass Play/Pause Orb** (`border-radius: 50%`) | In-flight testing modifications |
+| **Subtitles / CC** | Standard browser placement | **Centered Apple TV Cinema Subtitles** | In-flight testing adjustments |
 
 ---
 
-## 💎 Features in `beta`
+## 💎 Features Inherited from `beta`
 
 ### 1. Rendered 3D Iridescent Glass Background
-- **Zero-CPU Rendered Glass:** Uses the official 3D rendered glass artwork ([`iridescent.webp`](https://cdn.jsdelivr.net/gh/cj-vana/jellyfin-liquid-glass@v1.2.0/wallpapers/iridescent.webp)) rather than heavy CSS animation loops.
-- **Multi-Layer Optical Compositing:**
-  - **Screen Blend Layer:** Blends the glass render with a deep ambient blue/violet radial tint (`--lg-wallpaper-tint`).
-  - **Specular Calibration:** Fine-tuned brightness and saturation filter (`--lg-wallpaper-filter`) to keep text crisp.
-  - **Organic Veil:** Subtle grain texture and radial vignette (`--lg-wallpaper-veil`) for authentic depth.
-- **Context-Aware Stepping:** The wallpaper automatically steps aside when media backdrops are active (`.withBackdrop`) or during fullscreen video playback (`.backgroundContainer-transparent`).
+- **Zero-CPU Rendered Glass:** Uses official 3D rendered glass artwork ([`iridescent.webp`](https://cdn.jsdelivr.net/gh/cj-vana/jellyfin-liquid-glass@v1.2.0/wallpapers/iridescent.webp)) rather than heavy CSS animation loops.
+- **Multi-Layer Optical Compositing:** Blends glass render with deep ambient tint (`--lg-wallpaper-tint`), calibrated filter (`--lg-wallpaper-filter`), and grain veil (`--lg-wallpaper-veil`).
+- **Context-Aware Stepping:** Wallpaper steps aside when media backdrops are active (`.withBackdrop`) or during fullscreen video playback (`.backgroundContainer-transparent`).
 
 ### 2. Dual-Experience Video Player OSD
-- **Desktop (Web & PC Clients):** Restores and maintains 100% of the desktop Liquid Glass OSD interface. Floating glass pills for header and footer with full timeline scrubbing, audio/subtitle selectors, next/previous controls, and volume slider.
-- **Mobile Devices (Smartphones & Tablets):**
-  - **Center Play/Pause Glass Orb:** An Apple-style circular frosted glass orb positioned dead-center for quick one-thumb playback control.
-  - **Matched Transparency:** The center orb transparency is calibrated to match the OSD bar, eliminating jarring contrast differences.
-  - **Zero Layout Jumps:** Fixed containing-block positioning prevents layout thrashing, jumping, or clipping when toggling play/pause or rotating screens.
-  - **Intact Bottom OSD:** Both the center orb AND the bottom OSD controls remain fully functional and accessible simultaneously.
+- **Desktop (Web & PC Clients):** 100% stock desktop Liquid Glass OSD interface.
+- **Mobile Devices (Smartphones & Tablets):** Centered floating frosted glass Play/Pause Orb (`border-radius: 50%`) with matched transparency and zero layout shifts, while keeping bottom OSD intact.
 
 ### 3. Cinema-Grade Apple TV Subtitles
-- **Centered Alignment:** Subtitles and closed captions are centered on the screen, eliminating awkward far-right drift.
-- **Apple TV Typography:** Uses clean `-apple-system` font sizing with balanced letter spacing and line heights.
-- **High-Contrast Glow Halo:** Soft dark halo behind text guarantees readability against both bright scenes and dark backgrounds without hard black boxes.
+- Centered alignment, Apple `-apple-system` typography, and soft dark glow halo.
 
-### 4. Apple Human Interface Guidelines (HIG) Glass System
-- **3-Tier Material System:** Ultra-thin, regular, and thick glass materials applied contextually across app bars, dialogs, cards, and drawers.
-- **Subpixel Rim Bevels:** Dual-axis top and bottom specular edge reflections mimic real refractive curved glass.
-- **Tactile Physics:** SwiftUI-derived `.bouncy` and `.snappy` spring curves for responsive hover and tap micro-interactions.
+### 4. Apple HIG Glass Design System
+- 3-tier material system, subpixel rim bevels, and SwiftUI-derived physics curves.
 
 ---
 
-## 🚀 How to Use `beta` (Testers & Developers Only)
+## ⚠️ Branch Import References (Internal Testing Only)
 
 > [!WARNING]
-> **Reminder:** Only import this branch if you are actively participating in testing. Because this branch contains aggressive mix-and-match overrides, elements may conflict or break across Jellyfin releases. If you want a reliable daily driver, use `@main` instead.
-
-Add one of the following `@import` rules to your **Jellyfin Dashboard → General → Custom CSS code**:
-
-### 1. Mobile, Tablet & Desktop (Web & Native Apps)
-```css
-@import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@beta/liquid-glass-bundle.css");
-```
-
-### 2. Android TV / Fire TV
-Specifically optimized for 10-foot television screens and D-Pad remote focus navigation:
-```css
-@import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@beta/liquid-glass-tv.css");
-```
-
-### 3. Direct Paste (No External CDN Dependency)
-If you prefer not to rely on jsDelivr or external CDNs, copy the entire contents of [`dist/jellyfin-liquid-glass.css`](dist/jellyfin-liquid-glass.css) and paste it directly into your Jellyfin Custom CSS box.
-
----
-
-## ⚡ Force Updating & Cache Busting
-
-Browsers and CDN networks (jsDelivr) cache CSS files aggressively. When updating your theme or testing changes, append a version query parameter (`?v=...`) to force an immediate reload:
+> Again: **Do not add these links to your production Jellyfin server.** Use `main` instead.
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@beta/liquid-glass-bundle.css?v=2");
+/* DO NOT USE - Test branch bundle (constantly fluctuating) */
+@import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@test/liquid-glass-bundle.css");
 ```
-
-Increase the version number (e.g. `?v=3`, `?v=4`) whenever you want clients to pull fresh updates.
 
 ---
 

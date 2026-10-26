@@ -2363,11 +2363,13 @@ html:not(.layout-tv) #reactRoot:not(:has(> .MuiBox-root > header.MuiAppBar-root)
   is not needed there. Hidden cached pages carry .hide.
 */
 #reactRoot:has(.itemDetailPage:not(.hide)) > .backgroundContainer.withBackdrop {
-  opacity: 0;
+  opacity: 1;
 }
 
 .layout-desktop .itemDetailPage .itemBackdrop {
   height: var(--lg-detail-hero);
+  -webkit-mask-image: linear-gradient(to bottom, #000 65%, rgba(0, 0, 0, 0.7) 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 65%, rgba(0, 0, 0, 0.7) 85%, transparent 100%);
 }
 
 
@@ -2401,53 +2403,23 @@ html:not(.layout-tv) #reactRoot:not(:has(> .MuiBox-root > header.MuiAppBar-root)
 }
 
 /*
-  The fade into the page. It does not finish inside the hero: the action row sits in the
-  hero's last tenth, and glass over a flat floor reads as dark discs with nothing for the lens
-  to bend. So the hero stops at --lg-detail-seam and the wrapper below finishes the fade,
-  which leaves about a third of the art behind the buttons. Extra stops ease it so it has no
-  visible band. The 35% layer in the reading corner is radial so it has no top edge where the
-  hero meets the app bar's spacer.
+  Soft translucent scrim for title and metadata readability, fading smoothly to transparent
+  so the backdrop image dissolves gracefully into the background wallpaper without black bands.
 */
 .itemDetailPage .itemBackdrop::after {
   top: 0;
   bottom: 0;
-  background:
-    linear-gradient(
-      to top,
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * var(--lg-detail-seam))) 0%,
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * 0.6)) 6%,
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * 0.52)) 14%,
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * 0.4)) 24%,
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * 0.26)) 36%,
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * 0.13)) 50%,
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * 0.05)) 62%,
-      rgb(var(--lg-bg-rgb) / 0) 74%
-    ),
-    radial-gradient(90% 75% at var(--lg-detail-corner), var(--lg-scrim), rgb(6 7 10 / 0.14) 50%, rgb(6 7 10 / 0) 100%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 35%,
+    rgba(0, 0, 0, 0.45) 70%,
+    transparent 100%
+  );
 }
 
-/*
-  Below the hero the page reaches the floor colour over its first 9rem, carrying on from the
-  seam, and repeats the lower half of the corner layer so the join has no step. The floor is
-  opaque with backdrops off; with backdrops on stock leaves the wrapper transparent, and the
-  art would show at full strength now that the veil is gone, so it gets the stock 12% look
-  back. Stock's fixed top glow stays on top, as stock layers it.
-*/
 .layout-desktop .itemDetailPage .detailPageWrapperContainer {
-  background:
-    var(--lg-bg-glow) fixed,
-    linear-gradient(
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * var(--lg-detail-seam))),
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * 0.74)) 2.5rem,
-      rgb(var(--lg-bg-rgb) / calc(var(--lg-detail-floor-a) * 0.88)) 5.5rem,
-      rgb(var(--lg-bg-rgb) / var(--lg-detail-floor-a)) 9rem
-    ),
-    radial-gradient(
-      90% calc(0.75 * var(--lg-detail-hero)) at var(--lg-detail-corner-top),
-      var(--lg-scrim),
-      rgb(6 7 10 / 0.14) 50%,
-      rgb(6 7 10 / 0) 100%
-    );
+  background: transparent !important;
 }
 
 /*
@@ -3262,6 +3234,8 @@ html.layout-tv .itemDetailPage .detailButton.btnPlay::before {
   height: var(--lg-detail-hero);
   margin-top: calc(-1 * var(--lg-detail-pull)) !important;
   background-position: center 30%;
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, rgba(0, 0, 0, 0.7) 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 60%, rgba(0, 0, 0, 0.7) 80%, transparent 100%);
 }
 .layout-mobile .itemDetailPage .itemBackdrop::before {
   top: 0;
@@ -3269,15 +3243,20 @@ html.layout-tv .itemDetailPage .detailButton.btnPlay::before {
 }
 .layout-mobile .itemDetailPage .itemBackdrop::after {
   background: linear-gradient(
-    to top,
-    var(--lg-bg) 0%,
-    rgb(var(--lg-bg-rgb) / 0.95) 9%,
-    rgb(var(--lg-bg-rgb) / 0.84) 19%,
-    rgb(var(--lg-bg-rgb) / 0.64) 30%,
-    rgb(var(--lg-bg-rgb) / 0.4) 42%,
-    rgb(var(--lg-bg-rgb) / 0.18) 55%,
-    rgb(var(--lg-bg-rgb) / 0) 70%
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.25) 35%,
+    rgba(0, 0, 0, 0.5) 65%,
+    transparent 100%
   );
+}
+
+.itemDetailPage .detailRibbon,
+.layout-mobile .itemDetailPage .detailRibbon,
+.itemDetailPage .detailPageWrapperContainer,
+.layout-mobile .itemDetailPage .detailPageWrapperContainer {
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 .layout-mobile .itemDetailPage .detailRibbon {

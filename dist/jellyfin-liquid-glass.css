@@ -9271,3 +9271,54 @@ html body .osdHeader::after {
   display: none !important;
   content: none !important;
 }
+
+/* 6. Apple Liquid Glass Center Play/Pause Orb (Screen Center Preference) */
+.iconOsd:not(:has(.iconOsdProgressOuter)),
+#videoOsdPage .iconOsd:not(:has(.iconOsdProgressOuter)),
+html body #videoOsdPage .iconOsd:not(:has(.iconOsdProgressOuter)),
+.iconOsd:not(.iconOsd-volume):not(.iconOsd-brightness) {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%) !important;
+  width: 92px !important;
+  height: 92px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.00) 55%
+  ) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.20),
+    0 8px 24px rgba(0, 0, 0, 0.35) !important;
+  padding: 0 !important;
+  z-index: 9999 !important;
+  pointer-events: none;
+}
+
+.iconOsd:not(:has(.iconOsdProgressOuter)) .iconOsdIcon,
+#videoOsdPage .iconOsd:not(:has(.iconOsdProgressOuter)) .iconOsdIcon,
+html body #videoOsdPage .iconOsd:not(:has(.iconOsdProgressOuter)) .iconOsdIcon,
+.iconOsd:not(.iconOsd-volume):not(.iconOsd-brightness) .iconOsdIcon {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 46px !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}

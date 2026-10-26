@@ -852,39 +852,65 @@ header.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButtonGroup-cont
   (.backgroundContainer-transparent). The layer is static, so it is painted once and
   scrolling never repaints it. TVs keep the gradients but never the optional image blur.
 */
+/*
+  Liquid Glass Animated 8-Color Shifting Mesh Gradient (from test branch):
+  - 8 glowing radial nodes: Emerald, Coral Pink, Cyan, Amber, Violet, Royal Blue, Sunset Orange, Indigo
+  - Silky 20s infinite keyframe flow with reduced-motion support
+  - Blends and refracts dynamically through all Liquid Glass panels
+*/
+body,
+.backgroundContainer,
+.backdropContainer {
+  background-color: #040612 !important;
+  background-image:
+    radial-gradient(ellipse at 10% 15%, rgba(6, 214, 160, 0.9) 0%, transparent 48%),
+    radial-gradient(ellipse at 90% 12%, rgba(255, 75, 110, 0.9) 0%, transparent 46%),
+    radial-gradient(ellipse at 88% 88%, rgba(34, 211, 238, 0.92) 0%, transparent 50%),
+    radial-gradient(ellipse at 12% 86%, rgba(255, 184, 48, 0.85) 0%, transparent 46%),
+    radial-gradient(ellipse at 50% 25%, rgba(147, 51, 234, 0.85) 0%, transparent 52%),
+    radial-gradient(ellipse at 50% 75%, rgba(26, 86, 255, 0.92) 0%, transparent 52%),
+    radial-gradient(ellipse at 78% 50%, rgba(251, 146, 60, 0.82) 0%, transparent 45%),
+    radial-gradient(ellipse at 22% 50%, rgba(79, 70, 229, 0.88) 0%, transparent 48%) !important;
+  background-size: 220% 220% !important;
+  background-attachment: fixed !important;
+  animation: liquidMultiColorFlow 20s ease-in-out infinite alternate !important;
+}
+
+@keyframes liquidMultiColorFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 35%;
+  }
+  50% {
+    background-position: 65% 100%;
+  }
+  75% {
+    background-position: 0% 70%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .backgroundContainer,
+  .backdropContainer {
+    animation: none !important;
+  }
+}
+
 .backgroundContainer::before,
 .backgroundContainer::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
+  display: none !important;
 }
-.backgroundContainer::before {
-  top: -8%;
-  right: -8%;
-  bottom: -8%;
-  left: -8%;
-  /* Screen-blending the render over the tint turns its black into the tint and leaves the glass. */
-  background: var(--lg-wallpaper), var(--lg-wallpaper-tint);
-  background-repeat: no-repeat;
-  background-blend-mode: screen, normal;
-  background-color: var(--lg-bg);
-  filter: var(--lg-wallpaper-filter);
-}
-.backgroundContainer::after {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: var(--lg-wallpaper-veil);
-}
-.backgroundContainer.withBackdrop::before,
-.backgroundContainer.withBackdrop::after,
-.backgroundContainer.backgroundContainer-transparent::before,
-.backgroundContainer.backgroundContainer-transparent::after {
-  display: none;
-}
-html.layout-tv .backgroundContainer::before {
-  filter: none;
+
+.backgroundContainer.withBackdrop {
+  background: transparent !important;
+  background-image: none !important;
+  animation: none !important;
 }
 
 /*

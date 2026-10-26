@@ -7311,67 +7311,53 @@ body:has(#videoOsdPage:not(.hide) .upNextDialog:not(.hide):not(.upNextDialog-hid
 /*
   Apple TV & iOS Video Subtitles / Closed Captions:
   - San Francisco & Inter typography
-  - Centered horizontally, lifted gracefully above bottom OSD
+  - Proportional, clean Apple-grade sizing across portrait, mobile & TV
   - Crisp text shadows and non-intrusive line wrapping
 */
 .videoSubtitles {
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 12% !important;
-  width: 100% !important;
-  margin: 0 auto !important;
-  padding: 0 16px !important;
-  box-sizing: border-box !important;
-  text-align: center !important;
   display: flex !important;
   justify-content: center !important;
-  align-items: center !important;
+  align-items: flex-end !important;
+  bottom: clamp(14px, 4.5vh, 40px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
   pointer-events: none !important;
-  z-index: 1000 !important;
+  z-index: 2 !important;
 }
 
-.videoSubtitlesInner {
-  display: inline-block !important;
-  text-align: center !important;
-  margin: 0 auto !important;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Inter", -apple-system-subtitles, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  font-size: clamp(0.95rem, 2.2vh + 0.35rem, 1.25rem) !important;
-  font-weight: 500 !important;
-  font-style: normal !important;
-  line-height: 1.35 !important;
-  letter-spacing: -0.012em !important;
-  color: #ffffff !important;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.95),
-    0 0 2px rgba(0, 0, 0, 0.95),
-    0 1px 4px rgba(0, 0, 0, 0.8) !important;
-  max-width: 90vw !important;
-  border-radius: 6px !important;
-}
-
+.videoSubtitlesInner,
 .videoSubtitlesInner span,
 .videoSubtitlesInner font,
-.videoSubtitlesInner b {
-  font-family: inherit !important;
-  font-size: inherit !important;
-  text-align: center !important;
-}
-
+.videoSubtitlesInner b,
 video::cue,
 ::cue,
 .htmlvideoplayer::cue,
 .videoPlayerContainer::cue,
 #videoPlayer::cue,
 .videoOsd-video::cue {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Inter", sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Inter", -apple-system-subtitles, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: clamp(0.95rem, 2.2vh + 0.35rem, 1.25rem) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
   line-height: 1.35 !important;
+  letter-spacing: -0.012em !important;
+  text-align: center !important;
   color: #ffffff !important;
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.95),
     0 0 2px rgba(0, 0, 0, 0.95),
     0 1px 4px rgba(0, 0, 0, 0.8) !important;
+  white-space: pre-wrap !important;
+  max-width: min(92vw, 850px) !important;
+}
+
+@media (max-width: 43em) {
+  .videoSubtitles {
+    bottom: 12% !important;
+  }
 }
 
 /* Mobile responsive scaling (portrait & landscape) */
@@ -9261,14 +9247,12 @@ html.layout-tv .playedIndicator .indicatorIcon {
   }
 }
 
-/* 4. Smooth OSD Fade Transitions (No Layout Jumping) */
+/* 4. Smooth Phone Rotation Physics (Desktop / Default) */
 .videoPlayerContainer,
 #videoOsdPage,
+.videoOsdBottom,
 .videoOsdTop {
-  transition: opacity 0.3s ease !important;
-}
-.videoOsdBottom {
-  transition: opacity 0.3s ease !important;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* 5. Final OSD Top Bar: Fully Transparent Container (Eliminates the giant ghost pill outline) */
@@ -9294,14 +9278,147 @@ html body .osdHeader::after {
   content: none !important;
 }
 
-/* 6. Apple Liquid Glass Center Play/Pause Orb (Screen Center Preference) */
-/* Prevent containing block trapping on btnPause and osdControls */
-.videoOsdBottom .osdControls {
-  animation: none !important;
+/* Desktop: Guarantee NO center orb and preserve stock desktop OSD completely */
+@media (min-width: 43.01em) and (hover: hover) and (pointer: fine) {
+  html:not(.layout-mobile) #videoOsdPage .videoOsdBottom .btnPlayPause::before,
+  html:not(.layout-mobile) #videoOsdPage .videoOsdBottom .btnPause::before,
+  html:not(.layout-mobile) #videoOsdPage .videoOsdBottom .btnPlay::before,
+  html:not(.layout-mobile) #videoOsdPage .videoOsdBottom .btnPlayPause::after,
+  html:not(.layout-mobile) #videoOsdPage .videoOsdBottom .btnPause::after,
+  html:not(.layout-mobile) #videoOsdPage .videoOsdBottom .btnPlay::after {
+    display: none !important;
+    content: none !important;
+  }
 }
 
-.videoOsdBottom .btnPause,
-.videoOsdBottom .btnPlayPause {
+html.layout-desktop #videoOsdPage .videoOsdBottom .btnPlayPause::before,
+html.layout-desktop #videoOsdPage .videoOsdBottom .btnPause::before,
+html.layout-desktop #videoOsdPage .videoOsdBottom .btnPlay::before,
+html.layout-desktop #videoOsdPage .videoOsdBottom .btnPlayPause::after,
+html.layout-desktop #videoOsdPage .videoOsdBottom .btnPause::after,
+html.layout-desktop #videoOsdPage .videoOsdBottom .btnPlay::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 6. Mobile Apple Liquid Glass Center Play/Pause Orb (Mobile Only) */
+@media (max-width: 43em), (hover: none) and (pointer: coarse) {
+  /* Prevent containing block trapping & jumping on mobile */
+  .videoOsdBottom {
+    transition: opacity 0.3s ease !important;
+  }
+  .videoOsdBottom .osdControls {
+    animation: none !important;
+  }
+  .videoOsdBottom .btnPause,
+  .videoOsdBottom .btnPlayPause {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: none !important;
+    scale: none !important;
+    filter: none !important;
+    contain: none !important;
+    will-change: auto !important;
+  }
+
+  /* Center Orb Disc: Matching the exact same transparency & blur as the mobile OSD */
+  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause::before,
+  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause::before,
+  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::before {
+    content: "" !important;
+    display: block !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 92px !important;
+    height: 92px !important;
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.035) !important;
+    backdrop-filter: blur(2px) saturate(1.25) !important;
+    -webkit-backdrop-filter: blur(2px) saturate(1.25) !important;
+    background-image: radial-gradient(
+      90% 60% at 22% 0%,
+      rgba(255, 255, 255, 0.12),
+      transparent 60%
+    ) !important;
+    border: none !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 0 0 0.5px rgba(255, 255, 255, 0.2),
+      0 10px 34px rgba(11, 11, 14, 0.22),
+      0 1px 2px rgba(11, 11, 14, 0.2) !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    z-index: 99999 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.25s ease !important;
+    will-change: opacity !important;
+  }
+
+  /* Center Orb Icon: Pause State (When video is playing, click will pause) */
+  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.pause)::after,
+  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.pause)::after {
+    content: "" !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 92px !important;
+    height: 92px !important;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/%3E%3C/svg%3E") center / 40px 40px no-repeat !important;
+    pointer-events: none !important;
+    z-index: 100000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.2s ease !important;
+  }
+
+  /* Center Orb Icon: Play State (When video is paused, click will play) */
+  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.play_arrow)::after,
+  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.play_arrow)::after,
+  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::after,
+  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(:has(.pause))::after {
+    content: "" !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 92px !important;
+    height: 92px !important;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center calc(50% + 1px) / 40px 40px no-repeat !important;
+    pointer-events: none !important;
+    z-index: 100000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.2s ease !important;
+  }
+
+  /* Smooth fade out when OSD is hidden (No jumping) */
+  .videoOsdBottom-hidden .btnPlayPause::before,
+  .videoOsdBottom-hidden .btnPlayPause::after,
+  .videoOsdBottom-hidden .btnPause::before,
+  .videoOsdBottom-hidden .btnPause::after,
+  .videoOsdBottom-hidden .btnPlay::before,
+  .videoOsdBottom-hidden .btnPlay::after,
+  #videoOsdPage.videoOsdBottom-hidden .btnPause::before,
+  #videoOsdPage.videoOsdBottom-hidden .btnPause::after {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+}
+
+/* Also support explicit html.layout-mobile class (even in landscape) */
+html.layout-mobile .videoOsdBottom {
+  transition: opacity 0.3s ease !important;
+}
+html.layout-mobile .videoOsdBottom .osdControls {
+  animation: none !important;
+}
+html.layout-mobile .videoOsdBottom .btnPause,
+html.layout-mobile .videoOsdBottom .btnPlayPause {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   transform: none !important;
@@ -9311,10 +9428,9 @@ html body .osdHeader::after {
   will-change: auto !important;
 }
 
-/* The Center Frosted Glass Disc */
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause::before,
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause::before,
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::before {
+html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause::before,
+html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause::before,
+html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::before {
   content: "" !important;
   display: block !important;
   position: fixed !important;
@@ -9324,21 +9440,20 @@ html body .osdHeader::after {
   width: 92px !important;
   height: 92px !important;
   border-radius: 50% !important;
-  background-color: rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
-  background-image: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.22) 0%,
-    rgba(255, 255, 255, 0.00) 55%
+  background-color: rgba(255, 255, 255, 0.035) !important;
+  backdrop-filter: blur(2px) saturate(1.25) !important;
+  -webkit-backdrop-filter: blur(2px) saturate(1.25) !important;
+  background-image: radial-gradient(
+    90% 60% at 22% 0%,
+    rgba(255, 255, 255, 0.12),
+    transparent 60%
   ) !important;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.35) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.16) !important;
-  border-right: none !important;
-  border-bottom: none !important;
+  border: none !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.20),
-    0 8px 24px rgba(0, 0, 0, 0.35) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.2),
+    0 10px 34px rgba(11, 11, 14, 0.22),
+    0 1px 2px rgba(11, 11, 14, 0.2) !important;
   pointer-events: auto !important;
   cursor: pointer !important;
   z-index: 99999 !important;
@@ -9348,9 +9463,8 @@ html body .osdHeader::after {
   will-change: opacity !important;
 }
 
-/* Center Orb Icon: Pause State (When video is playing, click will pause) */
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.pause)::after,
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.pause)::after {
+html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.pause)::after,
+html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.pause)::after {
   content: "" !important;
   position: fixed !important;
   top: 50% !important;
@@ -9366,11 +9480,10 @@ html body .osdHeader::after {
   transition: opacity 0.2s ease !important;
 }
 
-/* Center Orb Icon: Play State (When video is paused, click will play) */
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.play_arrow)::after,
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.play_arrow)::after,
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::after,
-#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(:has(.pause))::after {
+html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.play_arrow)::after,
+html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.play_arrow)::after,
+html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::after,
+html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(:has(.pause))::after {
   content: "" !important;
   position: fixed !important;
   top: 50% !important;
@@ -9386,15 +9499,14 @@ html body .osdHeader::after {
   transition: opacity 0.2s ease !important;
 }
 
-/* Smooth fade out when OSD is hidden (No jumping) */
-.videoOsdBottom-hidden .btnPlayPause::before,
-.videoOsdBottom-hidden .btnPlayPause::after,
-.videoOsdBottom-hidden .btnPause::before,
-.videoOsdBottom-hidden .btnPause::after,
-.videoOsdBottom-hidden .btnPlay::before,
-.videoOsdBottom-hidden .btnPlay::after,
-#videoOsdPage.videoOsdBottom-hidden .btnPause::before,
-#videoOsdPage.videoOsdBottom-hidden .btnPause::after {
+html.layout-mobile .videoOsdBottom-hidden .btnPlayPause::before,
+html.layout-mobile .videoOsdBottom-hidden .btnPlayPause::after,
+html.layout-mobile .videoOsdBottom-hidden .btnPause::before,
+html.layout-mobile .videoOsdBottom-hidden .btnPause::after,
+html.layout-mobile .videoOsdBottom-hidden .btnPlay::before,
+html.layout-mobile .videoOsdBottom-hidden .btnPlay::after,
+html.layout-mobile #videoOsdPage.videoOsdBottom-hidden .btnPause::before,
+html.layout-mobile #videoOsdPage.videoOsdBottom-hidden .btnPause::after {
   opacity: 0 !important;
   pointer-events: none !important;
   visibility: hidden !important;

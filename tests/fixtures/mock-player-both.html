@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mock Player Both Buttons Test</title>
+  <link rel="stylesheet" href="../../dist/jellyfin-liquid-glass.css">
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      width: 1024px;
+      height: 472px;
+      overflow: hidden;
+      position: relative;
+    }
+    .mock-video-canvas {
+      position: absolute;
+      inset: 0;
+      background: url("https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1024&q=80") center/cover no-repeat;
+      opacity: 0.7;
+    }
+    .videoOsdBottom {
+      position: fixed;
+      bottom: 14px;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="mock-video-canvas"></div>
+
+  <!-- Subtitles -->
+  <div class="videoSubtitles">
+    <div class="videoSubtitlesInner">
+      <span>...was not so that I could walk among that life.</span>
+    </div>
+  </div>
+
+  <!-- Video OSD Page -->
+  <div id="videoOsdPage">
+    <div class="videoOsdTop osdHeader">
+      <button class="paper-icon-button-light"><span class="material-icons-round">arrow_back</span></button>
+      <span class="pageTitle videoOsdTitle">Spider-Man: Brand New Day (2026)</span>
+      <button class="paper-icon-button-light"><span class="material-icons-round">settings</span></button>
+    </div>
+
+    <!-- Video OSD Bottom Bar -->
+    <div class="videoOsdBottom">
+      <div class="osdControls">
+        <div class="sliderContainer" style="height: 12px; margin-bottom: 8px;">
+          <div style="background: rgba(255,255,255,0.3); height: 4px; border-radius: 2px; width: 35%;"></div>
+        </div>
+        <div class="buttons" style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button class="paper-icon-button-light"><span class="material-icons">fast_rewind</span></button>
+            <button class="btnPlayPause btnPause paper-icon-button-light">
+              <span class="material-icons pause">pause</span>
+            </button>
+            <button class="paper-icon-button-light"><span class="material-icons">fast_forward</span></button>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="paper-icon-button-light"><span class="material-icons">settings</span></button>
+            <button class="paper-icon-button-light"><span class="material-icons">fullscreen</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

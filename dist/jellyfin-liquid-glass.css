@@ -7311,47 +7311,65 @@ body:has(#videoOsdPage:not(.hide) .upNextDialog:not(.hide):not(.upNextDialog-hid
 /*
   Apple TV & iOS Video Subtitles / Closed Captions:
   - San Francisco & Inter typography
-  - Proportional, clean Apple-grade sizing across portrait, mobile & TV
+  - Centered horizontally, lifted gracefully above bottom OSD
   - Crisp text shadows and non-intrusive line wrapping
 */
 .videoSubtitles {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: flex-end !important;
-  bottom: clamp(14px, 4.5vh, 40px) !important;
+  position: absolute !important;
   left: 0 !important;
   right: 0 !important;
+  bottom: 12% !important;
   width: 100% !important;
+  margin: 0 auto !important;
   padding: 0 16px !important;
   box-sizing: border-box !important;
+  text-align: center !important;
+  display: block !important;
   pointer-events: none !important;
-  z-index: 2 !important;
+  z-index: 1000 !important;
 }
 
-.videoSubtitlesInner,
-.videoSubtitlesInner span,
-.videoSubtitlesInner font,
-.videoSubtitlesInner b,
-video::cue,
-::cue,
-.htmlvideoplayer::cue,
-.videoPlayerContainer::cue,
-#videoPlayer::cue,
-.videoOsd-video::cue {
+.videoSubtitlesInner {
+  display: inline-block !important;
+  text-align: center !important;
+  margin: 0 auto !important;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Inter", -apple-system-subtitles, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: clamp(0.95rem, 2.2vh + 0.35rem, 1.25rem) !important;
   font-weight: 500 !important;
   font-style: normal !important;
   line-height: 1.35 !important;
   letter-spacing: -0.012em !important;
-  text-align: center !important;
   color: #ffffff !important;
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.95),
     0 0 2px rgba(0, 0, 0, 0.95),
     0 1px 4px rgba(0, 0, 0, 0.8) !important;
-  white-space: pre-wrap !important;
-  max-width: min(92vw, 850px) !important;
+  max-width: 90vw !important;
+  border-radius: 6px !important;
+}
+
+.videoSubtitlesInner span,
+.videoSubtitlesInner font,
+.videoSubtitlesInner b {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  text-align: center !important;
+}
+
+video::cue,
+::cue,
+.htmlvideoplayer::cue,
+.videoPlayerContainer::cue,
+#videoPlayer::cue,
+.videoOsd-video::cue {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Inter", sans-serif !important;
+  font-size: clamp(0.95rem, 2.2vh + 0.35rem, 1.25rem) !important;
+  line-height: 1.35 !important;
+  color: #ffffff !important;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.95),
+    0 0 2px rgba(0, 0, 0, 0.95),
+    0 1px 4px rgba(0, 0, 0, 0.8) !important;
 }
 
 /* Mobile responsive scaling (portrait & landscape) */
@@ -9273,9 +9291,84 @@ html body .osdHeader::after {
 }
 
 /* 6. Apple Liquid Glass Center Play/Pause Orb (Screen Center Preference) */
+/* The Center Frosted Glass Disc */
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause::before,
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause::before,
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::before {
+  content: "" !important;
+  display: block !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 92px !important;
+  height: 92px !important;
+  border-radius: 50% !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(150%) brightness(110%) !important;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.00) 55%
+  ) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.20),
+    0 8px 24px rgba(0, 0, 0, 0.35) !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  z-index: 1000 !important;
+}
+
+/* Center Orb Icon: Pause State */
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause::after,
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.pause)::after {
+  content: "" !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 92px !important;
+  height: 92px !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M6 19h4V5H6v14zm8-14v14h4V5h-4z'/%3E%3C/svg%3E") center / 40px 40px no-repeat !important;
+  pointer-events: none !important;
+  z-index: 1001 !important;
+}
+
+/* Center Orb Icon: Play State */
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::after,
+#videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.play_arrow)::after {
+  content: "" !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 92px !important;
+  height: 92px !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center calc(50% + 1px) / 40px 40px no-repeat !important;
+  pointer-events: none !important;
+  z-index: 1001 !important;
+}
+
+/* Hide center orb when OSD is hidden during playback */
+.videoOsdBottom-hidden .btnPlayPause::before,
+.videoOsdBottom-hidden .btnPlayPause::after,
+.videoOsdBottom-hidden .btnPause::before,
+.videoOsdBottom-hidden .btnPause::after,
+.videoOsdBottom-hidden .btnPlay::before,
+.videoOsdBottom-hidden .btnPlay::after {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Also support center .iconOsd popups */
 .iconOsd:not(:has(.iconOsdProgressOuter)),
 #videoOsdPage .iconOsd:not(:has(.iconOsdProgressOuter)),
-html body #videoOsdPage .iconOsd:not(:has(.iconOsdProgressOuter)),
 .iconOsd:not(.iconOsd-volume):not(.iconOsd-brightness) {
   position: fixed !important;
   top: 50% !important;
@@ -9311,7 +9404,6 @@ html body #videoOsdPage .iconOsd:not(:has(.iconOsdProgressOuter)),
 
 .iconOsd:not(:has(.iconOsdProgressOuter)) .iconOsdIcon,
 #videoOsdPage .iconOsd:not(:has(.iconOsdProgressOuter)) .iconOsdIcon,
-html body #videoOsdPage .iconOsd:not(:has(.iconOsdProgressOuter)) .iconOsdIcon,
 .iconOsd:not(.iconOsd-volume):not(.iconOsd-brightness) .iconOsdIcon {
   margin: 0 !important;
   padding: 0 !important;

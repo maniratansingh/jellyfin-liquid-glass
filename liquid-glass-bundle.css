@@ -4737,12 +4737,13 @@ html.layout-tv .toast {
 /* Chromium paints autofilled fields pale yellow or blue; hold the dark fill for as long as it tries. */
 .emby-input:-webkit-autofill,
 .emby-input:-webkit-autofill:hover,
-.emby-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: var(--lg-text);
-  caret-color: var(--lg-accent);
+.emby-input:-webkit-autofill:focus,
+#loginPage input:-webkit-autofill {
+  -webkit-text-fill-color: var(--lg-text) !important;
+  caret-color: var(--lg-accent) !important;
   box-shadow:
-    inset 0 0 0 1.5px rgb(var(--lg-accent-rgb) / 0.35),
-    inset 0 0 0 60px rgb(42 42 48);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    inset 0 0 0 60px rgba(25, 25, 32, 0.85) !important;
   transition: background-color 600000s 0s;
 }
 .emby-input[type="color"] {
@@ -5887,6 +5888,8 @@ html.layout-tv #myPreferencesMenuPage a.listItem-border:focus {
 .forgotPasswordPinPage {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 /*
@@ -9114,7 +9117,7 @@ html.layout-tv .playedIndicator .indicatorIcon {
 }
 
 /* Standalone fallback for login forms without .padded-bottom-page wrapper */
-.manualLoginForm:not(#loginPage > .padded-bottom-page *) {
+.manualLoginForm:not(#loginPage *) {
   border-radius: var(--lg-radius-panel) !important;
   overflow: hidden !important;
   backdrop-filter: blur(50px) saturate(220%) contrast(110%) brightness(105%) !important;
@@ -9270,9 +9273,9 @@ html.layout-desktop #videoOsdPage .videoOsdBottom .btnPlay::after {
   }
 
   /* Center Orb Disc: Matching the exact same transparency & blur as the mobile OSD */
-  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause::before,
-  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause::before,
-  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::before {
+  #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:not(.hide)::before,
+  #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(.hide)::before,
+  #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay:not(.hide)::before {
     content: "" !important;
     display: block !important;
     position: fixed !important;
@@ -9306,8 +9309,8 @@ html.layout-desktop #videoOsdPage .videoOsdBottom .btnPlay::after {
   }
 
   /* Center Orb Icon: Pause State (When video is playing, click will pause) */
-  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.pause)::after,
-  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.pause)::after {
+  #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(.hide):has(.pause)::after,
+  #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:not(.hide):has(.pause)::after {
     content: "" !important;
     position: fixed !important;
     top: 50% !important;
@@ -9324,10 +9327,10 @@ html.layout-desktop #videoOsdPage .videoOsdBottom .btnPlay::after {
   }
 
   /* Center Orb Icon: Play State (When video is paused, click will play) */
-  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.play_arrow)::after,
-  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.play_arrow)::after,
-  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::after,
-  #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(:has(.pause))::after {
+  #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(.hide):has(.play_arrow)::after,
+  #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:not(.hide):has(.play_arrow)::after,
+  #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay:not(.hide)::after,
+  #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(.hide):not(:has(.pause))::after {
     content: "" !important;
     position: fixed !important;
     top: 50% !important;
@@ -9343,7 +9346,7 @@ html.layout-desktop #videoOsdPage .videoOsdBottom .btnPlay::after {
     transition: opacity 0.2s ease !important;
   }
 
-  /* Smooth fade out when OSD is hidden (No jumping) */
+  /* Smooth fade out when OSD is hidden or page is hidden (No jumping or ghosting) */
   .videoOsdBottom-hidden .btnPlayPause::before,
   .videoOsdBottom-hidden .btnPlayPause::after,
   .videoOsdBottom-hidden .btnPause::before,
@@ -9351,7 +9354,13 @@ html.layout-desktop #videoOsdPage .videoOsdBottom .btnPlay::after {
   .videoOsdBottom-hidden .btnPlay::before,
   .videoOsdBottom-hidden .btnPlay::after,
   #videoOsdPage.videoOsdBottom-hidden .btnPause::before,
-  #videoOsdPage.videoOsdBottom-hidden .btnPause::after {
+  #videoOsdPage.videoOsdBottom-hidden .btnPause::after,
+  #videoOsdPage.hide .btnPlayPause::before,
+  #videoOsdPage.hide .btnPlayPause::after,
+  #videoOsdPage.hide .btnPause::before,
+  #videoOsdPage.hide .btnPause::after,
+  #videoOsdPage.hide .btnPlay::before,
+  #videoOsdPage.hide .btnPlay::after {
     opacity: 0 !important;
     pointer-events: none !important;
     visibility: hidden !important;
@@ -9376,9 +9385,9 @@ html.layout-mobile .videoOsdBottom .btnPlayPause {
   will-change: auto !important;
 }
 
-html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause::before,
-html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause::before,
-html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::before {
+html.layout-mobile #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:not(.hide)::before,
+html.layout-mobile #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(.hide)::before,
+html.layout-mobile #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay:not(.hide)::before {
   content: "" !important;
   display: block !important;
   position: fixed !important;
@@ -9411,8 +9420,8 @@ html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .bt
   will-change: opacity !important;
 }
 
-html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.pause)::after,
-html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.pause)::after {
+html.layout-mobile #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(.hide):has(.pause)::after,
+html.layout-mobile #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:not(.hide):has(.pause)::after {
   content: "" !important;
   position: fixed !important;
   top: 50% !important;
@@ -9428,10 +9437,10 @@ html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .bt
   transition: opacity 0.2s ease !important;
 }
 
-html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:has(.play_arrow)::after,
-html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:has(.play_arrow)::after,
-html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay::after,
-html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(:has(.pause))::after {
+html.layout-mobile #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(.hide):has(.play_arrow)::after,
+html.layout-mobile #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlayPause:not(.hide):has(.play_arrow)::after,
+html.layout-mobile #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPlay:not(.hide)::after,
+html.layout-mobile #videoOsdPage:not(.hide):not(.videoOsdBottom-hidden) .videoOsdBottom .btnPause:not(.hide):not(:has(.pause))::after {
   content: "" !important;
   position: fixed !important;
   top: 50% !important;
@@ -9447,6 +9456,7 @@ html.layout-mobile #videoOsdPage:not(.videoOsdBottom-hidden) .videoOsdBottom .bt
   transition: opacity 0.2s ease !important;
 }
 
+/* Smooth fade out when OSD is hidden or page is hidden (No jumping or ghosting) */
 html.layout-mobile .videoOsdBottom-hidden .btnPlayPause::before,
 html.layout-mobile .videoOsdBottom-hidden .btnPlayPause::after,
 html.layout-mobile .videoOsdBottom-hidden .btnPause::before,
@@ -9454,7 +9464,13 @@ html.layout-mobile .videoOsdBottom-hidden .btnPause::after,
 html.layout-mobile .videoOsdBottom-hidden .btnPlay::before,
 html.layout-mobile .videoOsdBottom-hidden .btnPlay::after,
 html.layout-mobile #videoOsdPage.videoOsdBottom-hidden .btnPause::before,
-html.layout-mobile #videoOsdPage.videoOsdBottom-hidden .btnPause::after {
+html.layout-mobile #videoOsdPage.videoOsdBottom-hidden .btnPause::after,
+html.layout-mobile #videoOsdPage.hide .btnPlayPause::before,
+html.layout-mobile #videoOsdPage.hide .btnPlayPause::after,
+html.layout-mobile #videoOsdPage.hide .btnPause::before,
+html.layout-mobile #videoOsdPage.hide .btnPause::after,
+html.layout-mobile #videoOsdPage.hide .btnPlay::before,
+html.layout-mobile #videoOsdPage.hide .btnPlay::after {
   opacity: 0 !important;
   pointer-events: none !important;
   visibility: hidden !important;

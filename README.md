@@ -48,43 +48,17 @@ If you add this CSS to your Jellyfin server, here is a breakdown of the design l
 
 ## How to Use
 
-Copy and paste one of the following `@import` rules into your **Jellyfin Dashboard → General → Custom CSS**:
+Add the following to your **Jellyfin Dashboard → General → Custom CSS**:
 
-### 1. Stable Version (Main Branch)
-
-Recommended for everyday personal use:
-
-- **Mobile, Tablet, Desktop (Web & Desktop Apps):**
-  ```css
-  @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-bundle.css");
-  ```
-- **Android TV / Fire TV:**
-  ```css
-  @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-tv.css");
-  ```
+```css
+@import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-bundle.css");
+```
 
 ---
 
-### 2. Testing Version (Test Branch)
+### Note on Caching (Force Updating)
 
-For testing experimental updates and early previews:
-
-- **Mobile, Tablet, Desktop:**
-  ```css
-  @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@test/liquid-glass-bundle.css");
-  ```
-
----
-
-### Why is the TV Stylesheet Separate?
-
-Jellyfin's TV client is built for a 10-foot viewing distance and navigated via D-pad remote controls. It requires prominent glowing focus states and larger targets. Keeping `liquid-glass-tv.css` separate preserves TV remote navigation without compromising the mobile and desktop glass layout.
-
----
-
-### Cache Busting (Force Instant Updates)
-
-CDNs like jsDelivr and browsers cache CSS files. To force your Jellyfin client or browser to pull the latest update immediately, append a version query string (e.g. `?v=2`, `?v=3`):
+CDNs and browsers cache CSS files. To bypass the cache and load updates immediately, append a version parameter to the end of the URL:
 
 ```css
 @import url("https://cdn.jsdelivr.net/gh/maniratansingh/jellyfin-liquid-glass@main/liquid-glass-bundle.css?v=2");
